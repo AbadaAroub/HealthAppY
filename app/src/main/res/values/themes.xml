@@ -1,9 +1,23 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.HealthAppY" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.HealthAppY" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/blue</item>
     </style>
 
     <style name="Theme.HealthAppY" parent="Base.Theme.HealthAppY" />
+
+
+
+    <style name="Theme.HealthAppY.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.HealthAppY.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.HealthAppY.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
+    </style>
+
 </resources>

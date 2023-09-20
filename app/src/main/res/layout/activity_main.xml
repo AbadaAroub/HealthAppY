@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -11,84 +10,84 @@
         android:id="@+id/welcome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome To"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/blue"
         android:layout_margin="30dp"
         android:gravity="center"
-        />
+        android:text="Welcome To"
+        android:textColor="@color/blue"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/healthcare"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Health Care"
-        android:textSize="32dp"
-        android:textStyle="bold"
-        android:textColor="@color/blue"
         android:layout_margin="60dp"
         android:gravity="center"
-        />
+        android:text="Health Care"
+        android:textColor="@color/blue"
+        android:textSize="32dp"
+        android:textStyle="bold" />
+
     <ImageView
         android:id="@+id/page"
         android:layout_width="wrap_content"
         android:layout_height="390dp"
-        android:src="@drawable/page1"
         android:layout_marginTop="120dp"
+        android:src="@drawable/page1"
 
         />
+
     <Button
+        android:id="@+id/signupbtn"
         android:layout_width="292dp"
         android:layout_height="wrap_content"
-        android:id="@+id/signupbtn"
-        android:layout_below="@+id/page"
-        android:text="Sign Up"
-        android:backgroundTint="@color/blue"
+        android:layout_below="@+id/swedish"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        />
+        android:backgroundTint="@color/blue"
+        android:text="Sign Up" />
+
     <Button
+        android:id="@+id/loginbtn"
         android:layout_width="292dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/signupbtn"
-        android:id="@+id/loginbtn"
-        android:text="Log In"
-        android:backgroundTint="@color/blue"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/blue"
+        android:text="Log In" />
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/swedish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/page"
+        android:layout_marginLeft="90dp"
+        android:backgroundTint="@color/blue"
+        android:text="Svenska"
+        />
+
+    <Button
+        android:id="@+id/english"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/page"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="210dp"
+        android:backgroundTint="@color/blue"
+        android:text="English" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/signwith"
-        android:layout_above="@+id/socialicons"
-        android:layout_marginBottom="15dp"
-        android:text="or sign in with"
-        android:layout_centerHorizontal="true"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/socialicons"
-        android:layout_alignParentBottom="true"
-        android:gravity="center">
-
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="20dp"
-            android:src="@drawable/google"/>
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="20dp"
-            android:src="@drawable/facebook"/>
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="20dp"
-            android:src="@drawable/microsoft"/>
-
-    </LinearLayout>
+        android:text="Language:"
+        android:layout_below="@id/page"
+        android:layout_marginTop="22dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"/>
 
 
-  </RelativeLayout>
+
+</RelativeLayout>

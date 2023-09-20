@@ -3,5 +3,14 @@
     <style name="Base.Theme.HealthAppY" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <item name="colorPrimary">@color/blue</item>
+
+
+    </style>
+
+    <style name="Theme.HealthAppY.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
     </style>
 </resources>
