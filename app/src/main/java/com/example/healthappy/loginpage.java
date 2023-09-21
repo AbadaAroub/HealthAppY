@@ -2,6 +2,7 @@ package com.example.healthappy;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,8 +24,8 @@ public class loginpage extends AppCompatActivity {
     EditText editTextEmail, editTextPassword;
     Button loginbutton;
     FirebaseAuth mAuth;
-
-    @Override
+    // Kanske behöver denna senare
+    /*@Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
@@ -34,19 +35,22 @@ public class loginpage extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-    }
+    }*/
+
     private Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loginpage);
-        button = (Button) findViewById(R.id.loginbutton);
+
+
+        /*button = (Button) findViewById(R.id.loginbutton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openmealmanagmentpage();
             }
-        });
+        });*/
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -80,7 +84,7 @@ public class loginpage extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(loginpage.this, "Login Successful",
                                             Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    Intent intent = new Intent(getApplicationContext(), FragmentHome.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
@@ -93,9 +97,9 @@ public class loginpage extends AppCompatActivity {
             }
         });
     }
-    public void openmealmanagmentpage() {
+    /*public void openmealmanagmentpage() {
         Intent intent = new Intent(this, mealmanagment.class);
         startActivity(intent);
     }
-
+    */
 }
