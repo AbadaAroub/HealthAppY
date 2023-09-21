@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 
 public class signuppage extends AppCompatActivity {
-
+    //Test
     EditText editTextEmail, editTextPassword, editTextRePassword;
     Button signUpBtn;
     FirebaseAuth mAuth;
