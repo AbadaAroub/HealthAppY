@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initWidgets();
-        //selectedDate = LocalDate.now();
+        selectedDate = LocalDate.now();
         setMonthView();
         button = (Button) findViewById(R.id.loginbtn);
         button1 = (Button) findViewById(R.id.signupbtn);
@@ -51,9 +51,10 @@ public class MainActivity extends AppCompatActivity {
         //monthYearText.setText();
     }
 
-    /*private String monthYearFromDate(LocalDate date) {
+    private String monthYearFromDate(LocalDate date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
-    }*/
+        return "";
+    }
     public void openLoginPage() {
         Intent intent = new Intent(this, loginpage.class);
         startActivity(intent);
