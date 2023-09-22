@@ -9,12 +9,30 @@
     tools:context=".MainActivity">
 
 
-
-    <EditText
-        android:id = "@+id/user_details"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Email"
+        android:text="Password recovery"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/we_will_send_you_an_e_mail_with_instructions_to_reset_your_password"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="20dp"
+        />
+
+    <EditText
+        android:id = "@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -27,8 +45,8 @@
         android:textColorHint="@color/white"/>
 
     <Button
-        android:text="Send reset mail"
-        android:id="@+id/btn_logout"
+        android:text="@string/send_reset_mail"
+        android:id="@+id/btn_sendResetMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"

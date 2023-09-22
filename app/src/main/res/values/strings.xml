@@ -13,5 +13,8 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="open"> Open Navigation Drawer</string>
     <string name="close"> Close Navigation Drawer</string>
+    <string name="send_reset_mail">Send reset mail</string>
+    <string name="email">Email</string>
+    <string name="we_will_send_you_an_e_mail_with_instructions_to_reset_your_password">We will send you an e-mail with instructions to reset your password.</string>
 
 </resources>
