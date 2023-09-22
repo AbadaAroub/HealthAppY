@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +25,7 @@ public class loginpage extends AppCompatActivity {
     EditText editTextEmail, editTextPassword;
     Button loginbutton;
     FirebaseAuth mAuth;
+    TextView forgotPassText;
     // Kanske behöver denna senare
     /*@Override
     public void onStart() {
@@ -57,6 +59,7 @@ public class loginpage extends AppCompatActivity {
         editTextEmail = findViewById(R.id.username); //Change to email?
         editTextPassword = findViewById(R.id.password);
         loginbutton = findViewById(R.id.loginbutton);
+        forgotPassText = findViewById(R.id.forgotpass);
 
         loginbutton.setOnClickListener(new View.OnClickListener(){
 
@@ -82,18 +85,25 @@ public class loginpage extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(loginpage.this, "Login Successful",
-                                            Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(loginpage.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getApplicationContext(), FragmentHome.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
-                                    Toast.makeText(loginpage.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(loginpage.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
 
                                 }
                             }
                         });
+            }
+        });
+
+        forgotPassText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), forgotPassPage.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
