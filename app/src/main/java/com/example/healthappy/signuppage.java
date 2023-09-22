@@ -55,7 +55,7 @@ public class signuppage extends AppCompatActivity {
         caregiverMobileEdt = findViewById(R.id.mobileNumber);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference().child("Caregiver");
+        databaseReference = firebaseDatabase.getReference("Caregiver");
         caregiver = new Caregiver();
 
         signUpBtn = findViewById(R.id.signup);
@@ -102,14 +102,12 @@ public class signuppage extends AppCompatActivity {
                                     Intent intent = new Intent(getApplicationContext(), loginpage.class);
                                     startActivity(intent);
                                     finish();
-
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(signuppage.this, task.getException().getLocalizedMessage(),
-                                            Toast.LENGTH_SHORT).show();
-
-                                }
-                            }
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(signuppage.this, task.getException().getLocalizedMessage(),
+                            Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 });
             }
         });
@@ -119,12 +117,11 @@ public class signuppage extends AppCompatActivity {
     private void addDatatoFirebase(String name, String number, String uid) {
         caregiver.setName(name);
         caregiver.setMobile_nr(number);
-        caregiver.setUser_UID(uid);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                databaseReference.setValue(caregiver);
+                databaseReference.child(uid).setValue(caregiver);
                 Toast.makeText(signuppage.this, "Data added", Toast.LENGTH_SHORT).show();
             }
             @Override
