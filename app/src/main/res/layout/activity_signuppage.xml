@@ -12,6 +12,7 @@
         android:src="@drawable/loginphoto"
         android:id="@+id/logphoto"
         />
+ 
 
     <EditText
         android:id="@+id/username1"
