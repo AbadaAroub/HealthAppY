@@ -37,6 +37,7 @@
         android:layout_below="@+id/username"
         android:background="@color/blue"
         android:hint="Password"
+        android:inputType="textPassword"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:layout_margin="10dp"
