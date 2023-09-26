@@ -30,9 +30,10 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
+        mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            Intent intent = new Intent(getApplicationContext(), signuppage.class);
+        if(currentUser == null){
+            Intent intent = new Intent(getApplicationContext(), loginpage.class);
             startActivity(intent);
             finish();
         }

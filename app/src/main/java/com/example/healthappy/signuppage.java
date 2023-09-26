@@ -81,7 +81,7 @@ public class signuppage extends AppCompatActivity {
                                     });
                             Toast.makeText(signuppage.this, "Email verification sent.", Toast.LENGTH_SHORT).show();
 
-                            Intent intent = new Intent(getApplicationContext(), mealmanagment.class);
+                            Intent intent = new Intent(getApplicationContext(), loginpage.class);
                                     startActivity(intent);
                                     finish();
 
