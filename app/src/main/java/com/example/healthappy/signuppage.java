@@ -53,7 +53,6 @@ public class signuppage extends AppCompatActivity {
         //Database
         caregiverNameEdt = findViewById(R.id.username1);
         caregiverMobileEdt = findViewById(R.id.mobileNumber);
-
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Caregiver");
         caregiver = new Caregiver();
