@@ -53,39 +53,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background_color="@color/blue"
+           android:layout_below="@id/email"
         android:hint="Mobile Number"
         android:id="@+id/mobileNumber"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
+           android:background="@color/blue"
         android:layout_margin="10dp"
         android:padding="20dp"
         android:drawableLeft="@drawable/baseline_phone_24"
         android:drawablePadding="20dp"
         android:inputType="phone"/>
-  
 
     <EditText
         android:id="@+id/signuppass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/email"
+        android:layout_below="@+id/mobileNumber"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@color/blue" />
- 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/signuppass"
-        android:layout_below="@+id/mobileNumber"
         android:background="@color/blue"
+        android:drawableLeft="@drawable/baseline_key_24"
+        android:drawablePadding="20dp"
         android:hint="Password"
-        android:textColorHint="@color/white"
+        android:inputType="textPassword"
+        android:padding="20dp"
         android:textColor="@color/white"
-        android:layout_margin="10dp"
-        android:padding="20dp" />
+        android:textColorHint="@color/white" />
 
     <EditText
         android:id="@+id/resignuppass"
