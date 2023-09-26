@@ -75,8 +75,6 @@ public class signuppage extends AppCompatActivity {
                 String number = caregiverMobileEdt.getText().toString();
                 String mail = caregiverEmailEDt.getText().toString();
 
-                String uid = user.getUid();
-
                 if (TextUtils.isEmpty(email)){
                     Toast.makeText(signuppage.this, "Enter Email", Toast.LENGTH_SHORT).show();
                     return;
@@ -95,45 +93,43 @@ public class signuppage extends AppCompatActivity {
                 if(TextUtils.isEmpty(name) && TextUtils.isEmpty(number)) {
                     Toast.makeText(signuppage.this, "Add some data:", Toast.LENGTH_SHORT).show();
                 } else {
-                    addDatatoFirebase(name, number, mail, uid);
-                }
-
-                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-
-                            FirebaseUser user = mAuth.getCurrentUser();
-
-                            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()) {
-                                                Log.d(TAG, "Email sent.");
-                                            }
+                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            addDatatoFirebase(name, number, mail);
+                                            Log.d(TAG, "Email sent.");
                                         }
-                                    });
-                            Toast.makeText(signuppage.this, "Email verification sent.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                Toast.makeText(signuppage.this, "Email verification sent.", Toast.LENGTH_SHORT).show();
 
-                            Intent intent = new Intent(getApplicationContext(), loginpage.class);
-                                    startActivity(intent);
-                                    finish();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(signuppage.this, task.getException().getLocalizedMessage(),
-                            Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), loginpage.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Toast.makeText(signuppage.this, task.getException().getLocalizedMessage(),
+                                        Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         });
     }
 
     //Database
-    private void addDatatoFirebase(String name, String number, String mail, String uid) {
+    private void addDatatoFirebase(String name, String number, String mail) {
         caregiver.setName(name);
         caregiver.setMobile_nr(number);
         caregiver.setEmail(mail);
+        String uid = mAuth.getCurrentUser().getUid();
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
