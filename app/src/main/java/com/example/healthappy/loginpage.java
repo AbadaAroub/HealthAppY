@@ -86,7 +86,7 @@ public class loginpage extends AppCompatActivity {
 
                                 if (task.isSuccessful()) {
                                     Toast.makeText(loginpage.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), FragmentHome.class);
+                                    Intent intent = new Intent(getApplicationContext(), mealmanagment.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
