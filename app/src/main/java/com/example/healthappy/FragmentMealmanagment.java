@@ -51,7 +51,7 @@ public class FragmentMealmanagment extends Fragment {
 
     }
     public void openMealmanagmentEdit(){
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentMealManagmentEdit()).commit();
+       // getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentMealManagmentEdit()).commit();
 
     }
 }
