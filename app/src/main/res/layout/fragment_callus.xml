@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/Abada_info"
         android:layout_centerHorizontal="true"
-        android:text="Phone number"
+        android:text="@string/phone_number"
         android:textColor="@color/black"
         android:textSize="30dp"
         android:textStyle="bold" />
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/line"
         android:layout_centerHorizontal="true"
-        android:text="Emergency Number"
+        android:text="@string/emergency_number"
         android:textColor="@color/red"
         android:textSize="30dp"
         android:textStyle="bold" />
