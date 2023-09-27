@@ -70,7 +70,7 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
 
         } else if (item.getItemId() == R.id.nav_meal_managment) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentMealmanagment()).commit();
+            //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentMealmanagment()).commit();
 
         } else if (item.getItemId() == R.id.nav_accountsettings) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentProfilesettings()).commit();
