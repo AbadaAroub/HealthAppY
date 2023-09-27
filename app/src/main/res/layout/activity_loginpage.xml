@@ -25,42 +25,45 @@
         android:background="@color/blue"
         android:drawableLeft="@drawable/baseline_email_24"
         android:drawablePadding="20dp"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:padding="20dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
 
     <EditText
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/password"
         android:layout_below="@+id/email1"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/blue"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:layout_margin="10dp"
-        android:padding="20dp"
         android:drawableLeft="@drawable/baseline_lock_24"
-        android:drawablePadding="20dp"/>
+        android:drawablePadding="20dp"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
     <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Remember me"
         android:id="@+id/rememberme"
-        android:textColor="@color/blue"
-        android:layout_below="@id/password"
-        />
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/password"
+        android:text="@string/remember"
+        android:textColor="@color/blue" />
+
+    <Button
         android:id="@+id/loginbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/rememberme"
-        android:text="Log In"
         android:layout_centerHorizontal="true"
-        />
+        android:text="@string/login" />
 
     <TextView
         android:id="@+id/forgotpass"
@@ -72,6 +75,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:text="Forgot password?"
-        android:textColor="@color/blue"/>
+        android:text="@string/password_forgot"
+        android:textColor="@color/blue" />
 </RelativeLayout>
