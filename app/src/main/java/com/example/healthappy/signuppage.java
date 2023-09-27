@@ -25,7 +25,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.auth.User;
 
 public class signuppage extends AppCompatActivity {
     EditText editTextEmail, editTextPassword, editTextRePassword;
@@ -33,7 +32,7 @@ public class signuppage extends AppCompatActivity {
     FirebaseAuth mAuth;
 
     //Database
-    private EditText caregiverNameEdt, caregiverMobileEdt;
+    private EditText caregiverNameEdt, caregiverMobileEdt, caregiverEmailEDt;
     Caregiver caregiver;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -56,6 +55,7 @@ public class signuppage extends AppCompatActivity {
         //Database
         caregiverNameEdt = findViewById(R.id.username1);
         caregiverMobileEdt = findViewById(R.id.mobileNumber);
+        caregiverEmailEDt = findViewById(R.id.email);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Caregiver");
         caregiver = new Caregiver();
@@ -73,6 +73,8 @@ public class signuppage extends AppCompatActivity {
                 //Database
                 String name = caregiverNameEdt.getText().toString();
                 String number = caregiverMobileEdt.getText().toString();
+                String mail = caregiverEmailEDt.getText().toString();
+
                 String uid = user.getUid();
 
                 if (TextUtils.isEmpty(email)){
@@ -93,7 +95,7 @@ public class signuppage extends AppCompatActivity {
                 if(TextUtils.isEmpty(name) && TextUtils.isEmpty(number)) {
                     Toast.makeText(signuppage.this, "Add some data:", Toast.LENGTH_SHORT).show();
                 } else {
-                    addDatatoFirebase(name, number, uid);
+                    addDatatoFirebase(name, number, mail, uid);
                 }
 
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -128,9 +130,10 @@ public class signuppage extends AppCompatActivity {
     }
 
     //Database
-    private void addDatatoFirebase(String name, String number, String uid) {
+    private void addDatatoFirebase(String name, String number, String mail, String uid) {
         caregiver.setName(name);
         caregiver.setMobile_nr(number);
+        caregiver.setEmail(mail);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
