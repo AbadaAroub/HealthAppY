@@ -36,7 +36,7 @@ public class signuppage extends AppCompatActivity {
     Caregiver caregiver;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
 
     @Override
     public void onStart() {
@@ -65,17 +65,10 @@ public class signuppage extends AppCompatActivity {
         signUpBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                String email, password, rePassword;
+                String email, password, rePassword, name, number;
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
                 rePassword = String.valueOf(editTextRePassword.getText());
-
-                //Database
-                String name = caregiverNameEdt.getText().toString();
-                String number = caregiverMobileEdt.getText().toString();
-                String mail = caregiverEmailEDt.getText().toString();
-
-                String uid = user.getUid();
 
                 if (TextUtils.isEmpty(email)){
                     Toast.makeText(signuppage.this, "Enter Email", Toast.LENGTH_SHORT).show();
@@ -87,23 +80,32 @@ public class signuppage extends AppCompatActivity {
                 }
                 if (TextUtils.isEmpty(rePassword)) {
                     Toast.makeText(signuppage.this, "Reenter Password", Toast.LENGTH_SHORT).show();
+                    return;
                 } else if (!String.valueOf(editTextPassword.getText()).equals(String.valueOf(editTextRePassword.getText()))){
                     Toast.makeText(signuppage.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-
-                //Database
                 if(TextUtils.isEmpty(name) && TextUtils.isEmpty(number)) {
                     Toast.makeText(signuppage.this, "Add some data:", Toast.LENGTH_SHORT).show();
-                } else {
-                    addDatatoFirebase(name, number, mail, uid);
+                    return;
                 }
+                Log.d("DeublerDebug", "Made it through this jungle of field-checks");
+
+
 
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        String name, number, email;
                         if (task.isSuccessful()) {
+                            Log.d("DeublerDebug", "Completed create user");
 
+                            name = String.valueOf(caregiverNameEdt.getText());
+                            number = String.valueOf(caregiverMobileEdt.getText());
+                            mail = String.valueOf(caregiverEmailEDt.getText());
+                          
                             FirebaseUser user = mAuth.getCurrentUser();
+                            addDatatoFirebase(name, number, email, user.getUid());
 
                             user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
@@ -116,10 +118,11 @@ public class signuppage extends AppCompatActivity {
                             Toast.makeText(signuppage.this, "Email verification sent.", Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(getApplicationContext(), loginpage.class);
-                                    startActivity(intent);
-                                    finish();
+                            startActivity(intent);
+                            finish();
                         } else {
                             // If sign in fails, display a message to the user.
+                            Log.d("DeublerDebug", "Failed create user");
                             Toast.makeText(signuppage.this, task.getException().getLocalizedMessage(),
                             Toast.LENGTH_SHORT).show();
                         }
