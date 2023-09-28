@@ -3,8 +3,8 @@ package com.example.healthappy;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -13,14 +13,15 @@ import android.widget.TextView;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private Button loginBtn;
     private Button signupBtn;
     private Button swedishBtn;
     private Button englishBtn;
-    private Context context;
-    private Resources resources;
+    private TextView test;
+    private Locale locale;
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
     private LocalDate selectedDate;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         initWidgets();
         selectedDate = LocalDate.now();
         setMonthView();
+
         loginBtn = (Button) findViewById(R.id.loginbtn);
         signupBtn = (Button) findViewById(R.id.signupbtn);
         englishBtn = (Button) findViewById(R.id.english);
@@ -52,17 +54,15 @@ public class MainActivity extends AppCompatActivity {
         englishBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context = LocaleHelper.setLocale(MainActivity.this, "en");
-                resources = context.getResources();
-                languageChange();
+                changeLocale("en");
+                MainActivity.this.recreate();
             }
         });
         swedishBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context = LocaleHelper.setLocale(MainActivity.this, "sv");
-                resources = context.getResources();
-                languageChange();
+                changeLocale("sv");
+                MainActivity.this.recreate();
             }
         });
     }
@@ -90,12 +90,15 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-    public void languageChange() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
-    }
+    private void changeLocale(String lang) {
+        locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        getApplicationContext().createConfigurationContext(config);
 
+    }
     public void previousMonthAction(View view) {
 
     }
