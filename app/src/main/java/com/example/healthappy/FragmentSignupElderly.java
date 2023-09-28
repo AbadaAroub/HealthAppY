@@ -69,6 +69,7 @@ public class FragmentSignupElderly extends Fragment {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String cuid = mAuth.getUid();
                 String email, password, rePassword;
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
@@ -77,6 +78,8 @@ public class FragmentSignupElderly extends Fragment {
                 String number = elderlyMobileEdt.getText().toString();
                 String mail = elderlyMailEdt.getText().toString();
                 String address = elderlyAddressEdt.getText().toString();
+                Caregiver caregiver = new Caregiver();
+                caregiver.setUser_UID(cuid);
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getActivity(), "Enter Email", Toast.LENGTH_SHORT).show();
@@ -98,7 +101,7 @@ public class FragmentSignupElderly extends Fragment {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
-                                            addDatatoFirebase(name, number, mail, address);
+                                            addDatatoFirebase(name, number, mail, address, caregiver);
                                             Log.d(TAG, "Email sent.");
                                         }
                                     }
@@ -118,10 +121,11 @@ public class FragmentSignupElderly extends Fragment {
         return view;
     }
     //Database
-    private void addDatatoFirebase(String name, String number, String mail, String address) {
+    private void addDatatoFirebase(String name, String number, String mail, String address, Caregiver caregiver) {
         elderly.setName(name);
         elderly.setMobile_nr(number);
         elderly.setAddress(address);
+        elderly.setCaregivers(caregiver);
 
         String uid = mAuth.getCurrentUser().getUid();
 
