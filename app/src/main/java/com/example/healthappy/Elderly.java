@@ -5,6 +5,7 @@ public class Elderly {
     private String Mobile_nr;
     private String Address;
     private Allergies Allergy;
+    private Caregiver caregivers;
     private enum Allergies {
         NUTS,
         GLUTEN,
@@ -41,5 +42,12 @@ public class Elderly {
     }
     public void setAllergy(Allergies allergy) {
         Allergy = allergy;
+    }
+
+    public Caregiver getCaregivers() {
+        return caregivers;
+    }
+    public void setCaregivers(Caregiver caregivers) {
+        this.caregivers = caregivers;
     }
 }

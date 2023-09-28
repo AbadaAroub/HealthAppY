@@ -88,6 +88,4 @@
         android:layout_marginLeft="10dp"
         android:textColor="@color/black"/>
 
-
-
 </RelativeLayout>

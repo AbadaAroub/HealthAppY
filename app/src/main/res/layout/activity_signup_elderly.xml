@@ -7,16 +7,16 @@
     tools:context=".signupElderly">
 
     <ImageView
-        android:id="@+id/logphoto"
+        android:id="@+id/logphotoeld"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:src="@drawable/loginphoto" />
 
     <EditText
-        android:id="@+id/username1"
+        android:id="@+id/usernameeld"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/logphoto"
+        android:layout_below="@+id/logphotoeld"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -31,8 +31,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/email"
-        android:layout_below="@+id/username1"
+        android:id="@+id/emaileld"
+        android:layout_below="@+id/usernameeld"
         android:background="@color/blue"
         android:hint="Email"
         android:textColorHint="@color/white"
@@ -44,8 +44,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/mobileNumber"
-        android:layout_below="@+id/email"
+        android:id="@+id/mobileNumbereld"
+        android:layout_below="@+id/emaileld"
         android:background="@color/blue"
         android:hint="Mobile Number"
         android:textColorHint="@color/white"
@@ -58,8 +58,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/address"
-        android:layout_below="@+id/mobileNumber"
+        android:id="@+id/addresseld"
+        android:layout_below="@+id/mobileNumbereld"
         android:background="@color/blue"
         android:hint="Address"
         android:textColorHint="@color/white"
@@ -72,8 +72,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/signuppass"
-        android:layout_below="@+id/address"
+        android:id="@+id/signuppasseld"
+        android:layout_below="@+id/addresseld"
         android:background="@color/blue"
         android:hint="Password"
         android:textColorHint="@color/white"
@@ -85,13 +85,12 @@
         android:inputType="textPassword"/>
 
     <Button
-        android:id="@+id/signup"
+        android:id="@+id/signupeld"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/signuppass"
+        android:layout_below="@+id/signuppasseld"
         android:layout_margin="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
         android:text="Sign Up"
         android:textSize="25dp" />
 
