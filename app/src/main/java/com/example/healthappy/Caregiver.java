@@ -4,6 +4,7 @@ public class Caregiver {
     private String User_UID;
     private String Name;
     private String Mobile_nr;
+    private String email;
 
     public Caregiver() {
     }
@@ -25,5 +26,11 @@ public class Caregiver {
     }
     public void setMobile_nr(String Mobile_nr) {
         this.Mobile_nr = Mobile_nr;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
