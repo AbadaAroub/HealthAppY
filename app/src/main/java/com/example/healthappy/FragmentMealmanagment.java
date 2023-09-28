@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-
+/*
 public class FragmentMealmanagment extends Fragment {
     private CalendarView calendarView;
     private TextView MyDate;
@@ -55,3 +55,4 @@ public class FragmentMealmanagment extends Fragment {
 
     }
 }
+*/
