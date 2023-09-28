@@ -62,8 +62,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initWidgets() {
+
         //calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         //monthYearText = findViewById(R.id.monthYearTV);
+
     }
 
     private void setMonthView() {

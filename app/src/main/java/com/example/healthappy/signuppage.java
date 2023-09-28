@@ -25,19 +25,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.auth.User;
 
 public class signuppage extends AppCompatActivity {
-    EditText editTextEmail, editTextPassword, editTextRePassword;
+    EditText editTextEmail, editTextPassword, editTextRePassword, editTextName, editTextPhone;
     Button signUpBtn;
     FirebaseAuth mAuth;
-
-    //Database
-    private EditText caregiverNameEdt, caregiverMobileEdt;
     Caregiver caregiver;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-
 
     @Override
     public void onStart() {
@@ -47,65 +42,44 @@ public class signuppage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signuppage);
-
-        mAuth = FirebaseAuth.getInstance();
+        //User input fields
         editTextEmail = findViewById(R.id.email);
         editTextPassword = findViewById(R.id.signuppass);
         editTextRePassword = findViewById(R.id.resignuppass);
-
-        //Database
-        caregiverNameEdt = findViewById(R.id.username1);
-        caregiverMobileEdt = findViewById(R.id.mobileNumber);
+        editTextName = findViewById(R.id.username1);
+        editTextPhone = findViewById(R.id.mobileNumber);
+        //Firebase
+        mAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Caregiver");
-        caregiver = new Caregiver();
-
+        //Button
         signUpBtn = findViewById(R.id.signup);
 
         signUpBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                String email, password, rePassword, name, number;
+                String email, password, rePassword, name, phone;
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
                 rePassword = String.valueOf(editTextRePassword.getText());
-                name = String.valueOf(caregiverNameEdt.getText());
-                number = String.valueOf(caregiverMobileEdt.getText());
+                name = String.valueOf(editTextName.getText());
+                phone = String.valueOf(editTextPhone.getText());
 
-                if (TextUtils.isEmpty(email)){
-                    Toast.makeText(signuppage.this, "Enter Email", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(password)){
-                    Toast.makeText(signuppage.this, "Enter Password", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(rePassword)) {
-                    Toast.makeText(signuppage.this, "Reenter Password", Toast.LENGTH_SHORT).show();
-                    return;
-                } else if (!String.valueOf(editTextPassword.getText()).equals(String.valueOf(editTextRePassword.getText()))){
-                    Toast.makeText(signuppage.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(TextUtils.isEmpty(name) && TextUtils.isEmpty(number)) {
-                    Toast.makeText(signuppage.this, "Add some data:", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Log.d("DeublerDebug", "Made it through this jungle of field-checks");
-
-
+                checkSignupRequirements(email, password, rePassword, name, phone);
 
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        String name, number;
+                        String name, number, email;
                         if (task.isSuccessful()) {
                             Log.d("DeublerDebug", "Completed create user");
 
-                            name = String.valueOf(caregiverNameEdt.getText());
-                            number = String.valueOf(caregiverMobileEdt.getText());
+                            name = String.valueOf(editTextName.getText());
+                            number = String.valueOf(editTextPhone.getText());
+                            email = String.valueOf(editTextEmail.getText());
+                          
                             FirebaseUser user = mAuth.getCurrentUser();
-                            addDatatoFirebase(name, number, user.getUid());
+                            addDatatoFirebase(name, number, email, user.getUid());
 
                             user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
@@ -132,10 +106,40 @@ public class signuppage extends AppCompatActivity {
         });
     }
 
+    private void checkSignupRequirements(String email, String password, String rePassword, String name, String phone) {
+
+        if (TextUtils.isEmpty(email)){
+            Toast.makeText(signuppage.this, "Enter Email", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(password)){
+            Toast.makeText(signuppage.this, "Enter Password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(rePassword)) {
+            Toast.makeText(signuppage.this, "Reenter Password", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (!String.valueOf(editTextPassword.getText()).equals(String.valueOf(editTextRePassword.getText()))){
+            Toast.makeText(signuppage.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(TextUtils.isEmpty(name)){
+            Toast.makeText(signuppage.this, "Enter a name", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(TextUtils.isEmpty(phone)) {
+            Toast.makeText(signuppage.this, "Enter a phone number:", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Log.d("DeublerDebug", "Made it through this jungle of field-checks");
+    }
+
     //Database
-    private void addDatatoFirebase(String name, String number, String uid) {
+    private void addDatatoFirebase(String name, String number, String mail, String uid) {
+        caregiver = new Caregiver();
         caregiver.setName(name);
         caregiver.setMobile_nr(number);
+        caregiver.setEmail(mail);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
