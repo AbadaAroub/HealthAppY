@@ -1,6 +1,7 @@
 package com.example.healthappy;
 
 public class Elderly {
+    private String User_ID;
     private String Name;
     private String Mobile_nr;
     private String Address;
@@ -16,6 +17,12 @@ public class Elderly {
 
     }
 
+    public String getUser_ID() {
+        return User_ID;
+    }
+    public void setUser_ID(String user_ID) {
+        User_ID = user_ID;
+    }
     public String getName() {
         return Name;
     }

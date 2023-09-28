@@ -34,6 +34,7 @@ public class signuppage extends AppCompatActivity {
     //Database
     private EditText caregiverNameEdt, caregiverMobileEdt, caregiverEmailEDt;
     Caregiver caregiver;
+    Elderly elderly;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -59,6 +60,7 @@ public class signuppage extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Caregiver");
         caregiver = new Caregiver();
+        elderly = new Elderly();
 
         signUpBtn = findViewById(R.id.signup);
 
@@ -102,7 +104,7 @@ public class signuppage extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
-                                            addDatatoFirebase(name, number, mail);
+                                            addDatatoFirebase(name, number, mail, elderly);
                                             Log.d(TAG, "Email sent.");
                                         }
                                     }
@@ -125,10 +127,11 @@ public class signuppage extends AppCompatActivity {
     }
 
     //Database
-    private void addDatatoFirebase(String name, String number, String mail) {
+    private void addDatatoFirebase(String name, String number, String mail, Elderly elderly) {
         caregiver.setName(name);
         caregiver.setMobile_nr(number);
         caregiver.setEmail(mail);
+        caregiver.setElderly(elderly);
         String uid = mAuth.getCurrentUser().getUid();
 
         databaseReference.addValueEventListener(new ValueEventListener() {

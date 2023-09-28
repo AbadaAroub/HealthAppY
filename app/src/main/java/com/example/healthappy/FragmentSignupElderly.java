@@ -39,6 +39,7 @@ public class FragmentSignupElderly extends Fragment {
     Caregiver caregivers;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    DatabaseReference careRef;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
@@ -122,6 +123,8 @@ public class FragmentSignupElderly extends Fragment {
     }
     //Database
     private void addDatatoFirebase(String name, String number, String mail, String address, Caregiver caregiver) {
+        String cuid = caregiver.getUser_UID();
+        careRef = firebaseDatabase.getReference("Caregiver");
         elderly.setName(name);
         elderly.setMobile_nr(number);
         elderly.setAddress(address);
@@ -129,10 +132,16 @@ public class FragmentSignupElderly extends Fragment {
 
         String uid = mAuth.getCurrentUser().getUid();
 
+        Elderly eldCare = new Elderly();
+        eldCare.setName(name);
+        eldCare.setMobile_nr(number);
+        eldCare.setAddress(address);
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 databaseReference.child(uid).setValue(elderly);
+                careRef.child(cuid).child("elderly").child(uid).setValue(eldCare);
                 Toast.makeText(getActivity(), "Data added", Toast.LENGTH_SHORT).show();
             }
 
