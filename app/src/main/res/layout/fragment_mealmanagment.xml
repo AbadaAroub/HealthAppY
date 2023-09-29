@@ -1,51 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/blue"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/MyDate"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/myDate"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="125dp"
-        android:layout_marginTop="48dp"
-        android:text="@string/select_date"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/blue"
+        android:hint="give day with year/month/day"
+        android:padding="8dp"
         android:textAlignment="center"
         android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textSize="23sp" />
 
-    <LinearLayout
-        android:layout_marginTop="48dp"
-        android:background="@drawable/bg_calen"
-        android:layout_marginLeft="50dp"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/mytime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lol"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/blue"
+        android:hint="give time with 00:00"
+        android:padding="8dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="23sp" />
 
-        <CalendarView
-            android:id="@+id/calandarView"
-            android:layout_width="wrap_content"
-            android:layout_height="320dp">
 
-
-
-        </CalendarView>
-
-
-    </LinearLayout>
-
+    <EditText
+        android:id="@+id/mycomment"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_below="@id/mytime"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/blue"
+        android:hint="The food is:"
+        android:padding="8dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="23sp"
+        android:gravity="top"/>
     <Button
-        android:id="@+id/calandarBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="34dp"
-        android:backgroundTint="@color/white"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="@string/edit"
-        android:textColor="@color/black" />
+        android:layout_below="@+id/mycomment"
+        android:text="Save"
+        android:id="@+id/savebtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/gray"/>
 
 
-</LinearLayout>
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/lol"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/myDate"
+        android:layout_margin="10dp"
+        android:hint="@string/select">
+
+        <AutoCompleteTextView
+            android:id="@+id/auto_complete_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</RelativeLayout>
