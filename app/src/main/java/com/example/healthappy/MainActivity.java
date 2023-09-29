@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         rgLanguage.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.rb_english) {
+                if (i == R.id.rb_english) {
                     changeLocale("en");
                     rbEnglish.setChecked(true);
                     welcome.setText(R.string.welcome);
@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
     public void openLoginPage() {
         Intent intent = new Intent(this, loginpage.class);
         startActivity(intent);
