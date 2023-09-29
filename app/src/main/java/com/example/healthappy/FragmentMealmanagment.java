@@ -25,9 +25,6 @@ import androidx.fragment.app.Fragment;
 
 
 public class FragmentMealmanagment extends Fragment {
-    private CalendarView calendarView;
-    private TextView MyDate;
-    private Button EditBtn;
     private Button savebutton;
     EditText edittime, editdate, editfood;
     String[] item = {"Breakfast", "Lunch", "Small meal", "Dinner"};
@@ -41,7 +38,6 @@ public class FragmentMealmanagment extends Fragment {
 
 
         View view =inflater.inflate(R.layout.fragment_mealmanagment, container,false);
-        calendarView = (CalendarView) view.findViewById(R.id.calandarView);
 
         autoCompleteTextView = view.findViewById(R.id.auto_complete_txt);
         adapterItems = new ArrayAdapter<String>(getActivity(), R.layout.list_item, item);
@@ -64,16 +60,6 @@ public class FragmentMealmanagment extends Fragment {
             }
         });
 
-        MyDate = (TextView) view.findViewById(R.id.MyDate);
-        EditBtn = (Button) view.findViewById(R.id.calandarBtn);
-
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                String date = year  + "/" + (month + 1) + "/" + dayOfMonth;
-                MyDate.setText(date);
-            }
-        });
         return view;
     }
 }
