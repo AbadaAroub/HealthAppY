@@ -65,7 +65,9 @@ public class signuppage extends AppCompatActivity {
                 name = String.valueOf(editTextName.getText());
                 phone = String.valueOf(editTextPhone.getText());
 
-                checkSignupRequirements(email, password, rePassword, name, phone);
+                if(!isFormCorrect(email, password, rePassword, name, phone)){
+                    return;
+                }
 
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -106,32 +108,31 @@ public class signuppage extends AppCompatActivity {
         });
     }
 
-    private void checkSignupRequirements(String email, String password, String rePassword, String name, String phone) {
+    private boolean isFormCorrect(String email, String password, String rePassword, String name, String phone) {
 
         if (TextUtils.isEmpty(email)){
             Toast.makeText(signuppage.this, "Enter Email", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (TextUtils.isEmpty(password)){
+            return false;
+        } else if (TextUtils.isEmpty(password)){
             Toast.makeText(signuppage.this, "Enter Password", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (TextUtils.isEmpty(rePassword)) {
+            return false;
+        } else if (TextUtils.isEmpty(rePassword)) {
             Toast.makeText(signuppage.this, "Reenter Password", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         } else if (!String.valueOf(editTextPassword.getText()).equals(String.valueOf(editTextRePassword.getText()))){
             Toast.makeText(signuppage.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if(TextUtils.isEmpty(name)){
+            return false;
+        } else if(TextUtils.isEmpty(name)){
             Toast.makeText(signuppage.this, "Enter a name", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if(TextUtils.isEmpty(phone)) {
+            return false;
+        } else if(TextUtils.isEmpty(phone)) {
             Toast.makeText(signuppage.this, "Enter a phone number:", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
+        } else {
+            Log.d("DeublerDebug", "Made it through this jungle of field-checks");
+            return true;
         }
-        Log.d("DeublerDebug", "Made it through this jungle of field-checks");
+
     }
 
     //Database
