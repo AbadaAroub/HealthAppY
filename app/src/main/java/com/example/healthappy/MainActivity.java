@@ -22,8 +22,6 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     private Button loginBtn;
     private Button signupBtn;
-    private Button swedishBtn;
-    private Button englishBtn;
     private TextView welcome, healthcare;
     Locale locale;
     RadioGroup rgLanguage;
@@ -34,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        welcome = findViewById(R.id.welcome);
+        healthcare = findViewById(R.id.healthcare);
         loginBtn = findViewById(R.id.loginbtn);
         signupBtn = findViewById(R.id.signupbtn);
         rgLanguage = findViewById(R.id.radiog);
@@ -58,9 +58,17 @@ public class MainActivity extends AppCompatActivity {
                 if(i == R.id.rb_english) {
                     changeLocale("en");
                     rbEnglish.setChecked(true);
+                    welcome.setText(R.string.welcome);
+                    healthcare.setText(R.string.health_care);
+                    loginBtn.setText(R.string.login);
+                    signupBtn.setText(R.string.signup);
                 } else if (i == R.id.rb_swedish) {
                     changeLocale("sv");
                     rbSwedish.setChecked(true);
+                    welcome.setText(R.string.welcome);
+                    healthcare.setText(R.string.health_care);
+                    loginBtn.setText(R.string.login);
+                    signupBtn.setText(R.string.signup);
                 }
             }
         });
@@ -76,26 +84,12 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
     private void changeLocale(String lang) {
-        /*locale = new Locale(lang);
-        //Locale.setDefault(locale);
-        Resources resources = getResources();
+        locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Resources resources = getBaseContext().getResources();
         Configuration config = resources.getConfiguration();
         config.setLocale(locale);
-        getApplicationContext().createConfigurationContext(config);*/
-        Resources resources = getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
-        Configuration configuration = resources.getConfiguration();
-        configuration.locale = new Locale(lang);
-        resources.updateConfiguration(configuration, metrics);
-        onConfigurationChanged(configuration);
-    }
-
-    @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        finish();
-        overridePendingTransition(0, 0);
-        startActivity(getIntent());
-        overridePendingTransition(0, 0);
+        resources.updateConfiguration(config, metrics);
     }
 }

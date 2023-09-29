@@ -37,4 +37,12 @@
     <string name="select_date">Select the Date</string>
     <string name="edit">Edit</string>
     <string name="address">Address</string>
+    <string name="home">Home</string>
+    <string name="meal_managment">Meal Managment</string>
+    <string name="profile">Profile</string>
+    <string name="profile_settings">Profile Settings</string>
+    <string name="log_out">Log Out</string>
+    <string name="contact_us">Contact us</string>
+    <string name="call_us">Call us</string>
+    <string name="mail_us">Mail us</string>
 </resources>
