@@ -135,6 +135,7 @@ public class FragmentSignupElderly extends Fragment {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //Databas
                 databaseReference.child(uid).setValue(elderly);
                 databaseReference.child(uid).child("caregivers").child(cuid).setValue(cuid);
                 careRef.child(cuid).child("under_care").child(uid).setValue(uid);
