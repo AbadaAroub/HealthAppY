@@ -128,19 +128,16 @@ public class FragmentSignupElderly extends Fragment {
         elderly.setName(name);
         elderly.setMobile_nr(number);
         elderly.setAddress(address);
-        //elderly.setCaregivers(caregiver);
 
         String uid = mAuth.getCurrentUser().getUid();
 
-        Elderly eldCare = new Elderly();
-        eldCare.setUser_ID(uid);
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 databaseReference.child(uid).setValue(elderly);
-                databaseReference.child(uid).child("caregiver").child(cuid).setValue(cuid);
-                careRef.child(cuid).child("undercare").child(uid).setValue(uid);
+                databaseReference.child(uid).child("caregivers").child(cuid).setValue(cuid);
+                careRef.child(cuid).child("under_care").child(uid).setValue(uid);
                 Toast.makeText(getActivity(), "Data added", Toast.LENGTH_SHORT).show();
             }
 
