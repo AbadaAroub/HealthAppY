@@ -4,46 +4,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/elderly"
 
->
+    >
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to our health app"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:id="@+id/welcometo"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Created By:"
-        android:textSize="30sp"
-        android:layout_below="@id/welcometo"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:id="@+id/createdby"
-        android:layout_centerHorizontal="true"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Abada Aroub"
-        android:textSize="30sp"
-        android:layout_below="@+id/createdby"
-        android:textColor="@color/black"
-        android:id="@+id/Abada"
-        android:layout_centerHorizontal="true"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Marcus"
-        android:textSize="30sp"
-        android:layout_below="@+id/Abada"
-        android:textColor="@color/black"
-        android:layout_centerHorizontal="true"/>
-
+        android:id="@+id/signupElderly"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
+        android:text="Signup Elderly" />
 </RelativeLayout>

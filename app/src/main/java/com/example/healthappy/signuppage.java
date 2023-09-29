@@ -31,6 +31,7 @@ public class signuppage extends AppCompatActivity {
     Button signUpBtn;
     FirebaseAuth mAuth;
     Caregiver caregiver;
+    Elderly elderly;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
@@ -52,10 +53,13 @@ public class signuppage extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Caregiver");
-        //Button
+        //DB
+        caregiver = new Caregiver();
+        elderly = new Elderly();
+
         signUpBtn = findViewById(R.id.signup);
 
-        signUpBtn.setOnClickListener(new View.OnClickListener(){
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String email, password, rePassword, name, phone;
@@ -65,7 +69,7 @@ public class signuppage extends AppCompatActivity {
                 name = String.valueOf(editTextName.getText());
                 phone = String.valueOf(editTextPhone.getText());
 
-                if(!isFormCorrect(email, password, rePassword, name, phone)){
+                if (!isFormCorrect(email, password, rePassword, name, phone)) {
                     return;
                 }
 
@@ -79,79 +83,77 @@ public class signuppage extends AppCompatActivity {
                             name = String.valueOf(editTextName.getText());
                             number = String.valueOf(editTextPhone.getText());
                             email = String.valueOf(editTextEmail.getText());
-                          
+
                             FirebaseUser user = mAuth.getCurrentUser();
                             addDatatoFirebase(name, number, email, user.getUid());
 
                             user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()) {
-                                                Log.d(TAG, "Email sent.");
-                                            }
-                                        }
-                                    });
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Log.d(TAG, "Email sent.");
+                                    }
+                                }
+                            });
                             Toast.makeText(signuppage.this, "Email verification sent.", Toast.LENGTH_SHORT).show();
-
                             Intent intent = new Intent(getApplicationContext(), loginpage.class);
                             startActivity(intent);
                             finish();
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.d("DeublerDebug", "Failed create user");
                             Toast.makeText(signuppage.this, task.getException().getLocalizedMessage(),
-                            Toast.LENGTH_SHORT).show();
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
             }
-        });
-    }
 
-    private boolean isFormCorrect(String email, String password, String rePassword, String name, String phone) {
+            private boolean isFormCorrect(String email, String password, String rePassword, String name, String phone) {
 
-        if (TextUtils.isEmpty(email)){
-            Toast.makeText(signuppage.this, "Enter Email", Toast.LENGTH_SHORT).show();
-            return false;
-        } else if (TextUtils.isEmpty(password)){
-            Toast.makeText(signuppage.this, "Enter Password", Toast.LENGTH_SHORT).show();
-            return false;
-        } else if (TextUtils.isEmpty(rePassword)) {
-            Toast.makeText(signuppage.this, "Reenter Password", Toast.LENGTH_SHORT).show();
-            return false;
-        } else if (!String.valueOf(editTextPassword.getText()).equals(String.valueOf(editTextRePassword.getText()))){
-            Toast.makeText(signuppage.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
-            return false;
-        } else if(TextUtils.isEmpty(name)){
-            Toast.makeText(signuppage.this, "Enter a name", Toast.LENGTH_SHORT).show();
-            return false;
-        } else if(TextUtils.isEmpty(phone)) {
-            Toast.makeText(signuppage.this, "Enter a phone number:", Toast.LENGTH_SHORT).show();
-            return false;
-        } else {
-            Log.d("DeublerDebug", "Made it through this jungle of field-checks");
-            return true;
-        }
-
-    }
-
-    //Database
-    private void addDatatoFirebase(String name, String number, String mail, String uid) {
-        caregiver = new Caregiver();
-        caregiver.setName(name);
-        caregiver.setMobile_nr(number);
-        caregiver.setEmail(mail);
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                databaseReference.child(uid).setValue(caregiver);
-                Toast.makeText(signuppage.this, "Data added", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(signuppage.this, "Enter Email", Toast.LENGTH_SHORT).show();
+                    return false;
+                } else if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(signuppage.this, "Enter Password", Toast.LENGTH_SHORT).show();
+                    return false;
+                } else if (TextUtils.isEmpty(rePassword)) {
+                    Toast.makeText(signuppage.this, "Reenter Password", Toast.LENGTH_SHORT).show();
+                    return false;
+                } else if (!String.valueOf(editTextPassword.getText()).equals(String.valueOf(editTextRePassword.getText()))) {
+                    Toast.makeText(signuppage.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
+                    return false;
+                } else if (TextUtils.isEmpty(name)) {
+                    Toast.makeText(signuppage.this, "Enter a name", Toast.LENGTH_SHORT).show();
+                    return false;
+                } else if (TextUtils.isEmpty(phone)) {
+                    Toast.makeText(signuppage.this, "Enter a phone number:", Toast.LENGTH_SHORT).show();
+                    return false;
+                } else {
+                    Log.d("DeublerDebug", "Made it through this jungle of field-checks");
+                    return true;
+                }
             }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(signuppage.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
+
+            //Database
+            private void addDatatoFirebase(String name, String number, String mail, String uid) {
+                caregiver = new Caregiver();
+                caregiver.setName(name);
+                caregiver.setMobile_nr(number);
+                caregiver.setEmail(mail);
+                caregiver.setElderly(elderly);
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        databaseReference.child(uid).setValue(caregiver);
+                        Toast.makeText(signuppage.this, "Data added", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(signuppage.this, "Failed to add data " + error, Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
-        });
-    }
-}
+        });}}

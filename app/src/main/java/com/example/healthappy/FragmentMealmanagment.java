@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.TextView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -24,7 +27,8 @@ import androidx.fragment.app.Fragment;
 public class FragmentMealmanagment extends Fragment {
     private CalendarView calendarView;
     private TextView MyDate;
-    private Button EditBtn, savebutton;
+    private Button EditBtn;
+    private Button savebutton;
     EditText edittime, editdate, editfood;
     String[] item = {"Breakfast", "Lunch", "Small meal", "Dinner"};
     AutoCompleteTextView autoCompleteTextView;
@@ -35,7 +39,9 @@ public class FragmentMealmanagment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_mealmanagment, container, false);
+
+        View view =inflater.inflate(R.layout.fragment_mealmanagment, container,false);
+        calendarView = (CalendarView) view.findViewById(R.id.calandarView);
 
         autoCompleteTextView = view.findViewById(R.id.auto_complete_txt);
         adapterItems = new ArrayAdapter<String>(getActivity(), R.layout.list_item, item);
@@ -58,9 +64,6 @@ public class FragmentMealmanagment extends Fragment {
             }
         });
 
-
-        //vi kanske behöver den
-        /*calendarView = (CalendarView) view.findViewById(R.id.calandarView);
         MyDate = (TextView) view.findViewById(R.id.MyDate);
         EditBtn = (Button) view.findViewById(R.id.calandarBtn);
 
@@ -71,24 +74,6 @@ public class FragmentMealmanagment extends Fragment {
                 MyDate.setText(date);
             }
         });
-        EditBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openMealmanagmentEdit();
-            }
-        });
-
-
-
-
-        return view;
-
-    }
-    public void openMealmanagmentEdit(){
-       getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentMealManagmentEdit()).commit();
-
-    }*/
-
         return view;
     }
 }
