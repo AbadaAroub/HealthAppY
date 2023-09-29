@@ -22,7 +22,11 @@
                     android:id="@+id/nav_accountsettings"
                     android:icon="@drawable/baseline_account_circle_24"
                     android:title="@string/profile_settings" />
-
+               
+                <item
+                    android:id="@+id/elderlysignup"
+                    android:icon="@drawable/signupelderly"
+                    android:title="Sign up Elderly" />
                 <item
                     android:id="@+id/nav_logout"
                     android:icon="@drawable/baseline_logout_24"

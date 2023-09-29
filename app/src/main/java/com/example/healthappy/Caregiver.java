@@ -5,6 +5,7 @@ public class Caregiver {
     private String Name;
     private String Mobile_nr;
     private String email;
+    private Elderly elderly;
 
     public Caregiver() {
     }
@@ -32,5 +33,11 @@ public class Caregiver {
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+    public Elderly getElderly() {
+        return elderly;
+    }
+    public void setElderly(Elderly elderly) {
+        this.elderly = elderly;
     }
 }
