@@ -1,5 +1,6 @@
 package com.example.healthappy;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -7,8 +8,11 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.time.LocalDate;
@@ -20,24 +24,21 @@ public class MainActivity extends AppCompatActivity {
     private Button signupBtn;
     private Button swedishBtn;
     private Button englishBtn;
-    private TextView test;
-    private Locale locale;
-    private TextView monthYearText;
-    private RecyclerView calendarRecyclerView;
-    private LocalDate selectedDate;
+    private TextView welcome, healthcare;
+    Locale locale;
+    RadioGroup rgLanguage;
+    RadioButton rbEnglish, rbSwedish;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initWidgets();
-        selectedDate = LocalDate.now();
-        setMonthView();
-
-        loginBtn = (Button) findViewById(R.id.loginbtn);
-        signupBtn = (Button) findViewById(R.id.signupbtn);
-        englishBtn = (Button) findViewById(R.id.english);
-        swedishBtn = (Button) findViewById(R.id.swedish);
+        loginBtn = findViewById(R.id.loginbtn);
+        signupBtn = findViewById(R.id.signupbtn);
+        rgLanguage = findViewById(R.id.radiog);
+        rbEnglish = findViewById(R.id.rb_english);
+        rbSwedish = findViewById(R.id.rb_swedish);
         loginBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -51,34 +52,18 @@ public class MainActivity extends AppCompatActivity {
                 openSignupPage();
             }
         });
-        englishBtn.setOnClickListener(new View.OnClickListener() {
+        rgLanguage.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                changeLocale("en");
-                MainActivity.this.recreate();
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.rb_english) {
+                    changeLocale("en");
+                    rbEnglish.setChecked(true);
+                } else if (i == R.id.rb_swedish) {
+                    changeLocale("sv");
+                    rbSwedish.setChecked(true);
+                }
             }
         });
-        swedishBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeLocale("sv");
-                MainActivity.this.recreate();
-            }
-        });
-    }
-
-    private void initWidgets() {
-  //      calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
-    //    monthYearText = findViewById(R.id.monthYearTV);
-    }
-
-    private void setMonthView() {
-        //monthYearText.setText();
-    }
-
-    private String monthYearFromDate(LocalDate date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
-        return "";
     }
     public void openLoginPage() {
         Intent intent = new Intent(this, loginpage.class);
@@ -91,19 +76,26 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
     private void changeLocale(String lang) {
-        locale = new Locale(lang);
-        Locale.setDefault(locale);
+        /*locale = new Locale(lang);
+        //Locale.setDefault(locale);
         Resources resources = getResources();
         Configuration config = resources.getConfiguration();
         config.setLocale(locale);
-        getApplicationContext().createConfigurationContext(config);
-
+        getApplicationContext().createConfigurationContext(config);*/
+        Resources resources = getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        Configuration configuration = resources.getConfiguration();
+        configuration.locale = new Locale(lang);
+        resources.updateConfiguration(configuration, metrics);
+        onConfigurationChanged(configuration);
     }
-    public void previousMonthAction(View view) {
 
-    }
-
-    public void nextMonthAction(View view) {
-
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
     }
 }
