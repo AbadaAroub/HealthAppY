@@ -60,7 +60,7 @@ public class signupElderly extends AppCompatActivity {
         signUpBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Toast.makeText(signupElderly.this, "Button pressed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(signupElderly.this, R.string.toast_button_pressed, Toast.LENGTH_SHORT).show();
                 String email, password, rePassword;
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
@@ -72,16 +72,16 @@ public class signupElderly extends AppCompatActivity {
                 String address = elderlyAddressEdt.getText().toString();
 
                 if (TextUtils.isEmpty(email)){
-                    Toast.makeText(signupElderly.this, "Enter Email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(signupElderly.this, R.string.toast_enter_email, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(password)){
-                    Toast.makeText(signupElderly.this, "Enter Password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(signupElderly.this, R.string.toast_enter_password, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if(TextUtils.isEmpty(name) && TextUtils.isEmpty(number)) {
-                    Toast.makeText(signupElderly.this, "Add some data:", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(signupElderly.this, R.string.toast_add_data, Toast.LENGTH_SHORT).show();
                 } else {
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -97,7 +97,7 @@ public class signupElderly extends AppCompatActivity {
                                         }
                                     }
                                 });
-                                Toast.makeText(signupElderly.this, "Email verification sent.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(signupElderly.this, R.string.toast_email_verification_sent, Toast.LENGTH_SHORT).show();
 
                                 /*Intent intent = new Intent(getApplicationContext(), loginpage.class);
                                 startActivity(intent);
@@ -124,7 +124,7 @@ public class signupElderly extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 databaseReference.child(uid).setValue(elderly);
-                Toast.makeText(signupElderly.this, "Data added", Toast.LENGTH_SHORT).show();
+                Toast.makeText(signupElderly.this, R.string.toast_data_added, Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

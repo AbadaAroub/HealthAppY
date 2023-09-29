@@ -83,15 +83,15 @@ public class FragmentSignupElderly extends Fragment {
                 caregiver.setUser_UID(cuid);
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getActivity(), "Enter Email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.toast_enter_email, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getActivity(), "Enter Password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.toast_enter_password, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(name) && TextUtils.isEmpty(number)) {
-                    Toast.makeText(getActivity(), "Add some data:", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.toast_add_data, Toast.LENGTH_SHORT).show();
                 } else {
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -107,7 +107,7 @@ public class FragmentSignupElderly extends Fragment {
                                         }
                                     }
                                 });
-                                Toast.makeText(getActivity(), "Email verification sent.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), R.string.toast_email_verification_sent, Toast.LENGTH_SHORT).show();
                                 //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -139,12 +139,12 @@ public class FragmentSignupElderly extends Fragment {
                 databaseReference.child(uid).setValue(elderly);
                 databaseReference.child(uid).child("caregivers").child(cuid).setValue(cuid);
                 careRef.child(cuid).child("under_care").child(uid).setValue(uid);
-                Toast.makeText(getActivity(), "Data added", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.toast_data_added, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getActivity(), "Fail to add data " + error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getString(R.string.toast_data_fail) + error, Toast.LENGTH_SHORT).show();
             }
         });
     }
