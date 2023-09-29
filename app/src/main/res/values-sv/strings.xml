@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HealthAppY</string>
+    <string name="title_activity_mealmanagment">Hantera måltid</string>
+    <string name="navigation_drawer_open">Öppna navigeringslåda</string>
+    <string name="navigation_drawer_close">Stäng Navigeringslåda</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Inställningar</string>
+
+    <string name="menu_home">Hem</string>
+    <string name="menu_gallery">Galleri</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="open">Öppna Navigeringslåda</string>
+    <string name="close">Stäng Navigeringslåda</string>
+
+    <string name="send_reset_mail">Skicka återställningsmail</string>
+    <string name="email">Email</string>
+    <string name="we_will_send_you_an_e_mail_with_instructions_to_reset_your_password">Vi kommer skicka email till dig med instruktioner för återställning av lösenordet.</string>
+    <string name="password_recovery">Återställ Lösenord</string>
+    <string name="password">Lösenord</string>
+    <string name="remember">Kom ihåg mig</string>
+    <string name="login">Logga In</string>
+    <string name="password_forgot">Glömt lösenord?</string>
+    <string name="welcome">Välkommen Till</string>
+    <string name="health_care">Health Care</string>
+    <string name="signup">Registrera</string>
+    <string name="swedish">Svenska</string>
+    <string name="english">English</string>
+    <string name="language">Språk:</string>
+    <string name="full_name">Fullt Namn</string>
+    <string name="mobile_number">Mobilnummer</string>
+    <string name="password_re">Bekräfta-Lösenord</string>
+    <string name="phone_number">Telefonnummer</string>
+    <string name="emergency_number">Nödnummer</string>
+    <string name="email_us">Våran Email</string>
+    <string name="select_date">Välj Datum</string>
+    <string name="edit">Redigera</string>
+    <string name="address">Adress</string>
+    <string name="home">Hem</string>
+    <string name="meal_managment">Hantera Måltid</string>
+    <string name="profile">Profil</string>
+    <string name="profile_settings">Profil Inställningar</string>
+    <string name="log_out">Logga Ut</string>
+    <string name="contact_us">Kontakta oss</string>
+    <string name="call_us">Ring oss</string>
+    <string name="mail_us">Maila oss</string>
+</resources>

@@ -47,7 +47,7 @@
         android:id="@+id/signupbtn"
         android:layout_width="292dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/swedish"
+        android:layout_below="@id/radiog"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/blue"
@@ -63,34 +63,31 @@
         android:backgroundTint="@color/blue"
         android:text="@string/login" />
 
-    <Button
-        android:id="@+id/swedish"
-        android:layout_width="wrap_content"
+    <RadioGroup
+        android:id="@+id/radiog"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/page"
-        android:layout_marginLeft="90dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/blue"
-        android:text="@string/swedish" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/english"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/page"
-        android:layout_marginLeft="210dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/blue"
-        android:text="@string/english" />
+        <RadioButton
+            android:id="@+id/rb_swedish"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:text="@string/swedish" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/page"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="22dp"
-        android:text="@string/language"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
+        <RadioButton
+            android:id="@+id/rb_english"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:padding="8dp"
+            android:text="@string/english" />
+
+    </RadioGroup>
 
 </RelativeLayout>

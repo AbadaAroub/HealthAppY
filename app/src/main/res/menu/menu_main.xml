@@ -7,21 +7,22 @@
         <item
 
             android:icon="@drawable/baseline_home_24"
-            android:title="Home"
+            android:title="@string/home"
             android:id="@+id/nav_home"/>
         <item
             android:id="@+id/nav_meal_managment"
             android:icon="@drawable/baseline_fastfood_24"
-            android:title="Meal Managment" />
+            android:title="@string/meal_managment" />
 
     </group>
-    <item android:title="Profile">
+    <item android:title="@string/profile">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_accountsettings"
                     android:icon="@drawable/baseline_account_circle_24"
-                    android:title="Profile Settings" />
+                    android:title="@string/profile_settings" />
+               
                 <item
                     android:id="@+id/elderlysignup"
                     android:icon="@drawable/signupelderly"
@@ -29,24 +30,24 @@
                 <item
                     android:id="@+id/nav_logout"
                     android:icon="@drawable/baseline_logout_24"
-                    android:title="Log Out" />
+                    android:title="@string/log_out" />
 
             </group>
 
         </menu>
 
     </item>
-    <item android:title="Contact us">
+    <item android:title="@string/contact_us">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_callus"
                     android:icon="@drawable/baseline_phone_24"
-                    android:title="Call us" />
+                    android:title="@string/call_us" />
                 <item
                     android:id="@+id/nav_emailus"
                     android:icon="@drawable/baseline_email_24"
-                    android:title="Mail us" />
+                    android:title="@string/mail_us" />
 
             </group>
 
