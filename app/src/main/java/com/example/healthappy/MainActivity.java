@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     Locale locale;
     RadioGroup rgLanguage;
     RadioButton rbEnglish, rbSwedish;
+
     FirebaseAuth mAuth;
     @Override
     public void onStart() {
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+      
         welcome = findViewById(R.id.welcome);
         healthcare = findViewById(R.id.healthcare);
         loginBtn = findViewById(R.id.loginbtn);
@@ -54,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
         rgLanguage = findViewById(R.id.radiog);
         rbEnglish = findViewById(R.id.rb_english);
         rbSwedish = findViewById(R.id.rb_swedish);
+        loginBtn = (Button) findViewById(R.id.loginbtn);
+        signupBtn = (Button) findViewById(R.id.signupbtn);
+      
         loginBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
