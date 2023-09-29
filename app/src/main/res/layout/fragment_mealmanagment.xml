@@ -1,47 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/blue"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/MyDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select the Date"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="23sp"
-        android:layout_marginLeft="125dp"
-        android:layout_marginTop="48dp"/>
-
-    <LinearLayout
-        android:layout_marginTop="48dp"
-        android:background="@drawable/bg_calen"
-        android:layout_marginLeft="50dp"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content">
-
-        <CalendarView
-            android:id="@+id/calandarView"
-            android:layout_width="wrap_content"
-            android:layout_height="320dp">
-        </CalendarView>
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/calandarBtn"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="34dp"
-        android:paddingRight="20dp"
-        android:paddingLeft="20dp"
-        android:text="Edit"
-        android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"/>
+    android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/myDate"
@@ -74,6 +34,7 @@
         android:textColorHint="@color/white"
         android:textSize="23sp" />
 
+
     <EditText
         android:id="@+id/mycomment"
         android:layout_width="match_parent"
@@ -98,6 +59,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:backgroundTint="@color/gray"/>
+
 
     <com.google.android.material.textfield.TextInputLayout
 
