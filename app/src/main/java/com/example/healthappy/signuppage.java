@@ -27,17 +27,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class signuppage extends AppCompatActivity {
-    EditText editTextEmail, editTextPassword, editTextRePassword;
+    EditText editTextEmail, editTextPassword, editTextRePassword, editTextName, editTextPhone;
     Button signUpBtn;
     FirebaseAuth mAuth;
-
-    //Database
-    private EditText caregiverNameEdt, caregiverMobileEdt, caregiverEmailEDt;
     Caregiver caregiver;
     Elderly elderly;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     public void onStart() {
@@ -47,103 +43,117 @@ public class signuppage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signuppage);
-
-        mAuth = FirebaseAuth.getInstance();
+        //User input fields
         editTextEmail = findViewById(R.id.email);
         editTextPassword = findViewById(R.id.signuppass);
         editTextRePassword = findViewById(R.id.resignuppass);
-
-        //Database
-        caregiverNameEdt = findViewById(R.id.username1);
-        caregiverMobileEdt = findViewById(R.id.mobileNumber);
-        caregiverEmailEDt = findViewById(R.id.email);
+        editTextName = findViewById(R.id.username1);
+        editTextPhone = findViewById(R.id.mobileNumber);
+        //Firebase
+        mAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Caregiver");
+        //DB
         caregiver = new Caregiver();
         elderly = new Elderly();
 
         signUpBtn = findViewById(R.id.signup);
 
-        signUpBtn.setOnClickListener(new View.OnClickListener(){
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email, password, rePassword;
+                String email, password, rePassword, name, phone;
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
                 rePassword = String.valueOf(editTextRePassword.getText());
+                name = String.valueOf(editTextName.getText());
+                phone = String.valueOf(editTextPhone.getText());
 
-                //Database
-                String name = caregiverNameEdt.getText().toString();
-                String number = caregiverMobileEdt.getText().toString();
-                String mail = caregiverEmailEDt.getText().toString();
-
-                if (TextUtils.isEmpty(email)){
-                    Toast.makeText(signuppage.this, "Enter Email", Toast.LENGTH_SHORT).show();
+                if (!isFormCorrect(email, password, rePassword, name, phone)) {
                     return;
                 }
-                if (TextUtils.isEmpty(password)){
-                    Toast.makeText(signuppage.this, "Enter Password", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(rePassword)) {
-                    Toast.makeText(signuppage.this, "Reenter Password", Toast.LENGTH_SHORT).show();
-                } else if (!String.valueOf(editTextPassword.getText()).equals(String.valueOf(editTextRePassword.getText()))){
-                    Toast.makeText(signuppage.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
-                }
 
-                //Database
-                if(TextUtils.isEmpty(name) && TextUtils.isEmpty(number)) {
-                    Toast.makeText(signuppage.this, "Add some data:", Toast.LENGTH_SHORT).show();
-                } else {
-                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            addDatatoFirebase(name, number, mail, elderly);
-                                            Log.d(TAG, "Email sent.");
-                                        }
+                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        String name, number, email;
+                        if (task.isSuccessful()) {
+                            Log.d("DeublerDebug", "Completed create user");
+
+                            name = String.valueOf(editTextName.getText());
+                            number = String.valueOf(editTextPhone.getText());
+                            email = String.valueOf(editTextEmail.getText());
+
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            addDatatoFirebase(name, number, email, user.getUid());
+
+                            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Log.d(TAG, "Email sent.");
                                     }
-                                });
-                                Toast.makeText(signuppage.this, "Email verification sent.", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            Toast.makeText(signuppage.this, "Email verification sent.", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), loginpage.class);
+                            startActivity(intent);
+                            finish();
 
-                                Intent intent = new Intent(getApplicationContext(), loginpage.class);
-                                startActivity(intent);
-                                finish();
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Toast.makeText(signuppage.this, task.getException().getLocalizedMessage(),
-                                        Toast.LENGTH_SHORT).show();
-                            }
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.d("DeublerDebug", "Failed create user");
+                            Toast.makeText(signuppage.this, task.getException().getLocalizedMessage(),
+                                    Toast.LENGTH_SHORT).show();
                         }
-                    });
+                    }
+                });
+            }
+
+            private boolean isFormCorrect(String email, String password, String rePassword, String name, String phone) {
+
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(signuppage.this, "Enter Email", Toast.LENGTH_SHORT).show();
+                    return false;
+                } else if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(signuppage.this, "Enter Password", Toast.LENGTH_SHORT).show();
+                    return false;
+                } else if (TextUtils.isEmpty(rePassword)) {
+                    Toast.makeText(signuppage.this, "Reenter Password", Toast.LENGTH_SHORT).show();
+                    return false;
+                } else if (!String.valueOf(editTextPassword.getText()).equals(String.valueOf(editTextRePassword.getText()))) {
+                    Toast.makeText(signuppage.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
+                    return false;
+                } else if (TextUtils.isEmpty(name)) {
+                    Toast.makeText(signuppage.this, "Enter a name", Toast.LENGTH_SHORT).show();
+                    return false;
+                } else if (TextUtils.isEmpty(phone)) {
+                    Toast.makeText(signuppage.this, "Enter a phone number:", Toast.LENGTH_SHORT).show();
+                    return false;
+                } else {
+                    Log.d("DeublerDebug", "Made it through this jungle of field-checks");
+                    return true;
                 }
             }
-        });
-    }
 
-    //Database
-    private void addDatatoFirebase(String name, String number, String mail, Elderly elderly) {
-        caregiver.setName(name);
-        caregiver.setMobile_nr(number);
-        caregiver.setEmail(mail);
-        caregiver.setElderly(elderly);
-        String uid = mAuth.getCurrentUser().getUid();
+            //Database
+            private void addDatatoFirebase(String name, String number, String mail, String uid) {
+                caregiver = new Caregiver();
+                caregiver.setName(name);
+                caregiver.setMobile_nr(number);
+                caregiver.setEmail(mail);
+                caregiver.setElderly(elderly);
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        databaseReference.child(uid).setValue(caregiver);
+                        Toast.makeText(signuppage.this, "Data added", Toast.LENGTH_SHORT).show();
+                    }
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                databaseReference.child(uid).setValue(caregiver);
-                Toast.makeText(signuppage.this, "Data added", Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(signuppage.this, "Failed to add data " + error, Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(signuppage.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-}
+        });}}
