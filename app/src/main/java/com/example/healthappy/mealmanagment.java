@@ -77,6 +77,9 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
 
         } else if (item.getItemId() == R.id.nav_logout) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentLogout()).commit();
+            mAuth.signOut();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
 
         } else if (item.getItemId() == R.id.nav_callus) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentCallus()).commit();

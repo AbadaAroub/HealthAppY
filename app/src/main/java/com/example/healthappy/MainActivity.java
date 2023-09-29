@@ -15,6 +15,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -26,7 +29,19 @@ public class MainActivity extends AppCompatActivity {
     Locale locale;
     RadioGroup rgLanguage;
     RadioButton rbEnglish, rbSwedish;
-
+    FirebaseAuth mAuth;
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            Intent intent = new Intent(getApplicationContext(), mealmanagment.class);
+            startActivity(intent);
+            finish();
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
     public void openLoginPage() {
         Intent intent = new Intent(this, loginpage.class);
         startActivity(intent);
