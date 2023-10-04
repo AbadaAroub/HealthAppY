@@ -107,7 +107,6 @@ public class FragmentSignupElderly extends Fragment {
         });
         return view;
     }
-
     private boolean isFormCorrect(String name, String phone, String email, String address, String PIN){
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getActivity(), "Enter Email", Toast.LENGTH_SHORT).show();
