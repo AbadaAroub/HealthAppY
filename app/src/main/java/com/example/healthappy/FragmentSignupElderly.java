@@ -28,6 +28,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 public class FragmentSignupElderly extends Fragment {
     EditText editTextEmail, editTextPassword, editTextRePassword;
     Button signUpBtn;
@@ -40,7 +42,6 @@ public class FragmentSignupElderly extends Fragment {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     DatabaseReference careRef;
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     public void onStart() {
@@ -70,11 +71,13 @@ public class FragmentSignupElderly extends Fragment {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String PIN;
                 String cuid = mAuth.getUid();
                 String email, password, rePassword;
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
-
+                //Setting (00 +) to achieve 6 digit password as Firebase requirement. Doing this on Elderly side aswell
+                PIN = "00" + password;
                 String name = elderlyNameEdt.getText().toString();
                 String number = elderlyMobileEdt.getText().toString();
                 String mail = elderlyMailEdt.getText().toString();
@@ -82,32 +85,16 @@ public class FragmentSignupElderly extends Fragment {
                 Caregiver caregiver = new Caregiver();
                 caregiver.setUser_UID(cuid);
 
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getActivity(), "Enter Email", Toast.LENGTH_SHORT).show();
+                if(!isFormCorrect(name, number, email, address, PIN)) {
                     return;
                 }
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getActivity(), "Enter Password", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(name) && TextUtils.isEmpty(number)) {
-                    Toast.makeText(getActivity(), "Add some data:", Toast.LENGTH_SHORT).show();
-                } else {
-                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    mAuth.createUserWithEmailAndPassword(email, PIN).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-                                            addDatatoFirebase(name, number, mail, address, caregiver);
-                                            Log.d(TAG, "Email sent.");
-                                        }
-                                    }
-                                });
-                                Toast.makeText(getActivity(), "Email verification sent.", Toast.LENGTH_SHORT).show();
+                                addDatatoFirebase(name, number, mail, address, caregiver);
+                                Log.d(TAG, "Email sent.");
                                 //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -117,9 +104,28 @@ public class FragmentSignupElderly extends Fragment {
                         }
                     });
                 }
-            }
         });
         return view;
+    }
+
+    private boolean isFormCorrect(String name, String phone, String email, String address, String PIN){
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(getActivity(), "Enter Email", Toast.LENGTH_SHORT).show();
+            return false;
+        }else if (TextUtils.isEmpty(PIN)) {
+            Toast.makeText(getActivity(), "Enter PIN-code", Toast.LENGTH_SHORT).show();
+            return false;
+        }else if (TextUtils.isEmpty(name)){
+            Toast.makeText(getActivity(), "Enter name", Toast.LENGTH_SHORT).show();
+            return false;
+        }else if (TextUtils.isEmpty(phone)) {
+            Toast.makeText(getActivity(), "Enter phone number", Toast.LENGTH_SHORT).show();
+            return false;
+        }else if (TextUtils.isEmpty(address)){
+            Toast.makeText(getActivity(), "Enter address", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
     //Database
     private void addDatatoFirebase(String name, String number, String mail, String address, Caregiver caregiver) {
