@@ -3,6 +3,7 @@ package com.example.healthappy;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,8 +27,9 @@ import androidx.fragment.app.Fragment;
 
 public class FragmentMealmanagment extends Fragment {
     private Button savebutton;
+    Resources resources;
     EditText edittime, editdate, editfood;
-    String[] item = {"Breakfast", "Lunch", "Small meal", "Dinner"};
+    String[] item;
     AutoCompleteTextView autoCompleteTextView;
     TextView date;
     ArrayAdapter<String> adapterItems;
@@ -35,7 +37,8 @@ public class FragmentMealmanagment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        resources = getResources();
+        item = resources.getStringArray(R.array.meals);
 
         View view =inflater.inflate(R.layout.fragment_mealmanagment, container,false);
 

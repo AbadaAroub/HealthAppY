@@ -38,7 +38,7 @@
     <string name="edit">Edit</string>
     <string name="address">Address</string>
     <string name="home">Home</string>
-    <string name="meal_managment">Meal Managment</string>
+    <string name="meal_managment">Meal Management</string>
     <string name="profile">Profile</string>
     <string name="profile_settings">Profile Settings</string>
     <string name="log_out">Log Out</string>
@@ -46,4 +46,29 @@
     <string name="call_us">Call us</string>
     <string name="mail_us">Mail us</string>
     <string name="select">Select A Meal</string>
+    <string name="enter_day">Enter day, eg: 2023/09/29</string>
+    <string name="enter_time">Enter time, eg: 01:02</string>
+    <string name="the_food_is">The food is…</string>
+    <string name="save">Save</string>
+    <string name="signup_elderly">Signup Elderly</string>
+    <string name="toast_enter_email">Enter Email</string>
+    <string name="toast_email_sent">Email sent.</string>
+    <string name="toast_enter_password">Enter Password</string>
+    <string name="toast_add_data">Add some data:</string>
+    <string name="toast_email_verification_sent">Email verification sent.</string>
+    <string name="toast_data_added">Data added</string>
+    <string name="toast_data_fail">"Fail to add data "</string>
+    <string name="toast_login_success">Login Successful</string>
+    <string name="toast_auth_fail">Authentication failed.</string>
+    <string name="toast_button_pressed">Button pressed</string>
+    <string name="toast_reenter_password">Reenter Password</string>
+    <string name="toast_passwords_do_not_match">Passwords do not match!</string>
+    <string name="toast_enter_name">Enter a name</string>
+    <string name="toast_enter_phone_number">Enter a phone number:</string>
+    <string-array name="meals">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Small meal</item>
+        <item>Dinner</item>
+    </string-array>
 </resources>

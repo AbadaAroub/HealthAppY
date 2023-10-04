@@ -145,12 +145,12 @@ public class FragmentSignupElderly extends Fragment {
                 databaseReference.child(uid).setValue(elderly);
                 databaseReference.child(uid).child("caregivers").child(cuid).setValue(cuid);
                 careRef.child(cuid).child("under_care").child(uid).setValue(uid);
-                Toast.makeText(getActivity(), "Data added", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.toast_data_added, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getActivity(), "Fail to add data " + error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getString(R.string.toast_data_fail) + error, Toast.LENGTH_SHORT).show();
             }
         });
     }

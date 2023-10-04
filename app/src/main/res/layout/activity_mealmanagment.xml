@@ -22,7 +22,7 @@
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="Home"/>
+            app:title="@string/home"/>
 
         <FrameLayout
             android:id="@+id/fragment_container"
