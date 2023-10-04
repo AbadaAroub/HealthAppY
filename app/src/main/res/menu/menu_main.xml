@@ -54,4 +54,14 @@
         </menu>
 
     </item>
+    <item android:title="debug_marcus">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/notification_test"
+                    android:title="Notification debug"
+                    android:icon="@drawable/baseline_key_24"/>
+            </group>
+        </menu>
+    </item>
 </menu>

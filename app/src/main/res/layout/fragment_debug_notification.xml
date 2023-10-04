@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="500px"
+        android:layout_height="300px"
+        android:id="@+id/notification1"
+        android:text="Test basic notification"
+        android:textSize="3mm"/>
+
+</RelativeLayout>
