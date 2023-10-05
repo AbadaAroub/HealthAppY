@@ -46,6 +46,13 @@
     <string name="call_us">Call us</string>
     <string name="mail_us">Mail us</string>
     <string name="select">Select A Meal</string>
+
+    <!-- Notification Stuff-->
+    <string name="permission_request">Permission(s) requried</string>
+    <string name="notif_post_perm">To be able to show you important information outside of the app.</string>
+    <string name="perm_accept">Accept!</string>
+    <string name="perm_deny">Deny!</string>
+
     <string name="enter_day">Enter day, eg: 2023/09/29</string>
     <string name="enter_time">Enter time, eg: 01:02</string>
     <string name="the_food_is">The food is…</string>

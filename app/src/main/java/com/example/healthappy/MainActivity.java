@@ -2,8 +2,12 @@ package com.example.healthappy;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -23,6 +27,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+
     private Button loginBtn;
     private Button signupBtn;
     private TextView welcome, healthcare;
@@ -34,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+
         // Check if user is signed in (non-null) and update UI accordingly.
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
