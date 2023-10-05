@@ -66,8 +66,11 @@ public class FragmentMealmanagment extends Fragment {
         autoCompleteTextView.setAdapter(adapterItems);
 
         elder_dropdown = view.findViewById(R.id.elder_select_list);
-        getListOfElderly();
-        //adapterCaretakers = new ArrayAdapter<String>(getActivity(), R.layout.list_item, elderList);
+        List<String> under_care = getListOfElderly();
+        getNameByUid(under_care);
+
+        adapterCaretakers = new ArrayAdapter<String>(getActivity(), R.layout.list_item, under_care);
+        elder_dropdown.setAdapter(adapterCaretakers);
 
         edittime = (EditText) view.findViewById(R.id.mytime);
         editfood = (EditText) view.findViewById(R.id.mycomment);
@@ -112,13 +115,56 @@ public class FragmentMealmanagment extends Fragment {
         return view;
     }
 
-    private void getListOfElderly(){
+    private void getNameByUid(List<String> uidList) {
+        // Initialize your DatabaseReference
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
+
+        // Create a list to store usernames
+        List<String> usernameList = new ArrayList<>();
+
+        // Iterate through the list of UIDs
+        for (String uid : uidList) {
+            // Reference to the user's node in the database (assuming it's under "Users" node)
+            DatabaseReference userRef = dbRef.child("Users").child(uid);
+
+            // Add a ValueEventListener to retrieve the username
+            userRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        // Assuming the username is stored under a key called "username"
+                        String username = dataSnapshot.child("username").getValue(String.class);
+
+                        // Add the username to the list
+                        usernameList.add(username);
+
+                        // Check if all usernames are retrieved (based on the number of UIDs)
+                        if (usernameList.size() == uidList.size()) {
+                            // All usernames are retrieved, invoke the callback
+                            callback.onUsernamesFetched(usernameList);
+                        }
+                    } else {
+                        // User node does not exist for this UID
+                        // Handle this case if needed
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Handle any errors that occur during data retrieval
+                    Log.e("FirebaseError", "Failed to read value.", databaseError.toException());
+                }
+            });
+        }
+    }
+
+    private List<String> getListOfElderly(){
         firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference careRef = firebaseDatabase.getReference("Caregiver");
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
-        Log.i("getListOfElderly logged in as: ", uid);
+        Log.i("userid: ", uid);
 
         List<String> underCareList = new ArrayList<>();
 
@@ -130,9 +176,7 @@ public class FragmentMealmanagment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     // Initialize a list to store the data
-                    Log.i("getListOfElderly: ", "Children exists");
-
-
+                    Log.i("DB: ", "Children exists");
                     // Iterate through the children of "under_care"
                     for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
                         // Get the value (in this case, it's assumed to be a String)
@@ -146,7 +190,7 @@ public class FragmentMealmanagment extends Fragment {
                     // Now, underCareList contains all the items under "under_care" as a list
                     // You can use this list as needed
                 } else {
-                    Log.i("getListOfElderly: ", "No children");
+                    Log.i("DB: ", "No children");
                 }
             }
             @Override
@@ -155,6 +199,7 @@ public class FragmentMealmanagment extends Fragment {
                 Log.e("FirebaseError", "Failed to read value.", error.toException());
             }
         });
+        return underCareList;
     }
     //Database
     private void addDatatoFirebase(String date, String meal, String food) {
