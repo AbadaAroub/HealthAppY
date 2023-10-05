@@ -23,9 +23,7 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
     private DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle drawerToggle;
-
     FirebaseAuth mAuth;
-
     @Override
     public void onStart() {
         super.onStart();

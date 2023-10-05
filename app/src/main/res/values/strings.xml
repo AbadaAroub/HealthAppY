@@ -65,6 +65,7 @@
     <string name="toast_passwords_do_not_match">Passwords do not match!</string>
     <string name="toast_enter_name">Enter a name</string>
     <string name="toast_enter_phone_number">Enter a phone number:</string>
+    <string name="select_caretaker">Select Caretaker</string>
     <string-array name="meals">
         <item>Breakfast</item>
         <item>Lunch</item>
