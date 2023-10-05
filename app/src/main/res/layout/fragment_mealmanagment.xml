@@ -38,7 +38,7 @@
     <EditText
         android:id="@+id/mycomment"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="200dp"
         android:layout_below="@id/mytime"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
