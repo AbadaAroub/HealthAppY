@@ -95,7 +95,7 @@ public class signuppage extends AppCompatActivity {
                                     }
                                 }
                             });
-                            Toast.makeText(signuppage.this, "Email verification sent.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(signuppage.this, R.string.toast_email_verification_sent, Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), loginpage.class);
                             startActivity(intent);
                             finish();
@@ -113,22 +113,22 @@ public class signuppage extends AppCompatActivity {
             private boolean isFormCorrect(String email, String password, String rePassword, String name, String phone) {
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(signuppage.this, "Enter Email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(signuppage.this, R.string.toast_enter_email, Toast.LENGTH_SHORT).show();
                     return false;
                 } else if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(signuppage.this, "Enter Password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(signuppage.this, R.string.toast_enter_password, Toast.LENGTH_SHORT).show();
                     return false;
                 } else if (TextUtils.isEmpty(rePassword)) {
-                    Toast.makeText(signuppage.this, "Reenter Password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(signuppage.this, R.string.toast_reenter_password, Toast.LENGTH_SHORT).show();
                     return false;
                 } else if (!String.valueOf(editTextPassword.getText()).equals(String.valueOf(editTextRePassword.getText()))) {
-                    Toast.makeText(signuppage.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(signuppage.this, R.string.toast_passwords_do_not_match, Toast.LENGTH_SHORT).show();
                     return false;
                 } else if (TextUtils.isEmpty(name)) {
-                    Toast.makeText(signuppage.this, "Enter a name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(signuppage.this, R.string.toast_enter_name, Toast.LENGTH_SHORT).show();
                     return false;
                 } else if (TextUtils.isEmpty(phone)) {
-                    Toast.makeText(signuppage.this, "Enter a phone number:", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(signuppage.this, R.string.toast_enter_phone_number, Toast.LENGTH_SHORT).show();
                     return false;
                 } else {
                     Log.d("DeublerDebug", "Made it through this jungle of field-checks");
@@ -147,7 +147,7 @@ public class signuppage extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         databaseReference.child(uid).setValue(caregiver);
-                        Toast.makeText(signuppage.this, "Data added", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(signuppage.this, R.string.toast_data_added, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

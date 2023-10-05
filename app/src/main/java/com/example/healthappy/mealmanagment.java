@@ -53,7 +53,6 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
         notif_mngr.requestNotificationPermissions();
         setContentView(R.layout.activity_mealmanagment);
 
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

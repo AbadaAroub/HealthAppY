@@ -12,5 +12,5 @@
         android:id="@+id/signupElderly"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="300dp"
-        android:text="Signup Elderly" />
+        android:text="@string/signup_elderly" />
 </RelativeLayout>
