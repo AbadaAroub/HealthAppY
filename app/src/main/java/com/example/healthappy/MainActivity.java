@@ -75,14 +75,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.rb_english) {
-                    changeLocale("en");
+                    LocaleHelper.setLocale(MainActivity.this,"en");
                     rbEnglish.setChecked(true);
                     welcome.setText(R.string.welcome);
                     healthcare.setText(R.string.health_care);
                     loginBtn.setText(R.string.login);
                     signupBtn.setText(R.string.signup);
                 } else if (i == R.id.rb_swedish) {
-                    changeLocale("sv");
+                    LocaleHelper.setLocale(MainActivity.this,"sv");
                     rbSwedish.setChecked(true);
                     welcome.setText(R.string.welcome);
                     healthcare.setText(R.string.health_care);
@@ -101,14 +101,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, signuppage.class);
         startActivity(intent);
         finish();
-    }
-    private void changeLocale(String lang) {
-        locale = new Locale(lang);
-        Locale.setDefault(locale);
-        Resources resources = getBaseContext().getResources();
-        Configuration config = resources.getConfiguration();
-        config.setLocale(locale);
-        DisplayMetrics metrics = resources.getDisplayMetrics();
-        resources.updateConfiguration(config, metrics);
     }
 }

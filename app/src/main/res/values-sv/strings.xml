@@ -66,10 +66,17 @@
     <string name="toast_passwords_do_not_match">Lösenord matchar ej!</string>
     <string name="toast_enter_name">Skriv ett namn</string>
     <string name="toast_enter_phone_number">Skriv ett telefonnummer:</string>
+    <string name="languages">Språk</string>
+    <string name="select_language">Välj Språk</string>
+    <string name="set_language_to">Satte språket till:</string>
     <string-array name="meals">
         <item>Frukost</item>
         <item>Lunch</item>
         <item>Mellanmål</item>
         <item>Middag</item>
+    </string-array>
+    <string-array name="langs">
+        <item>English</item>
+        <item>Svenska</item>
     </string-array>
 </resources>
