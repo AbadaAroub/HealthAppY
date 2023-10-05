@@ -3,6 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/select_elder_dropdown"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/select_caretaker">
+
+        <AutoCompleteTextView
+            android:id="@+id/elder_select_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <EditText
         android:id="@+id/myDate"
         android:layout_width="match_parent"
@@ -16,7 +34,8 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="23sp" />
+        android:textSize="23sp"
+        android:layout_below="@+id/select_elder_dropdown"/>
 
     <EditText
         android:id="@+id/mytime"

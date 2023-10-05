@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,16 +31,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class FragmentMealmanagment extends Fragment {
     private Button savebutton;
     private EditText edittime, dateEdt, editfood;
+
     String[] item = {"Breakfast", "Lunch", "Small meal", "Dinner"};
     Resources resources;
-    AutoCompleteTextView autoCompleteTextView;
+    AutoCompleteTextView autoCompleteTextView, elder_dropdown;
     TextView date;
-    ArrayAdapter<String> adapterItems;
+    ArrayAdapter<String> adapterItems, adapterCaretakers;
 
 
     //Datebase
@@ -53,14 +57,21 @@ public class FragmentMealmanagment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        dbRef = firebaseDatabase.getReference("MealManagement");
         resources = getResources();
         item = resources.getStringArray(R.array.meals);
 
-        View view =inflater.inflate(R.layout.fragment_mealmanagment, container,false);
+        View view = inflater.inflate(R.layout.fragment_mealmanagment, container,false);
 
         autoCompleteTextView = view.findViewById(R.id.auto_complete_txt);
         adapterItems = new ArrayAdapter<String>(getActivity(), R.layout.list_item, item);
         autoCompleteTextView.setAdapter(adapterItems);
+
+        elder_dropdown = view.findViewById(R.id.elder_select_list);
+        getListOfElderly();
+        //adapterCaretakers = new ArrayAdapter<String>(getActivity(), R.layout.list_item, elderList);
+
         edittime = (EditText) view.findViewById(R.id.mytime);
         editfood = (EditText) view.findViewById(R.id.mycomment);
         savebutton = (Button) view.findViewById(R.id.savebtn);
@@ -68,8 +79,8 @@ public class FragmentMealmanagment extends Fragment {
         //Database
         mealEdt = view.findViewById(R.id.lol);
         dateEdt = view.findViewById(R.id.myDate);
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        dbRef = firebaseDatabase.getReference("MealManagement");
+
+
 
 
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -77,6 +88,14 @@ public class FragmentMealmanagment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
                 Toast.makeText(getActivity(),"Item: " + item, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        elder_dropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
+                String item = parent.getItemAtPosition(i).toString();
+                Toast.makeText(getActivity(), "Item: " + item, Toast.LENGTH_SHORT).show();
             }
         });
         savebutton.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +115,50 @@ public class FragmentMealmanagment extends Fragment {
         return view;
     }
 
+    private void getListOfElderly(){
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference careRef = firebaseDatabase.getReference("Caregiver");
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+        Log.i("getListOfElderly logged in as: ", uid);
+
+        List<String> underCareList = new ArrayList<>();
+
+        DatabaseReference undercareRef = careRef.child(uid).child("under_care");
+        // Attach a ValueEventListener to listen for data changes
+        // Add a ValueEventListener to retrieve the data
+        undercareRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Initialize a list to store the data
+                    Log.i("getListOfElderly: ", "Children exists");
+
+
+                    // Iterate through the children of "under_care"
+                    for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                        // Get the value (in this case, it's assumed to be a String)
+                        String value = childSnapshot.getValue(String.class);
+
+                        // Add the value to the list
+                        underCareList.add(value);
+                        Log.i("dataSnapshot:" , value);
+                    }
+
+                    // Now, underCareList contains all the items under "under_care" as a list
+                    // You can use this list as needed
+                } else {
+                    Log.i("getListOfElderly: ", "No children");
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // This method is called when there is an error in reading data
+                Log.e("FirebaseError", "Failed to read value.", error.toException());
+            }
+        });
+    }
     //Database
     private void addDatatoFirebase(String date, String meal, String food) {
         dbRef.addValueEventListener(new ValueEventListener() {
