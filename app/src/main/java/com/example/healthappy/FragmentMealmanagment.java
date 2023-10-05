@@ -1,6 +1,8 @@
 package com.example.healthappy;
 
 
+import static com.example.healthappy.R.layout.fragment_mealmanagment;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -30,6 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 
 
 public class FragmentMealmanagment extends Fragment {
@@ -39,13 +42,14 @@ public class FragmentMealmanagment extends Fragment {
     Resources resources;
     AutoCompleteTextView autoCompleteTextView;
     TextView date;
-    ArrayAdapter<String> adapterItems;
+    ArrayAdapter<String> adapterItems, adapterUids;
 
 
     //Datebase
-    TextInputLayout mealEdt;
+    TextInputLayout mealEdt, listview;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference dbRef;
+    DatabaseReference careRef;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseAuth mAuth;
 
@@ -56,11 +60,15 @@ public class FragmentMealmanagment extends Fragment {
         resources = getResources();
         item = resources.getStringArray(R.array.meals);
 
-        View view =inflater.inflate(R.layout.fragment_mealmanagment, container,false);
+        ArrayList<String> list = get_uids();
+
+        View view =inflater.inflate(fragment_mealmanagment, container,false);
 
         autoCompleteTextView = view.findViewById(R.id.auto_complete_txt);
         adapterItems = new ArrayAdapter<String>(getActivity(), R.layout.list_item, item);
+        adapterUids = new ArrayAdapter<String>(getActivity(), R.layout.list_item, list);
         autoCompleteTextView.setAdapter(adapterItems);
+        autoCompleteTextView.setAdapter(adapterUids);
         edittime = (EditText) view.findViewById(R.id.mytime);
         editfood = (EditText) view.findViewById(R.id.mycomment);
         savebutton = (Button) view.findViewById(R.id.savebtn);
@@ -70,6 +78,7 @@ public class FragmentMealmanagment extends Fragment {
         dateEdt = view.findViewById(R.id.myDate);
         firebaseDatabase = FirebaseDatabase.getInstance();
         dbRef = firebaseDatabase.getReference("MealManagement");
+        careRef = firebaseDatabase.getReference("Caregiver");
 
 
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -110,6 +119,28 @@ public class FragmentMealmanagment extends Fragment {
                 Toast.makeText(getActivity(), "Fail to add data " + error, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private ArrayList<String> get_uids() {
+        ArrayList<String> lists = new ArrayList<>();
+        careRef = firebaseDatabase.getReference().child("under_care");
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //Database
+                lists.clear();
+                for(DataSnapshot snapshot2 : snapshot.getChildren()) {
+                    Caregiver care = snapshot.getValue(Caregiver.class);
+                    lists.add(snapshot2.getValue().toString());
+                }
+                Toast.makeText(getActivity(), "Data recieved", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getActivity(), "Fail to recieve data" + error, Toast.LENGTH_SHORT).show();
+            }
+        });
+        return lists;
     }
 }
 
