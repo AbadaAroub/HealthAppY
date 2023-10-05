@@ -3,6 +3,7 @@ package com.example.healthappy;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 
@@ -18,11 +19,11 @@ public class AppNotificationManager {
     private AppCompatActivity activity;
     public AppNotificationManager(AppCompatActivity activity) {
         this.activity = activity;
+        requestNotificationPermissions();
+        notif_mngr = NotificationManagerCompat.from(activity);
     }
     //NOTIFICATIONPART
-    public void requestNotificationPermissions() {
-        //NOTIFICATION STUFF
-
+    private void requestNotificationPermissions() {
         if (ContextCompat.checkSelfPermission(activity, android.Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_DENIED)
         {
             if (ActivityCompat.shouldShowRequestPermissionRationale(activity, android.Manifest.permission.POST_NOTIFICATIONS)) {
@@ -50,19 +51,40 @@ public class AppNotificationManager {
     }
 
 
-    public void basic_notif(String title, String message) {
-        notif_mngr = NotificationManagerCompat.from(activity);
-        Notification notif = (new NotificationCompat.Builder(activity, App.channel_high_id)
-                .setSmallIcon(R.drawable.loginphoto)
+    public void discrete_notif(int n_id, String title, String message) {
+        Notification notif = (new NotificationCompat.Builder(activity, App.channel_low_id)
+                .setSmallIcon(R.drawable.baseline_fastfood_24)
                 .setContentText(message)
                 .setContentTitle(title)
-                .setPriority(android.app.NotificationManager.IMPORTANCE_DEFAULT)
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setPriority(NotificationManager.IMPORTANCE_LOW)
         ).build();
         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED)
-            notif_mngr.notify(0, notif);
-        else
-            new AlertDialog.Builder(activity).setMessage("FFFuuuuuuuuuu---").create().show();
+            notif_mngr.notify(n_id, notif);
 
     }
+
+    public void medium_notif(int n_id, String title, String message) {
+        Notification notif = (new NotificationCompat.Builder(activity, App.channel_medium_id)
+                .setSmallIcon(R.drawable.baseline_fastfood_24)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(NotificationManager.IMPORTANCE_DEFAULT)
+        ).build();
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED)
+            notif_mngr.notify(n_id, notif);
+    }
+
+    public void high_notif(int n_id,String title, String message) {
+        Notification notif = (new NotificationCompat.Builder(activity, App.channel_high_id)
+                .setSmallIcon(R.drawable.baseline_fastfood_24)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(NotificationManager.IMPORTANCE_HIGH)
+        ).build();
+
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED)
+            notif_mngr.notify(n_id, notif);
+    }
+
+
 }
