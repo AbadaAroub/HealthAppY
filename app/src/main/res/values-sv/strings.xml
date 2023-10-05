@@ -46,4 +46,30 @@
     <string name="contact_us">Kontakta oss</string>
     <string name="call_us">Ring oss</string>
     <string name="mail_us">Maila oss</string>
+    <string name="select">Välj en måltid</string>
+    <string name="enter_day">Skriv dag, t.ex: 2023/09/29</string>
+    <string name="enter_time">Skriv tid, t.ex: 01:02</string>
+    <string name="the_food_is">Maträtten är…</string>
+    <string name="save">Spara</string>
+    <string name="signup_elderly">Registrera Gamling</string>
+    <string name="toast_enter_email">Skriv Email</string>
+    <string name="toast_email_sent">Email skickat.</string>
+    <string name="toast_enter_password">Skriv Lösenord</string>
+    <string name="toast_add_data">Lägg till data:</string>
+    <string name="toast_email_verification_sent">Email verifiering skickat.</string>
+    <string name="toast_data_added">Data Tillagt</string>
+    <string name="toast_data_fail">"Misslyckades att lägga till data "</string>
+    <string name="toast_login_success">Inloggning lyckades</string>
+    <string name="toast_auth_fail">Autentisering misslyckad.</string>
+    <string name="toast_button_pressed">Knapp tryckt</string>
+    <string name="toast_reenter_password">Skriv Lösenord igen</string>
+    <string name="toast_passwords_do_not_match">Lösenord matchar ej!</string>
+    <string name="toast_enter_name">Skriv ett namn</string>
+    <string name="toast_enter_phone_number">Skriv ett telefonnummer:</string>
+    <string-array name="meals">
+        <item>Frukost</item>
+        <item>Lunch</item>
+        <item>Mellanmål</item>
+        <item>Middag</item>
+    </string-array>
 </resources>

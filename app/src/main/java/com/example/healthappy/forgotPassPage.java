@@ -38,7 +38,7 @@ public class forgotPassPage extends AppCompatActivity {
                 email = String.valueOf(editTextEmail.getText());
 
                 if (TextUtils.isEmpty(email)){
-                    Toast.makeText(forgotPassPage.this, "Enter Email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(forgotPassPage.this, R.string.toast_enter_email, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -48,7 +48,7 @@ public class forgotPassPage extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "Email sent.");
-                            Toast.makeText(forgotPassPage.this, "Email sent.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(forgotPassPage.this, R.string.toast_email_sent, Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), loginpage.class);
                             startActivity(intent);
                             finish();

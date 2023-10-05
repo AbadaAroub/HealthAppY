@@ -67,12 +67,12 @@ public class loginpage extends AppCompatActivity {
                 password = String.valueOf(editTextPassword.getText());
 
                 if (TextUtils.isEmpty(email)){
-                    Toast.makeText(loginpage.this, "Enter Email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(loginpage.this, R.string.toast_enter_email, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)){
-                    Toast.makeText(loginpage.this, "Enter Password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(loginpage.this, R.string.toast_enter_password, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -82,12 +82,12 @@ public class loginpage extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(loginpage.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(loginpage.this, R.string.toast_login_success, Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getApplicationContext(), mealmanagment.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
-                                    Toast.makeText(loginpage.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(loginpage.this, R.string.toast_auth_fail, Toast.LENGTH_SHORT).show();
 
                                 }
                             }
