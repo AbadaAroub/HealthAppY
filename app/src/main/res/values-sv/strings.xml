@@ -75,7 +75,8 @@
     <string name="notif_post_perm">För att kunna visa dig viktig information utanför appen.</string>
     <string name="perm_accept">Tillåt!</string>
     <string name="perm_deny">Neka!</string>
-  
+    <string name="_4_digit_pin">4-siffrig PIN</string>
+
     <string-array name="meals">
         <item>Frukost</item>
         <item>Lunch</item>

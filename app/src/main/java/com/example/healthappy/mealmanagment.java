@@ -50,7 +50,6 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         notif_mngr = new AppNotificationManager(this);
-        notif_mngr.requestNotificationPermissions();
         setContentView(R.layout.activity_mealmanagment);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -99,7 +98,7 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentSignupElderly()).commit();
         }
         else if (item.getItemId() == R.id.notification_test) {
-            notif_mngr.basic_notif("Bitconnect", "Bitcooooooonnnnnnnneeeeeeecccccctttt!!!!!.... WOOOOAHH!!!!");
+            notif_mngr.high_notif(0, "Notification Test", "This notification is a test and if you are seeing this, then it works.");
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentNotificationTest(this)).commit();
         }
         else {

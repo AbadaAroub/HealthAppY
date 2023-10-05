@@ -75,6 +75,7 @@
     <string name="languages">Languages</string>
     <string name="select_language">Select Language</string>
     <string name="set_language_to">Set language to:</string>
+    <string name="_4_digit_pin">4 digit PIN</string>
     <string-array name="meals">
         <item>Breakfast</item>
         <item>Lunch</item>
