@@ -77,6 +77,7 @@ public class FragmentMealmanagment extends Fragment {
                 String meal = mealEdt.getEditText().getText().toString();
                 String date = dateEdt.getText().toString();
                 String food = editfood.getText().toString();
+
                 if (TextUtils.isEmpty(date) && TextUtils.isEmpty(meal) && TextUtils.isEmpty(food)) {
                     Toast.makeText(getActivity(), "Add some data", Toast.LENGTH_SHORT).show();
                 } else {
@@ -89,7 +90,6 @@ public class FragmentMealmanagment extends Fragment {
 
     //Database
     private void addDatatoFirebase(String date, String meal, String food) {
-
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
