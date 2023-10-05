@@ -97,10 +97,6 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
         } else if (item.getItemId() == R.id.elderlysignup) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentSignupElderly()).commit();
         }
-        else if (item.getItemId() == R.id.notification_test) {
-            notif_mngr.high_notif(0, "Notification Test", "This notification is a test and if you are seeing this, then it works.");
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentNotificationTest(this)).commit();
-        }
         else {
             return false;
         }
