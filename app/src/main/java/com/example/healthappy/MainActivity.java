@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.rb_english) {
                     LocaleHelper.setLocale(MainActivity.this,"en");
+                    saveLocale("en");
                     rbEnglish.setChecked(true);
                     welcome.setText(R.string.welcome);
                     healthcare.setText(R.string.health_care);
@@ -100,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                     signupBtn.setText(R.string.signup);
                 } else if (i == R.id.rb_swedish) {
                     LocaleHelper.setLocale(MainActivity.this,"sv");
+                    saveLocale("sv");
                     rbSwedish.setChecked(true);
                     welcome.setText(R.string.welcome);
                     healthcare.setText(R.string.health_care);
@@ -122,5 +124,11 @@ public class MainActivity extends AppCompatActivity {
     private String getLocale() {
         SharedPreferences preferences = getSharedPreferences("Languages", Context.MODE_PRIVATE);
         return preferences.getString(LocaleHelper.LANG_PREF, "NA");
+    }
+    private void saveLocale(String lang) {
+        SharedPreferences preferences = getSharedPreferences("Languages", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(LocaleHelper.LANG_PREF, lang);
+        editor.apply();
     }
 }
