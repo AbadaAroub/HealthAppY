@@ -38,7 +38,7 @@ public class FragmentSignupElderly extends Fragment {
     //Database
     private EditText elderlyNameEdt, elderlyMobileEdt, elderlyMailEdt, elderlyAddressEdt;
     Elderly elderly;
-    Caregiver caregivers;
+    Caregiver caregiver;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     DatabaseReference careRef;
@@ -63,6 +63,9 @@ public class FragmentSignupElderly extends Fragment {
         elderlyAddressEdt = view.findViewById(R.id.addresseld);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Elderly");
+        String cuid = mAuth.getUid();
+        caregiver = new Caregiver();
+        caregiver.setUser_UID(cuid);
 
         elderly = new Elderly();
 
@@ -72,7 +75,6 @@ public class FragmentSignupElderly extends Fragment {
             @Override
             public void onClick(View view) {
                 String PIN;
-                String cuid = mAuth.getUid();
                 String email, password, rePassword;
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
@@ -82,8 +84,6 @@ public class FragmentSignupElderly extends Fragment {
                 String number = elderlyMobileEdt.getText().toString();
                 String mail = elderlyMailEdt.getText().toString();
                 String address = elderlyAddressEdt.getText().toString();
-                Caregiver caregiver = new Caregiver();
-                caregiver.setUser_UID(cuid);
 
                 if(!isFormCorrect(name, number, email, address, PIN)) {
                     return;
@@ -132,17 +132,18 @@ public class FragmentSignupElderly extends Fragment {
         careRef = firebaseDatabase.getReference("Caregiver");
         elderly.setName(name);
         elderly.setMobile_nr(number);
+        elderly.setCaregivers(caregiver);
         elderly.setAddress(address);
+        elderly.setEmail(mail);
 
         String uid = mAuth.getCurrentUser().getUid();
-
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Databas
                 databaseReference.child(uid).setValue(elderly);
-                databaseReference.child(uid).child("caregivers").child(cuid).setValue(cuid);
+                //databaseReference.child(uid).child("caregivers").child(cuid).setValue(cuid);
                 careRef.child(cuid).child("under_care").child(uid).setValue(uid);
                 Toast.makeText(getActivity(), R.string.toast_data_added, Toast.LENGTH_SHORT).show();
             }
