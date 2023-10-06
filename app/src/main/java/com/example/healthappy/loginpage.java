@@ -104,6 +104,13 @@ public class loginpage extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
     /*public void openmealmanagmentpage() {
         Intent intent = new Intent(this, mealmanagment.class);
         startActivity(intent);

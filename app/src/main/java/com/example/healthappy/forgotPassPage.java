@@ -58,4 +58,11 @@ public class forgotPassPage extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), loginpage.class);
+        startActivity(intent);
+        finish();
+    }
 }
