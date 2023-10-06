@@ -18,11 +18,11 @@
             android:layout_height="wrap_content"
             android:inputType="none" />
 
-
     </com.google.android.material.textfield.TextInputLayout>
 
     <EditText
         android:id="@+id/myDate"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"

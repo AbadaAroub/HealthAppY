@@ -33,7 +33,7 @@ import org.w3c.dom.Text;
 public class FragmentSignupElderly extends Fragment {
     EditText editTextEmail, editTextPassword, editTextRePassword;
     Button signUpBtn;
-    FirebaseAuth mAuth;
+    FirebaseAuth mAuthAdmin, mAuth;
 
     //Database
     EditText elderlyNameEdt, elderlyMobileEdt, elderlyMailEdt, elderlyAddressEdt, allergiesEdt;
@@ -52,7 +52,7 @@ public class FragmentSignupElderly extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_signup_elderly, container, false);
-        mAuth = FirebaseAuth.getInstance();
+        mAuthAdmin = FirebaseAuth.getInstance();
         editTextEmail = view.findViewById(R.id.emaileld);
         editTextPassword = view.findViewById(R.id.signuppasseld);
 
@@ -64,11 +64,11 @@ public class FragmentSignupElderly extends Fragment {
         allergiesEdt = view.findViewById(R.id.allergies);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Elderly");
-        String cuid = mAuth.getUid();
-        caregiver = new Caregiver();
-        caregiver.setUser_UID(cuid);
 
         elderly = new Elderly();
+        String cuid = mAuthAdmin.getCurrentUser().getUid();
+        caregiver = new Caregiver();
+        caregiver.setUser_UID(cuid);
 
         signUpBtn = view.findViewById(R.id.signupeld);
 
@@ -94,7 +94,7 @@ public class FragmentSignupElderly extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                FirebaseUser user = mAuth.getCurrentUser();
+                                //FirebaseUser user = mAuth.getCurrentUser();
                                 addDatatoFirebase(name, number, mail, address, allergies, caregiver);
                                 Log.d(TAG, "Email sent.");
                                 //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
@@ -137,7 +137,11 @@ public class FragmentSignupElderly extends Fragment {
         elderly.setCaregivers(caregiver);
         elderly.setAddress(address);
         elderly.setEmail(mail);
-        elderly.setAllergies(allergies);
+        if(allergies.isEmpty()) {
+            elderly.setAllergies("No allergies");
+        } else {
+            elderly.setAllergies(allergies);
+        }
 
         String uid = mAuth.getCurrentUser().getUid();
 

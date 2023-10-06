@@ -47,7 +47,7 @@
     <string name="call_us">Call us</string>
     <string name="mail_us">Mail us</string>
     <string name="select">Select A Meal</string>
-    <string name="enter_day">Enter day, eg: 2023/09/29</string>
+    <string name="enter_day">Enter day, eg: 2023-09-29</string>
     <string name="enter_time">Enter time, eg: 01:02</string>
     <string name="the_food_is">The food is…</string>
     <string name="save">Save</string>

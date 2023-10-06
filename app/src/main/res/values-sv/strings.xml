@@ -22,6 +22,7 @@
     <string name="password">Lösenord</string>
     <string name="remember">Kom ihåg mig</string>
     <string name="login">Logga In</string>
+    <string name="allergies">Allergier</string>
     <string name="password_forgot">Glömt lösenord?</string>
     <string name="welcome">Välkommen Till</string>
     <string name="health_care">Health Care</string>
