@@ -36,7 +36,7 @@ public class FragmentSignupElderly extends Fragment {
     FirebaseAuth mAuth;
 
     //Database
-    private EditText elderlyNameEdt, elderlyMobileEdt, elderlyMailEdt, elderlyAddressEdt;
+    EditText elderlyNameEdt, elderlyMobileEdt, elderlyMailEdt, elderlyAddressEdt, allergiesEdt;
     Elderly elderly;
     Caregiver caregiver;
     FirebaseDatabase firebaseDatabase;
@@ -61,6 +61,7 @@ public class FragmentSignupElderly extends Fragment {
         elderlyMobileEdt = view.findViewById(R.id.mobileNumbereld);
         elderlyMailEdt = view.findViewById(R.id.emaileld);
         elderlyAddressEdt = view.findViewById(R.id.addresseld);
+        allergiesEdt = view.findViewById(R.id.allergies);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Elderly");
         String cuid = mAuth.getUid();
@@ -84,6 +85,7 @@ public class FragmentSignupElderly extends Fragment {
                 String number = elderlyMobileEdt.getText().toString();
                 String mail = elderlyMailEdt.getText().toString();
                 String address = elderlyAddressEdt.getText().toString();
+                String allergies = allergiesEdt.getText().toString();
 
                 if(!isFormCorrect(name, number, email, address, PIN)) {
                     return;
@@ -93,7 +95,7 @@ public class FragmentSignupElderly extends Fragment {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                addDatatoFirebase(name, number, mail, address, caregiver);
+                                addDatatoFirebase(name, number, mail, address, allergies, caregiver);
                                 Log.d(TAG, "Email sent.");
                                 //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
                             } else {
@@ -127,7 +129,7 @@ public class FragmentSignupElderly extends Fragment {
         return true;
     }
     //Database
-    private void addDatatoFirebase(String name, String number, String mail, String address, Caregiver caregiver) {
+    private void addDatatoFirebase(String name, String number, String mail, String address, String allergies, Caregiver caregiver) {
         String cuid = caregiver.getUser_UID();
         careRef = firebaseDatabase.getReference("Caregiver");
         elderly.setName(name);
@@ -135,6 +137,7 @@ public class FragmentSignupElderly extends Fragment {
         elderly.setCaregivers(caregiver);
         elderly.setAddress(address);
         elderly.setEmail(mail);
+        elderly.setAllergies(allergies);
 
         String uid = mAuth.getCurrentUser().getUid();
 

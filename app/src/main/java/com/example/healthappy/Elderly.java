@@ -6,13 +6,8 @@ public class Elderly {
     private String Mobile_nr;
     private String Address;
     private String email;
-    private Allergies Allergy;
     private Caregiver caregivers;
-    private enum Allergies {
-        NUTS,
-        GLUTEN,
-        LACTOS;
-    }
+    private String Allergies;
 
     public Elderly() {
 
@@ -48,16 +43,16 @@ public class Elderly {
     public void setAddress(String address) {
         Address = address;
     }
-    public Allergies getAllergy() {
-        return Allergy;
-    }
-    public void setAllergy(Allergies allergy) {
-        Allergy = allergy;
-    }
     public Caregiver getCaregivers() {
         return caregivers;
     }
     public void setCaregivers(Caregiver caregivers) {
         this.caregivers = caregivers;
+    }
+    public String getAllergies() {
+        return Allergies;
+    }
+    public void setAllergies(String allergies) {
+        Allergies = allergies;
     }
 }
