@@ -24,7 +24,6 @@ public class FragmentProfilesettings extends Fragment {
     ArrayAdapter<String> adapterItems;
     String[] langs;
     Resources resources;
-    LocaleHelper localeHelper = new LocaleHelper();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,12 +41,12 @@ public class FragmentProfilesettings extends Fragment {
                 String lang = parent.getItemAtPosition(position).toString();
                 if(lang.equals("English")) {
                     LocaleHelper.setLocale(FragmentProfilesettings.this.getContext(), "en");
-                    saveLocale("en");
+                    LocaleHelper.saveLocale(FragmentProfilesettings.this.getContext(), "en");
 
                 }
                 else if(lang.equals("Svenska")) {
                     LocaleHelper.setLocale(FragmentProfilesettings.this.getContext(), "sv");
-                    saveLocale("sv");
+                    LocaleHelper.saveLocale(FragmentProfilesettings.this.getContext(), "sv");
                 }
                 FragmentProfilesettings.this.getActivity().recreate();
                 String toastString = getString(R.string.set_language_to) + " " + lang;
@@ -57,11 +56,5 @@ public class FragmentProfilesettings extends Fragment {
         });
 
         return view;
-    }
-    private void saveLocale(String lang) {
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("Languages", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(LocaleHelper.LANG_PREF, lang);
-        editor.apply();
     }
 }

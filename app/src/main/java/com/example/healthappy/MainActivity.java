@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private Button loginBtn;
     private Button signupBtn;
     private TextView welcome, healthcare;
-    Locale locale;
     RadioGroup rgLanguage;
     RadioButton rbEnglish, rbSwedish;
 
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         loginBtn = (Button) findViewById(R.id.loginbtn);
         signupBtn = (Button) findViewById(R.id.signupbtn);
 
-        String lang = getLocale();
+        String lang = LocaleHelper.getLocale(MainActivity.this);
         LocaleHelper.setLocale(MainActivity.this, lang);
         welcome.setText(R.string.welcome);
         healthcare.setText(R.string.health_care);
@@ -93,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.rb_english) {
                     LocaleHelper.setLocale(MainActivity.this,"en");
-                    saveLocale("en");
+                    LocaleHelper.saveLocale(MainActivity.this,"en");
                     rbEnglish.setChecked(true);
                     welcome.setText(R.string.welcome);
                     healthcare.setText(R.string.health_care);
@@ -101,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                     signupBtn.setText(R.string.signup);
                 } else if (i == R.id.rb_swedish) {
                     LocaleHelper.setLocale(MainActivity.this,"sv");
-                    saveLocale("sv");
+                    LocaleHelper.saveLocale(MainActivity.this,"sv");
                     rbSwedish.setChecked(true);
                     welcome.setText(R.string.welcome);
                     healthcare.setText(R.string.health_care);
@@ -111,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     public void openLoginPage() {
         Intent intent = new Intent(this, loginpage.class);
         startActivity(intent);
@@ -120,15 +120,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, signuppage.class);
         startActivity(intent);
         finish();
-    }
-    private String getLocale() {
-        SharedPreferences preferences = getSharedPreferences("Languages", Context.MODE_PRIVATE);
-        return preferences.getString(LocaleHelper.LANG_PREF, "NA");
-    }
-    private void saveLocale(String lang) {
-        SharedPreferences preferences = getSharedPreferences("Languages", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(LocaleHelper.LANG_PREF, lang);
-        editor.apply();
     }
 }
