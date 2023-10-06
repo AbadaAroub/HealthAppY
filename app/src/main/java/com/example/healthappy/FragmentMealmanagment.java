@@ -141,7 +141,7 @@ public class FragmentMealmanagment extends Fragment {
                         // Check if all usernames are retrieved (based on the number of UIDs)
                         if (usernameList.size() == uidList.size()) {
                             // All usernames are retrieved, invoke the callback
-                            callback.onUsernamesFetched(usernameList);
+                            //callback.onUsernamesFetched(usernameList);
                         }
                     } else {
                         // User node does not exist for this UID
