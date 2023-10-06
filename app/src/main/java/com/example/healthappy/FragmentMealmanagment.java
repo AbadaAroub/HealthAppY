@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -68,11 +69,30 @@ public class FragmentMealmanagment extends Fragment {
         adapterItems = new ArrayAdapter<String>(getActivity(), R.layout.list_item, item);
         autoCompleteTextView.setAdapter(adapterItems);
 
+        List<String> undercareUIs = getListOfElderly();
         elder_dropdown = view.findViewById(R.id.elder_select_list);
-        List<String> under_care = getListOfElderly();
-        getNameByUid(under_care);
+        Log.i("EYO:", "inloggad som: " + mAuth.getCurrentUser().getEmail());
 
-        adapterCaretakers = new ArrayAdapter<String>(getActivity(), R.layout.list_item, under_care);
+
+        List<String> underCareNames = new ArrayList<>();
+        for(String uid : undercareUIs) {
+            getNameByUid(uid, new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        underCareNames.add(dataSnapshot.getValue(String.class));
+                    } else {
+                        Toast.makeText(getActivity(), "Username not found", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(getActivity(), "Database error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        adapterCaretakers = new ArrayAdapter<String>(getActivity(), R.layout.list_item, undercareUIs);
         elder_dropdown.setAdapter(adapterCaretakers);
 
         edittime = (EditText) view.findViewById(R.id.mytime);
@@ -82,9 +102,6 @@ public class FragmentMealmanagment extends Fragment {
         //Database
         mealEdt = view.findViewById(R.id.lol);
         dateEdt = view.findViewById(R.id.myDate);
-
-
-
 
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -118,49 +135,19 @@ public class FragmentMealmanagment extends Fragment {
         return view;
     }
 
-    private void getNameByUid(List<String> uidList) {
-        // Initialize your DatabaseReference
-        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
-
-        // Create a list to store usernames
-        List<String> usernameList = new ArrayList<>();
-
-        // Iterate through the list of UIDs
-        for (String uid : uidList) {
-            // Reference to the user's node in the database (assuming it's under "Users" node)
-            DatabaseReference userRef = dbRef.child("Users").child(uid);
-
-            // Add a ValueEventListener to retrieve the username
-            userRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        // Assuming the username is stored under a key called "username"
-                        String username = dataSnapshot.child("username").getValue(String.class);
-
-                        // Add the username to the list
-                        usernameList.add(username);
-
-                        // Check if all usernames are retrieved (based on the number of UIDs)
-                        if (usernameList.size() == uidList.size()) {
-                            // All usernames are retrieved, invoke the callback
-                            callback.onUsernamesFetched(usernameList);
-                        }
-                    } else {
-                        // User node does not exist for this UID
-                        // Handle this case if needed
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    // Handle any errors that occur during data retrieval
-                    Log.e("FirebaseError", "Failed to read value.", databaseError.toException());
-                }
-            });
-        }
+    public void getNameByUid(String uid, ValueEventListener callback) {
+        DatabaseReference elderNameRef = firebaseDatabase.getInstance().getReference("Elderly").child(uid).child("name");
+        elderNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                callback.onDataChange(snapshot);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onCancelled(databaseError);
+            }
+        });
     }
-
     private List<String> getListOfElderly(){
         firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference careRef = firebaseDatabase.getReference("Caregiver");
@@ -172,8 +159,6 @@ public class FragmentMealmanagment extends Fragment {
         List<String> underCareList = new ArrayList<>();
 
         DatabaseReference undercareRef = careRef.child(uid).child("under_care");
-        // Attach a ValueEventListener to listen for data changes
-        // Add a ValueEventListener to retrieve the data
         undercareRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -184,14 +169,9 @@ public class FragmentMealmanagment extends Fragment {
                     for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
                         // Get the value (in this case, it's assumed to be a String)
                         String value = childSnapshot.getValue(String.class);
-
-                        // Add the value to the list
                         underCareList.add(value);
                         Log.i("dataSnapshot:" , value);
                     }
-
-                    // Now, underCareList contains all the items under "under_care" as a list
-                    // You can use this list as needed
                 } else {
                     Log.i("DB: ", "No children");
                 }

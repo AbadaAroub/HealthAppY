@@ -84,6 +84,8 @@ public class FragmentSignupElderly extends Fragment {
                 String address = elderlyAddressEdt.getText().toString();
                 Caregiver caregiver = new Caregiver();
                 caregiver.setUser_UID(cuid);
+                Log.i("EYO:", "i signupElderly-fragment: " + mAuth.getCurrentUser().getEmail());
+
 
                 if(!isFormCorrect(name, number, email, address, PIN)) {
                     return;
@@ -92,9 +94,7 @@ public class FragmentSignupElderly extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                FirebaseUser user = mAuth.getCurrentUser();
                                 addDatatoFirebase(name, number, mail, address, caregiver);
-                                Log.d(TAG, "Email sent.");
                                 //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -135,7 +135,7 @@ public class FragmentSignupElderly extends Fragment {
         elderly.setAddress(address);
 
         String uid = mAuth.getCurrentUser().getUid();
-
+        Log.i("EYO:", "innan inlägg i databas: " + mAuth.getCurrentUser().getEmail());
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -145,6 +145,7 @@ public class FragmentSignupElderly extends Fragment {
                 databaseReference.child(uid).child("caregivers").child(cuid).setValue(cuid);
                 careRef.child(cuid).child("under_care").child(uid).setValue(uid);
                 Toast.makeText(getActivity(), R.string.toast_data_added, Toast.LENGTH_SHORT).show();
+                Log.i("EYO:", "efter inlägg i databas: " + mAuth.getCurrentUser().getEmail());
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

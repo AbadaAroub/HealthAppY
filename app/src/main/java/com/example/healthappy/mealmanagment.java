@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -24,6 +25,7 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
     NavigationView navigationView;
     ActionBarDrawerToggle drawerToggle;
     FirebaseAuth mAuth;
+    TextView nameHeader;
     @Override
     public void onStart() {
         super.onStart();
