@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -63,7 +65,16 @@ public class MainActivity extends AppCompatActivity {
         rbSwedish = findViewById(R.id.rb_swedish);
         loginBtn = (Button) findViewById(R.id.loginbtn);
         signupBtn = (Button) findViewById(R.id.signupbtn);
-      
+
+        String lang = getLocale();
+        LocaleHelper.setLocale(MainActivity.this, lang);
+        welcome.setText(R.string.welcome);
+        healthcare.setText(R.string.health_care);
+        loginBtn.setText(R.string.login);
+        signupBtn.setText(R.string.signup);
+
+
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -107,5 +118,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, signuppage.class);
         startActivity(intent);
         finish();
+    }
+    private String getLocale() {
+        SharedPreferences preferences = getSharedPreferences("Languages", Context.MODE_PRIVATE);
+        return preferences.getString(LocaleHelper.LANG_PREF, "NA");
     }
 }

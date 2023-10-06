@@ -1,6 +1,8 @@
 package com.example.healthappy;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,6 +24,7 @@ public class FragmentProfilesettings extends Fragment {
     ArrayAdapter<String> adapterItems;
     String[] langs;
     Resources resources;
+    LocaleHelper localeHelper = new LocaleHelper();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,10 +40,15 @@ public class FragmentProfilesettings extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String lang = parent.getItemAtPosition(position).toString();
-                if(lang.equals("English"))
+                if(lang.equals("English")) {
                     LocaleHelper.setLocale(FragmentProfilesettings.this.getContext(), "en");
-                else if(lang.equals("Svenska"))
+                    saveLocale("en");
+
+                }
+                else if(lang.equals("Svenska")) {
                     LocaleHelper.setLocale(FragmentProfilesettings.this.getContext(), "sv");
+                    saveLocale("sv");
+                }
                 FragmentProfilesettings.this.getActivity().recreate();
                 String toastString = getString(R.string.set_language_to) + " " + lang;
                 Toast.makeText(getActivity(),toastString, Toast.LENGTH_SHORT).show();
@@ -49,5 +57,11 @@ public class FragmentProfilesettings extends Fragment {
         });
 
         return view;
+    }
+    private void saveLocale(String lang) {
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("Languages", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(LocaleHelper.LANG_PREF, lang);
+        editor.apply();
     }
 }
