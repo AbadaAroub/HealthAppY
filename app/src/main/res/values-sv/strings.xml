@@ -76,6 +76,11 @@
     <string name="perm_accept">Tillåt!</string>
     <string name="perm_deny">Neka!</string>
     <string name="_4_digit_pin">4-siffrig PIN</string>
+    <string name="username">Användarnamn</string>
+    <string name="to_apply_yourself_as_garegiver">för att ange dig själv som vårdgivare</string>
+    <string name="enter_elder_username">Ange vårdtagares användarnamn</string>
+    <string name="link_elder">Länka äldre</string>
+    <string name="get_account_info">Hämta användarinformation</string>
 
     <string-array name="meals">
         <item>Frukost</item>

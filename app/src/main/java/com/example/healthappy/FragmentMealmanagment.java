@@ -137,7 +137,7 @@ public class FragmentMealmanagment extends Fragment {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getActivity(), "Fail to recieve data" + error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Failed to recieve data" + error, Toast.LENGTH_SHORT).show();
             }
         });
         return lists;

@@ -20,19 +20,23 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class mealmanagment extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class mealmanagment extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ExampleDialog.ExampleDialogListener{
     AppNotificationManager notif_mngr;
     private DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle drawerToggle;
 
     FirebaseAuth mAuth;
+    DatabaseReference rootRef;
 
     @Override
     public void onStart() {
@@ -69,7 +73,7 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
             navigationView.setCheckedItem(R.id.nav_home);
         }
 
-
+        rootRef = FirebaseDatabase.getInstance().getReference();
     }
 
     @Override
@@ -95,7 +99,7 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
         } else if (item.getItemId() == R.id.nav_emailus) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentEmailus()).commit();
         } else if (item.getItemId() == R.id.elderlysignup) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentSignupElderly()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentLinkElder()).commit();
         }
         else {
             return false;
@@ -114,4 +118,13 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
     }
 
 
+    @Override
+    public void addElder(String username) {
+        Log.i("AddElder", "From mealmanangement.java");
+        linkElderToCaregiver(username);
+    }
+
+    private void linkElderToCaregiver(String username) {
+
+    }
 }
