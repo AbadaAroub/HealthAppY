@@ -125,6 +125,7 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
     }
 
     private void linkElderToCaregiver(String username) {
-
+        String UID = mAuth.getUid();
+        rootRef.child("Caregiver").child(UID).child("under_care").push().setValue(username);
     }
 }
