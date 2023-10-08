@@ -96,6 +96,8 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentEmailus()).commit();
         } else if (item.getItemId() == R.id.elderlysignup) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentSignupElderly()).commit();
+        } else if (item.getItemId()==R.id.meal_history) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentMealHistory()).commit();
         }
         else {
             return false;
