@@ -5,20 +5,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
+
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.Manifest;
-import android.app.AlertDialog;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.content.DialogInterface;
+
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -29,8 +21,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class mealmanagment extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     AppNotificationManager notif_mngr;
     private DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    ActionBarDrawerToggle drawerToggle;
 
     FirebaseAuth mAuth;
 
@@ -97,7 +87,7 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
         } else if (item.getItemId() == R.id.elderlysignup) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentSignupElderly()).commit();
         } else if (item.getItemId()==R.id.meal_history) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentMealHistory()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentMealHistory(mAuth)).commit();
         }
         else {
             return false;
