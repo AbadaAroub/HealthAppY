@@ -40,18 +40,14 @@ public class FragmentMealmanagment extends Fragment {
     private EditText edittime, dateEdt, editfood;
     String[] item = {"Breakfast", "Lunch", "Small meal", "Dinner"};
     Resources resources;
-    AutoCompleteTextView autoCompleteTextView;
+    AutoCompleteTextView autoCompleteTextView, aCom2;
     TextView date;
     ArrayAdapter<String> adapterItems, adapterUids;
-
-
     //Datebase
     TextInputLayout mealEdt, listview;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference rootRef;
     FirebaseAuth mAuth;
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,16 +56,19 @@ public class FragmentMealmanagment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         rootRef = FirebaseDatabase.getInstance().getReference();
 
-
         ArrayList<String> list = get_uids();
 
         View view =inflater.inflate(fragment_mealmanagment, container,false);
 
         autoCompleteTextView = view.findViewById(R.id.auto_complete_txt);
         adapterItems = new ArrayAdapter<String>(getActivity(), R.layout.list_item, item);
-        adapterUids = new ArrayAdapter<String>(getActivity(), R.layout.list_item, list);
         autoCompleteTextView.setAdapter(adapterItems);
-        autoCompleteTextView.setAdapter(adapterUids);
+
+
+        aCom2 = view.findViewById(R.id.elder_select_list);
+        adapterUids = new ArrayAdapter<String>(getActivity(), R.layout.list_item, list);
+        aCom2.setAdapter(adapterUids);
+
         edittime = (EditText) view.findViewById(R.id.mytime);
         editfood = (EditText) view.findViewById(R.id.mycomment);
         savebutton = (Button) view.findViewById(R.id.savebtn);
@@ -77,8 +76,6 @@ public class FragmentMealmanagment extends Fragment {
         //Database
         mealEdt = view.findViewById(R.id.lol);
         dateEdt = view.findViewById(R.id.myDate);
-
-
 
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -103,7 +100,6 @@ public class FragmentMealmanagment extends Fragment {
         });
         return view;
     }
-
     //Database
     private void addDatatoFirebase(String date, String meal, String food) {
         rootRef.addValueEventListener(new ValueEventListener() {

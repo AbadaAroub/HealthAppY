@@ -20,4 +20,8 @@
 
     </style>
 
+    <style name="DialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="colorAccent">@color/black</item>
+    </style>
+
 </resources>
