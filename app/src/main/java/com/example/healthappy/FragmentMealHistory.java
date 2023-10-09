@@ -31,6 +31,7 @@ public class FragmentMealHistory extends Fragment {
         adapter.add(getString(R.string.select_elderly));
         adapter.add("Runar Andersson");
 
+        elderly_select.setLayoutMode(1);
         elderly_select.setAdapter(adapter);
         return view;
     }
