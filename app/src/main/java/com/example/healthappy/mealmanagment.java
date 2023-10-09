@@ -29,6 +29,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.List;
+
 public class mealmanagment extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ExampleDialog.ExampleDialogListener{
     AppNotificationManager notif_mngr;
     private DrawerLayout drawerLayout;
@@ -126,6 +128,6 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
 
     private void linkElderToCaregiver(String username) {
         String UID = mAuth.getUid();
-        rootRef.child("Caregiver").child(UID).child("under_care").push().setValue(username);
+        rootRef.child("Caregiver").child(UID).child("under_care").child(username).setValue(username);
     }
 }
