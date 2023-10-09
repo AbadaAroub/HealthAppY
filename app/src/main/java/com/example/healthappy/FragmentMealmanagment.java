@@ -48,9 +48,7 @@ public class FragmentMealmanagment extends Fragment {
     //Datebase
     TextInputLayout mealEdt, listview;
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference dbRef;
-    DatabaseReference careRef;
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    DatabaseReference rootRef;
     FirebaseAuth mAuth;
 
 
@@ -59,6 +57,9 @@ public class FragmentMealmanagment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         resources = getResources();
         item = resources.getStringArray(R.array.meals);
+        mAuth = FirebaseAuth.getInstance();
+        rootRef = FirebaseDatabase.getInstance().getReference();
+
 
         ArrayList<String> list = get_uids();
 
@@ -76,9 +77,7 @@ public class FragmentMealmanagment extends Fragment {
         //Database
         mealEdt = view.findViewById(R.id.lol);
         dateEdt = view.findViewById(R.id.myDate);
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        dbRef = firebaseDatabase.getReference("MealManagement");
-        careRef = firebaseDatabase.getReference("Caregiver");
+
 
 
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -107,11 +106,11 @@ public class FragmentMealmanagment extends Fragment {
 
     //Database
     private void addDatatoFirebase(String date, String meal, String food) {
-        dbRef.addValueEventListener(new ValueEventListener() {
+        rootRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Database
-                dbRef.child(date).child("Meal").child(meal).setValue(food);
+                rootRef.child(date).child("Meal").child(meal).setValue(food);
                 Toast.makeText(getActivity(), "Data added", Toast.LENGTH_SHORT).show();
             }
             @Override
@@ -123,14 +122,13 @@ public class FragmentMealmanagment extends Fragment {
 
     private ArrayList<String> get_uids() {
         ArrayList<String> lists = new ArrayList<>();
-        careRef = firebaseDatabase.getReference().child("under_care");
-        dbRef.addValueEventListener(new ValueEventListener() {
+        rootRef = FirebaseDatabase.getInstance().getReference().child("Caregiver").child(mAuth.getUid()).child("under_care");
+        rootRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Database
                 lists.clear();
                 for(DataSnapshot snapshot2 : snapshot.getChildren()) {
-                    Caregiver care = snapshot.getValue(Caregiver.class);
                     lists.add(snapshot2.getValue().toString());
                 }
                 Toast.makeText(getActivity(), "Data recieved", Toast.LENGTH_SHORT).show();
