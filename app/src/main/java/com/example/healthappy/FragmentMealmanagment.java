@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,7 +101,11 @@ public class FragmentMealmanagment extends Fragment {
                 meal = String.valueOf(actvMealDropdown.getText());
                 comment = String.valueOf(etComment.getText());
 
-                Log.i("INFO", username + " " + date + " " + time + " " + meal + " " + comment);
+                if(!isFormCorrect(username, date, time, meal)){
+                    return;
+                }
+
+                Log.i("addMealToElder", username + " " + date + " " + time + " " + meal + " " + comment);
                 addMealToElder(username, date, time, meal, comment);
             }
         });
@@ -115,21 +120,23 @@ public class FragmentMealmanagment extends Fragment {
         elderMealRef.child(date).child(meal).setValue(mealNew);
     }
 
-    //Database
-    private void addDatatoFirebase(String date, String meal, String food) {
-        rootRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //Database
-                rootRef.child(date).child("Meal").child(meal).setValue(food);
-                Toast.makeText(getActivity(), "Data added", Toast.LENGTH_SHORT).show();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getActivity(), "Fail to add data " + error, Toast.LENGTH_SHORT).show();
-            }
-        });
+    private boolean isFormCorrect(String username, String date, String time, String meal){
+        if (TextUtils.isEmpty(username)) {
+            Toast.makeText(getActivity(), "Select Elder", Toast.LENGTH_SHORT).show();
+            return false;
+        }else if (TextUtils.isEmpty(date)) {
+            Toast.makeText(getActivity(), "Select Date", Toast.LENGTH_SHORT).show();
+            return false;
+        }else if (TextUtils.isEmpty(time)){
+            Toast.makeText(getActivity(), "Select Time", Toast.LENGTH_SHORT).show();
+            return false;
+        }else if (TextUtils.isEmpty(meal)) {
+            Toast.makeText(getActivity(), "Select Meal", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
+
     private void openDatePicker() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
