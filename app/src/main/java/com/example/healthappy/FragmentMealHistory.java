@@ -18,9 +18,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 
+import java.util.ArrayList;
+
 import javax.annotation.Nullable;
 
 public class FragmentMealHistory extends Fragment {
+
 
     private Spinner elderly_select;
     private FirebaseAuth mAuth;
@@ -46,11 +49,12 @@ public class FragmentMealHistory extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot itemSnapshot: snapshot.getChildren()) {
-                    DatabaseReference elder_info = db.getReference(String.format("Elder/%s/name", itemSnapshot.getValue(String.class)));
+                    DatabaseReference elder_info = db.getReference(String.format("Elder/%s/", itemSnapshot.getValue(String.class)));
                     elder_info.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            adapter.add(snapshot.getValue(String.class));
+                            adapter.add(snapshot.child("name").getValue(String.class));
+
                         }
 
                         @Override
@@ -68,6 +72,8 @@ public class FragmentMealHistory extends Fragment {
 
             }
         });
+
+
 
         return view;
     }
