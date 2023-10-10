@@ -22,7 +22,7 @@ public class Meal {
     private String comment;
     //private ArrayList<allergies> allergy_list;
     public Meal() {}
-    public Meal(mealType type, String time_of_day, String date, String commment /*, Collection<allergies> allergy_list*/) {
+    public Meal(mealType type, String time_of_day, String date, String comment /*, Collection<allergies> allergy_list*/) {
         this.type = type;
         this.time_of_day = time_of_day;
         this.date = date;

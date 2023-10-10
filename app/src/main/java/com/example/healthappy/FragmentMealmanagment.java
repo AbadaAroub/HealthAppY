@@ -99,6 +99,7 @@ public class FragmentMealmanagment extends Fragment {
                 time = String.valueOf(btnPickTime.getText());
                 meal = String.valueOf(actvMealDropdown.getText());
                 comment = String.valueOf(etComment.getText());
+
                 Log.i("INFO", username + " " + date + " " + time + " " + meal + " " + comment);
                 addMealToElder(username, date, time, meal, comment);
             }
@@ -161,7 +162,7 @@ public class FragmentMealmanagment extends Fragment {
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                 // Showing the picked time value in the Button
                 String time = String.format("%02d:%02d", hour, minute);
-                btnPickTime.append(" " + time);
+                btnPickTime.setText(time);
             }
         }, hour, minute, true);
 
