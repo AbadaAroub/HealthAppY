@@ -84,7 +84,7 @@
     <string-array name="meals">
         <item>Breakfast</item>
         <item>Lunch</item>
-        <item>Small meal</item>
+        <item>Snack</item>
         <item>Dinner</item>
     </string-array>
     <string-array name="langs">

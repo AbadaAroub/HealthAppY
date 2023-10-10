@@ -7,12 +7,11 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
@@ -39,7 +38,7 @@ public class FragmentMealmanagment extends Fragment {
     private Button btnSave, btnPickDate, btnPickTime;
     private EditText etComment;
 
-    String[] mealItems = {"Breakfast", "Lunch", "Small meal", "Dinner"};
+    String[] mealItems = {"Breakfast", "Lunch", "Dinner", "Snack"};
     Resources resources;
     AutoCompleteTextView actvMealDropdown, actvElderDropdown;
     ArrayAdapter<String> adapterItems, adapterUids;
@@ -56,7 +55,7 @@ public class FragmentMealmanagment extends Fragment {
         rootRef = FirebaseDatabase.getInstance().getReference();
 
         //Fill under_care
-        ArrayList<String> list = get_usernames();
+        ArrayList<String> listUsernames = get_usernames();
 
         View view =inflater.inflate(fragment_mealmanagment, container,false);
         //Fill Select A Meal-dropdown
@@ -66,7 +65,7 @@ public class FragmentMealmanagment extends Fragment {
 
         //Fill Select Elder-dropdown
         actvElderDropdown = view.findViewById(R.id.elder_select_list);
-        adapterUids = new ArrayAdapter<String>(getActivity(), R.layout.list_item, list);
+        adapterUids = new ArrayAdapter<String>(getActivity(), R.layout.list_item, listUsernames);
         actvElderDropdown.setAdapter(adapterUids);
 
         //Clickables
@@ -74,14 +73,6 @@ public class FragmentMealmanagment extends Fragment {
         btnPickDate = (Button) view.findViewById(R.id.btnDatePicker);
         etComment = (EditText) view.findViewById(R.id.mealComment);
         btnSave = (Button) view.findViewById(R.id.savebtn);
-
-        actvMealDropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String item = parent.getItemAtPosition(position).toString();
-                Toast.makeText(getActivity(),"Item: " + item, Toast.LENGTH_SHORT).show();
-            }
-        });
 
         btnPickDate.setOnClickListener(new View.OnClickListener(){
 
@@ -102,12 +93,27 @@ public class FragmentMealmanagment extends Fragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String meal, date, time, comment;
-
+                String username, date, time, meal, comment;
+                username = String.valueOf(actvElderDropdown.getText());
+                date = String.valueOf(btnPickDate.getText());
+                time = String.valueOf(btnPickTime.getText());
+                meal = String.valueOf(actvMealDropdown.getText());
+                comment = String.valueOf(etComment.getText());
+                Log.i("INFO", username + " " + date + " " + time + " " + meal + " " + comment);
+                addMealToElder(username, date, time, meal, comment);
             }
         });
         return view;
     }
+
+    private void addMealToElder(String username, String date, String time, String meal, String comment){
+        mealType type = convertStringToMeal(meal);
+        Meal mealNew = new Meal(type, time, date, comment);
+        DatabaseReference elderMealRef = FirebaseDatabase.getInstance().getReference().child("Elder").child(username).child("Meals");
+
+        elderMealRef.child(date).child(meal).setValue(mealNew);
+    }
+
     //Database
     private void addDatatoFirebase(String date, String meal, String food) {
         rootRef.addValueEventListener(new ValueEventListener() {
@@ -169,7 +175,7 @@ public class FragmentMealmanagment extends Fragment {
     private ArrayList<String> get_usernames() {
         ArrayList<String> lists = new ArrayList<>();
         rootRef = FirebaseDatabase.getInstance().getReference().child("Caregiver").child(mAuth.getUid()).child("under_care");
-        rootRef.addValueEventListener(new ValueEventListener() {
+        rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Database
@@ -177,14 +183,19 @@ public class FragmentMealmanagment extends Fragment {
                 for(DataSnapshot snapshot2 : snapshot.getChildren()) {
                     lists.add(snapshot2.getValue().toString());
                 }
-                Toast.makeText(getActivity(), "Data recieved", Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getActivity(), "Failed to recieve data" + error, Toast.LENGTH_SHORT).show();
             }
         });
         return lists;
+    }
+    public static mealType convertStringToMeal(String mealString){
+        try {
+            return mealType.valueOf(mealString.toLowerCase());
+        } catch (IllegalArgumentException e){
+            throw new IllegalArgumentException("Invalid meal string: " + mealString);
+        }
     }
 }
 

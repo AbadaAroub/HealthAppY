@@ -13,9 +13,6 @@
             android:id="@+id/nav_meal_managment"
             android:icon="@drawable/baseline_fastfood_24"
             android:title="@string/meal_managment" />
-        <item
-            android:id="@+id/testDatePicker"
-            android:title="TestDatePicker" />
 
     </group>
     <item android:title="@string/profile">
