@@ -29,5 +29,6 @@ public class Meal {
         this.date = date;
         this.allergy_list = new ArrayList<allergies>();
         allergy_list.addAll(allergy_list);
+
     }
 }

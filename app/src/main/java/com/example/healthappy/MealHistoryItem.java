@@ -9,6 +9,7 @@ public class MealHistoryItem extends Meal{
         super(type, time_of_day, date, allergy_list);
         this.time_of_report = time_of_report;
         this.ate = ate;
+
     }
 
 
