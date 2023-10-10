@@ -3,8 +3,8 @@ package com.example.healthappy;
 
 import static com.example.healthappy.R.layout.fragment_mealmanagment;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,20 +12,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,69 +32,78 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 
 public class FragmentMealmanagment extends Fragment {
-    private Button savebutton;
-    private EditText edittime, dateEdt, editfood;
-    String[] item = {"Breakfast", "Lunch", "Small meal", "Dinner"};
+    private Button btnSave, btnPickDate, btnPickTime;
+    private EditText etComment;
+
+    String[] mealItems = {"Breakfast", "Lunch", "Small meal", "Dinner"};
     Resources resources;
-    AutoCompleteTextView autoCompleteTextView, aCom2;
-    TextView date;
+    AutoCompleteTextView actvMealDropdown, actvElderDropdown;
     ArrayAdapter<String> adapterItems, adapterUids;
     //Datebase
-    TextInputLayout mealEdt, listview;
-    FirebaseDatabase firebaseDatabase;
+    TextInputLayout mealEdt;
     DatabaseReference rootRef;
     FirebaseAuth mAuth;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         resources = getResources();
-        item = resources.getStringArray(R.array.meals);
+        mealItems = resources.getStringArray(R.array.meals);
         mAuth = FirebaseAuth.getInstance();
         rootRef = FirebaseDatabase.getInstance().getReference();
 
-        ArrayList<String> list = get_uids();
+        //Fill under_care
+        ArrayList<String> list = get_usernames();
 
         View view =inflater.inflate(fragment_mealmanagment, container,false);
+        //Fill Select A Meal-dropdown
+        actvMealDropdown = view.findViewById(R.id.auto_complete_txt);
+        adapterItems = new ArrayAdapter<String>(getActivity(), R.layout.list_item, mealItems);
+        actvMealDropdown.setAdapter(adapterItems);
 
-        autoCompleteTextView = view.findViewById(R.id.auto_complete_txt);
-        adapterItems = new ArrayAdapter<String>(getActivity(), R.layout.list_item, item);
-        autoCompleteTextView.setAdapter(adapterItems);
-
-
-        aCom2 = view.findViewById(R.id.elder_select_list);
+        //Fill Select Elder-dropdown
+        actvElderDropdown = view.findViewById(R.id.elder_select_list);
         adapterUids = new ArrayAdapter<String>(getActivity(), R.layout.list_item, list);
-        aCom2.setAdapter(adapterUids);
+        actvElderDropdown.setAdapter(adapterUids);
 
-        edittime = (EditText) view.findViewById(R.id.mytime);
-        editfood = (EditText) view.findViewById(R.id.mycomment);
-        savebutton = (Button) view.findViewById(R.id.savebtn);
+        //Clickables
+        btnPickTime = (Button) view.findViewById(R.id.btnTimePicker);
+        btnPickDate = (Button) view.findViewById(R.id.btnDatePicker);
+        etComment = (EditText) view.findViewById(R.id.mealComment);
+        btnSave = (Button) view.findViewById(R.id.savebtn);
 
-        //Database
-        mealEdt = view.findViewById(R.id.lol);
-        dateEdt = view.findViewById(R.id.myDate);
-
-        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        actvMealDropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
                 Toast.makeText(getActivity(),"Item: " + item, Toast.LENGTH_SHORT).show();
             }
         });
-        savebutton.setOnClickListener(new View.OnClickListener() {
+
+        btnPickDate.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                openDatePicker();
+            }
+        });
+
+        btnPickTime.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                openTimePicker();
+            }
+        });
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String meal = mealEdt.getEditText().getText().toString();
-                String date = dateEdt.getText().toString();
-                String food = editfood.getText().toString();
+                String meal, date, time, comment;
 
-                if (TextUtils.isEmpty(date) && TextUtils.isEmpty(meal) && TextUtils.isEmpty(food)) {
-                    Toast.makeText(getActivity(), "Add some data", Toast.LENGTH_SHORT).show();
-                } else {
-                    addDatatoFirebase(date, meal, food);
-                }
             }
         });
         return view;
@@ -115,8 +123,50 @@ public class FragmentMealmanagment extends Fragment {
             }
         });
     }
+    private void openDatePicker() {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-    private ArrayList<String> get_uids() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(requireContext(), R.style.DialogTheme, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // Showing the picked date value in the Button
+                String date = String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(day);
+                btnPickDate.setText(date);
+            }
+        }, year, month, day);
+
+        // Add OK and Cancel buttons
+        datePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE, "OK", datePickerDialog);
+        datePickerDialog.setButton(DatePickerDialog.BUTTON_NEGATIVE, "Cancel", datePickerDialog);
+
+
+        datePickerDialog.show();
+    }
+    private void openTimePicker() {
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(requireContext(), R.style.DialogTheme, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                // Showing the picked time value in the Button
+                String time = String.format("%02d:%02d", hour, minute);
+                btnPickTime.append(" " + time);
+            }
+        }, hour, minute, true);
+
+        // Add OK and Cancel buttons
+        timePickerDialog.setButton(TimePickerDialog.BUTTON_POSITIVE, "OK", timePickerDialog);
+        timePickerDialog.setButton(TimePickerDialog.BUTTON_NEGATIVE, "Cancel", timePickerDialog);
+
+        timePickerDialog.show();
+    }
+
+    private ArrayList<String> get_usernames() {
         ArrayList<String> lists = new ArrayList<>();
         rootRef = FirebaseDatabase.getInstance().getReference().child("Caregiver").child(mAuth.getUid()).child("under_care");
         rootRef.addValueEventListener(new ValueEventListener() {
