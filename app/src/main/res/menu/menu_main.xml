@@ -54,4 +54,17 @@
         </menu>
 
     </item>
+    <item android:title="About the app">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_abouttheapp"
+                    android:icon="@drawable/baseline_info_24"
+                    android:title="About the app" />
+
+            </group>
+
+        </menu>
+
+    </item>
 </menu>

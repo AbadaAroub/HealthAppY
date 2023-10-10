@@ -11,20 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class FragmentProfilesettings extends Fragment {
-    Button saveChanges;
+public class FragmentAbouttheapp extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profilesettings, container, false);
-        saveChanges = view.findViewById(R.id.savechangesbtn);
-        saveChanges.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //firebase save changes button
-            }
-        });
+        View view = inflater.inflate(R.layout.fragment_abouttheapp, container, false);
+
         return view;
     }
 }
