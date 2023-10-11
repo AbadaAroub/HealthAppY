@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.Toolbar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -42,9 +43,9 @@ public class FragmentMealmanagment extends Fragment {
     Resources resources;
     AutoCompleteTextView autoCompleteTextView;
     TextView date;
+
+    Toolbar toolbar;
     ArrayAdapter<String> adapterItems, adapterUids;
-
-
     //Datebase
     TextInputLayout mealEdt, listview;
     FirebaseDatabase firebaseDatabase;
@@ -53,16 +54,14 @@ public class FragmentMealmanagment extends Fragment {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseAuth mAuth;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         resources = getResources();
         item = resources.getStringArray(R.array.meals);
 
+        View view =inflater.inflate(R.layout.fragment_mealmanagment, container,false);
         ArrayList<String> list = get_uids();
-
-        View view =inflater.inflate(fragment_mealmanagment, container,false);
 
         autoCompleteTextView = view.findViewById(R.id.auto_complete_txt);
         adapterItems = new ArrayAdapter<String>(getActivity(), R.layout.list_item, item);
@@ -79,7 +78,6 @@ public class FragmentMealmanagment extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance();
         dbRef = firebaseDatabase.getReference("MealManagement");
         careRef = firebaseDatabase.getReference("Caregiver");
-
 
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
