@@ -146,7 +146,6 @@ public class FragmentSignupElderly extends Fragment {
                 careRef.child(cuid).child("under_care").child(uid).setValue(uid);
                 Toast.makeText(getActivity(), R.string.toast_data_added, Toast.LENGTH_SHORT).show();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getActivity(), getString(R.string.toast_data_fail) + error, Toast.LENGTH_SHORT).show();
