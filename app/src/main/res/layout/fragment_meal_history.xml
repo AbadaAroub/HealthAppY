@@ -18,4 +18,13 @@
             android:layout_height="48dp"
             android:background="@color/white"/>
 
+        <LinearLayout
+            android:id="@+id/history_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="fill_vertical">
+
+        </LinearLayout>
+
 </LinearLayout>
