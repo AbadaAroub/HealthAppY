@@ -43,7 +43,7 @@ public class FragmentMealmanagment extends Fragment {
     String[] mealItems = {"Breakfast", "Lunch", "Dinner", "Snack"};
     Resources resources;
     AutoCompleteTextView actvMealDropdown, actvElderDropdown;
-    TextView date;
+    //TextView date;
     Toolbar toolbar;
     ArrayAdapter<String> adapterItems, adapterUids;
     //Datebase

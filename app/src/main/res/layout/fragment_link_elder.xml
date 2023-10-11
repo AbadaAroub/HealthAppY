@@ -14,7 +14,7 @@
         android:gravity="center"
         android:text="@string/enter_elder_username"
         android:textColor="@color/black"
-        android:textSize="32dp"
+        android:textSize="32sp"
         android:textStyle="bold" />
 
     <TextView
@@ -28,25 +28,28 @@
         android:gravity="center"
         android:text="@string/to_apply_yourself_as_garegiver"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="20sp"
          />
 
     <EditText
         android:id="@+id/username"
         android:layout_below="@+id/instructionsdetail"
-        android:layout_width="match_parent"
+        android:layout_width="392dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="@color/blue"
-        android:drawableLeft="@drawable/baseline_person_outline_24"
+        android:drawableStart="@drawable/baseline_person_outline_24"
         android:drawablePadding="20dp"
         android:hint="@string/username"
         android:padding="20dp"
         android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/white"
+        android:autofillHints="name"
+        android:inputType="textPersonName"
+        android:layout_centerHorizontal="true"/>
 
     <Button
         android:id="@+id/linkbtn"
@@ -56,7 +59,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/blue"
-        android:text="@string/get_account_info" />
+        android:text="@string/get_account_info"
+        android:textColor="@color/white"/>
 
 
 

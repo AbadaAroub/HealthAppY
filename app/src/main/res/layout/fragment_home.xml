@@ -9,7 +9,8 @@
         android:id="@+id/foodphoto"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:src="@drawable/elderlycarefood"/>
+        android:src="@drawable/elderlycarefood"
+        android:importantForAccessibility="no" />
     <TextView
         android:id="@+id/help"
         android:layout_width="match_parent"
@@ -42,6 +43,7 @@
         android:text="Get Started"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:background="@drawable/bg_calen"/>
+        android:background="@drawable/bg_calen"
+        android:textColor="@color/white"/>
 
 </RelativeLayout>

@@ -17,7 +17,7 @@
         android:gravity="center"
         android:text="@string/welcome"
         android:textColor="@color/blue"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
@@ -31,7 +31,7 @@
         android:gravity="center"
         android:text="@string/health_care"
         android:textColor="@color/blue"
-        android:textSize="32dp"
+        android:textSize="32sp"
         android:textStyle="bold" />
 
     <ImageView
@@ -40,8 +40,8 @@
         android:layout_height="390dp"
         android:layout_marginTop="120dp"
         android:src="@drawable/page1"
-
-        />
+        android:importantForAccessibility="no"
+        android:layout_centerHorizontal="true"/>
 
     <Button
         android:id="@+id/signupbtn"
@@ -51,7 +51,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/blue"
-        android:text="@string/signup" />
+        android:text="@string/signup"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/loginbtn"
@@ -61,20 +62,22 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/blue"
-        android:text="@string/login" />
+        android:text="@string/login"
+        android:textColor="@color/white"/>
 
     <RadioGroup
         android:id="@+id/radiog"
-        android:layout_width="match_parent"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/page"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_centerInParent="true">
 
         <RadioButton
             android:id="@+id/rb_swedish"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp"
             android:layout_weight="1"
             android:padding="8dp"
             android:text="@string/swedish" />

@@ -14,7 +14,7 @@
         android:layout_height="130dp"
         android:src="@drawable/loginphoto"
 
-        />
+        android:importantForAccessibility="no" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
         android:id="@+id/yourname"
         android:text="Your Name"
         android:textColor="@color/white"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textStyle="bold"
         />
 

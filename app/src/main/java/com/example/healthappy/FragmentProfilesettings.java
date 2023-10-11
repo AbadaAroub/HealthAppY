@@ -31,9 +31,9 @@ public class FragmentProfilesettings extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        langs = resources.getStringArray(R.array.langs);
-        resources = getResources();
         View view = inflater.inflate(R.layout.fragment_profilesettings, container, false);
+        langs = view.getResources().getStringArray(R.array.langs);
+
         saveChanges = view.findViewById(R.id.savechangesbtn);
         saveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
