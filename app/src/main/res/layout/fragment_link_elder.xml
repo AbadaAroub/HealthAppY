@@ -34,7 +34,7 @@
     <EditText
         android:id="@+id/username"
         android:layout_below="@+id/instructionsdetail"
-        android:layout_width="392dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
@@ -49,18 +49,20 @@
         android:textColorHint="@color/white"
         android:autofillHints="name"
         android:inputType="textPersonName"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:minWidth="480dp"/>
 
     <Button
         android:id="@+id/linkbtn"
-        android:layout_width="292dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/username"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/blue"
         android:text="@string/get_account_info"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:minWidth="292dp"/>
 
 
 

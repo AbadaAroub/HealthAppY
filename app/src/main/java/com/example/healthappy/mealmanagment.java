@@ -91,16 +91,16 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.nav_home) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
-            setTitle("Home");
+            setTitle(R.string.home);
 
 
         } else if (item.getItemId() == R.id.nav_meal_managment) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentMealmanagment()).commit();
-            setTitle("Meal Managment");
+            setTitle(R.string.meal_managment);
 
         } else if (item.getItemId() == R.id.nav_accountsettings) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentProfilesettings()).commit();
-            setTitle("Profile Settings");
+            setTitle(R.string.profile_settings);
         } else if (item.getItemId() == R.id.nav_logout) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentLogout()).commit();
             mAuth.signOut();
@@ -109,17 +109,17 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
 
         } else if (item.getItemId() == R.id.nav_callus) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentCallus()).commit();
-            setTitle("Call Us");
+            setTitle(R.string.call_us);
         } else if (item.getItemId() == R.id.nav_emailus) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentEmailus()).commit();
-            setTitle("Email Us");
+            setTitle(R.string.mail_us);
         } else if (item.getItemId() == R.id.elderlysignup) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentLinkElder()).commit();
-            setTitle("Elderly SignUp");
+            setTitle(getString(R.string.elderly_signup));
         }
         else if (item.getItemId() == R.id.nav_abouttheapp){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentAbouttheapp()).commit();
-            setTitle("About The App");
+            setTitle(R.string.about);
         } else {
             return false;
         }

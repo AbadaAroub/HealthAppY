@@ -82,14 +82,17 @@
     <string name="link_elder">Länka äldre</string>
     <string name="get_account_info">Hämta användarinformation</string>
     <string name="pick_date">Välj datum</string>
-    <string name="about">About the app</string>
-    <string name="save_changes">Save changes</string>
-    <string name="your_password">Your password:</string>
-    <string name="your_number">Your number:</string>
-    <string name="your_email">Your email adress:</string>
-    <string name="your_username">Your username:</string>
-    <string name="basic_account_settings">Change your basic account settings here.</string>
-    <string name="settings">Settings</string>
+    <string name="about">Om appen</string>
+    <string name="save_changes">Spara Ändringar</string>
+    <string name="your_password">Ditt Lösenord:</string>
+    <string name="your_number">Ditt nummer:</string>
+    <string name="your_email">Din emailadress:</string>
+    <string name="your_username">Ditt Användarnamn:</string>
+    <string name="basic_account_settings">Ändra grundläggande kontoinställningar här.</string>
+    <string name="settings">Inställningar</string>
+    <string name="about_text_1">Elder Care är en matdagbok som skapats och utvecklats av studenter från Karlstads universitet för att stödja personer med ätstörningar..</string>
+    <string name="about_text_2">Appen är avsedd att vara ett stöd för dig som genomgår behandling för en ätstörning och har kontakt med en behandlare..</string>
+    <string name="elderly_signup">Gamlings registrering</string>
 
     <string-array name="meals">
         <item>Frukost</item>

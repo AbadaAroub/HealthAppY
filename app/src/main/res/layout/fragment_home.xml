@@ -37,13 +37,14 @@
         android:textStyle="bold"/>
     <Button
         android:id="@+id/getstardetbtn"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/undertext"
         android:text="Get Started"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:background="@drawable/bg_calen"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:minWidth="150dp"/>
 
 </RelativeLayout>

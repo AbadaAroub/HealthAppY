@@ -16,7 +16,7 @@
 
         <EditText
             android:id="@+id/usernameeld"
-            android:layout_width="392dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/logphotoeld"
             android:layout_marginStart="10dp"
@@ -32,11 +32,12 @@
             android:textColorHint="@color/white"
             android:autofillHints="name"
             android:inputType="textPersonName"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:minWidth="480dp"/>
 
         <EditText
             android:id="@+id/emaileld"
-            android:layout_width="392dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/usernameeld"
             android:layout_marginStart="10dp"
@@ -52,9 +53,10 @@
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:autofillHints="emailAddress"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:minWidth="480dp"/>
         <EditText
-            android:layout_width="392dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/mobileNumbereld"
             android:layout_below="@+id/emaileld"
@@ -68,11 +70,12 @@
             android:drawablePadding="20dp"
             android:inputType="phone"
             android:autofillHints="phone"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:minWidth="480dp"/>
 
         <EditText
             android:id="@+id/addresseld"
-            android:layout_width="392dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/mobileNumbereld"
             android:layout_marginStart="10dp"
@@ -88,11 +91,12 @@
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:autofillHints="postalAddress"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:minWidth="480dp"/>
 
         <EditText
             android:id="@+id/signuppasseld"
-            android:layout_width="392dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/addresseld"
             android:layout_marginStart="10dp"
@@ -109,7 +113,8 @@
             android:textColorHint="@color/white"
             android:maxLength="4"
             android:autofillHints="password"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:minWidth="480dp"/>
 
         <Button
             android:id="@+id/signupeld"

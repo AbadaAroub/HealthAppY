@@ -45,33 +45,36 @@
 
     <Button
         android:id="@+id/signupbtn"
-        android:layout_width="292dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/radiog"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/blue"
         android:text="@string/signup"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:minWidth="292dp"/>
 
     <Button
         android:id="@+id/loginbtn"
-        android:layout_width="292dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/signupbtn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/blue"
         android:text="@string/login"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:minWidth="292dp"/>
 
     <RadioGroup
         android:id="@+id/radiog"
-        android:layout_width="411dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/page"
         android:orientation="horizontal"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:minWidth="411dp">
 
         <RadioButton
             android:id="@+id/rb_swedish"

@@ -16,7 +16,7 @@
 
     <EditText
         android:id="@+id/email1"
-        android:layout_width="392dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/logphoto"
         android:layout_marginStart="10dp"
@@ -32,14 +32,15 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:autofillHints="emailAddress"
-        android:layout_centerInParent="true"/>
+        android:layout_centerHorizontal="true"
+        android:minWidth="480dp"/>
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="392dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/email1"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -52,7 +53,8 @@
         android:inputType="textPassword"
         android:padding="20dp"
         android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/white"
+        android:minWidth="480dp"/>
 
     <CheckBox
         android:id="@+id/rememberme"

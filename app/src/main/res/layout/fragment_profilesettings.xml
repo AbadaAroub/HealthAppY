@@ -120,11 +120,12 @@
 
         android:id="@+id/lang"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="392dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
-        android:hint="@string/select_language">
+        android:hint="@string/select_language"
+        android:minWidth="480dp">
 
     <AutoCompleteTextView
         android:id="@+id/auto_complete_lang"

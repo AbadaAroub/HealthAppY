@@ -8,11 +8,12 @@
 
         android:id="@+id/select_elder_dropdown"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="392dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:hint="Select Elder"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:minWidth="480dp">
 
         <AutoCompleteTextView
             android:id="@+id/elder_select_list"
@@ -25,7 +26,7 @@
 
     <Button
         android:id="@+id/btnDatePicker"
-        android:layout_width="320dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
@@ -38,11 +39,12 @@
         android:textColorHint="@color/white"
         android:textSize="23sp"
         android:layout_below="@+id/select_elder_dropdown"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:minWidth="320dp"/>
 
     <Button
         android:id="@+id/btnTimePicker"
-        android:layout_width="320dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/btnDatePicker"
         android:layout_marginLeft="10dp"
@@ -55,12 +57,13 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="23sp" />
+        android:textSize="23sp"
+        android:minWidth="320dp"/>
 
 
     <EditText
         android:id="@+id/mealComment"
-        android:layout_width="392dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/meal_picker"
         android:layout_marginLeft="10dp"
@@ -73,7 +76,9 @@
         android:textColorHint="@color/gray"
         android:textSize="23sp"
         android:gravity="top"
-        android:importantForAutofill="no" />
+        android:importantForAutofill="no"
+        android:minWidth="480dp"
+        android:inputType="textShortMessage" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -91,12 +96,13 @@
 
         android:id="@+id/meal_picker"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="392dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnTimePicker"
         android:layout_margin="10dp"
         android:hint="@string/select"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:minWidth="480dp">
 
         <AutoCompleteTextView
             android:id="@+id/auto_complete_txt"
