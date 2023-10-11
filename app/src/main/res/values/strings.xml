@@ -76,10 +76,15 @@
     <string name="select_language">Select Language</string>
     <string name="set_language_to">Set language to:</string>
     <string name="_4_digit_pin">4 digit PIN</string>
+    <string name="username">Username</string>
+    <string name="to_apply_yourself_as_garegiver">to apply yourself as garegiver</string>
+    <string name="enter_elder_username">Enter Elder username</string>
+    <string name="link_elder">Link Elder</string>
+    <string name="get_account_info">Get account info</string>
     <string-array name="meals">
         <item>Breakfast</item>
         <item>Lunch</item>
-        <item>Small meal</item>
+        <item>Snack</item>
         <item>Dinner</item>
     </string-array>
     <string-array name="langs">

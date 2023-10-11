@@ -20,6 +20,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import android.view.View;
@@ -29,14 +30,19 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class mealmanagment extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.List;
+
+public class mealmanagment extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ExampleDialog.ExampleDialogListener{
     AppNotificationManager notif_mngr;
     private DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle drawerToggle;
 
     FirebaseAuth mAuth;
+    DatabaseReference rootRef;
 
     @Override
     public void onStart() {
@@ -78,7 +84,7 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
             navigationView.setCheckedItem(R.id.nav_home);
         }
 
-
+        rootRef = FirebaseDatabase.getInstance().getReference();
     }
 
     @Override
@@ -108,8 +114,7 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentEmailus()).commit();
             setTitle("Email Us");
         } else if (item.getItemId() == R.id.elderlysignup) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentSignupElderly()).commit();
-
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentLinkElder()).commit();
             setTitle("Elderly SignUp");
         }
         else if (item.getItemId() == R.id.nav_abouttheapp){
@@ -132,4 +137,14 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
     }
 
 
+    @Override
+    public void addElder(String username) {
+        Log.i("AddElder", "From mealmanangement.java");
+        linkElderToCaregiver(username);
+    }
+
+    private void linkElderToCaregiver(String username) {
+        String UID = mAuth.getUid();
+        rootRef.child("Caregiver").child(UID).child("under_care").child(username).setValue(username);
+    }
 }
