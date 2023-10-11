@@ -16,15 +16,7 @@
 
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/yourname"
-        android:text="Your Name"
-        android:textColor="@color/white"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        />
+
 
 
 </LinearLayout>
