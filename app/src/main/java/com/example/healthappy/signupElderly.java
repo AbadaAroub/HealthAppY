@@ -43,6 +43,11 @@ public class signupElderly extends AppCompatActivity {
     }
 
     public void onCreate() {
+
+
+
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mAuth = FirebaseAuth.getInstance();
         editTextEmail = findViewById(R.id.emaileld);
         editTextPassword = findViewById(R.id.signuppasseld);

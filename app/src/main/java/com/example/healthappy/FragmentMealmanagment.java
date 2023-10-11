@@ -19,6 +19,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.widget.Toolbar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -42,10 +43,13 @@ public class FragmentMealmanagment extends Fragment {
     String[] mealItems = {"Breakfast", "Lunch", "Dinner", "Snack"};
     Resources resources;
     AutoCompleteTextView actvMealDropdown, actvElderDropdown;
+    TextView date;
+    Toolbar toolbar;
     ArrayAdapter<String> adapterItems, adapterUids;
     //Datebase
     DatabaseReference rootRef;
     FirebaseAuth mAuth;
+  
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,6 +72,7 @@ public class FragmentMealmanagment extends Fragment {
         adapterUids = new ArrayAdapter<String>(getActivity(), R.layout.list_item, listUsernames);
         actvElderDropdown.setAdapter(adapterUids);
 
+
         //Clickables
         btnPickTime = (Button) view.findViewById(R.id.btnTimePicker);
         btnPickDate = (Button) view.findViewById(R.id.btnDatePicker);
@@ -75,7 +80,6 @@ public class FragmentMealmanagment extends Fragment {
         btnSave = (Button) view.findViewById(R.id.savebtn);
 
         btnPickDate.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View view) {
                 openDatePicker();

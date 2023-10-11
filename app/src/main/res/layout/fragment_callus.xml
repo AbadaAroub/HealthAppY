@@ -8,7 +8,7 @@
         android:id="@+id/Abada_info"
         android:layout_width="wrap_content"
         android:layout_height="262dp"
-        android:src="@drawable/doctor" />
+        android:src="@drawable/phone" />
 
     <TextView
         android:id="@+id/phonenum"

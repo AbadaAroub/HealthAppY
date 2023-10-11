@@ -91,6 +91,7 @@
             android:background="@color/blue"
             android:drawableLeft="@drawable/baseline_key_24"
             android:drawablePadding="20dp"
+
             android:hint="@string/_4_digit_pin"
             android:inputType="numberPassword"
             android:textColor="@color/white"
