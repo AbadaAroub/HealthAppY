@@ -107,5 +107,22 @@
         android:backgroundTint="@color/blue"
         android:text="Save changes" />
 
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/lang"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="10dp"
+        android:hint="@string/select_language">
+
+    <AutoCompleteTextView
+        android:id="@+id/auto_complete_lang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 </RelativeLayout>

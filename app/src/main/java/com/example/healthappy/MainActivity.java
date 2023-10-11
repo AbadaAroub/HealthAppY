@@ -2,9 +2,15 @@ package com.example.healthappy;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -23,10 +29,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+
     private Button loginBtn;
     private Button signupBtn;
     private TextView welcome, healthcare;
-    Locale locale;
     RadioGroup rgLanguage;
     RadioButton rbEnglish, rbSwedish;
 
@@ -34,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+
         // Check if user is signed in (non-null) and update UI accordingly.
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -57,7 +64,16 @@ public class MainActivity extends AppCompatActivity {
         rbSwedish = findViewById(R.id.rb_swedish);
         loginBtn = (Button) findViewById(R.id.loginbtn);
         signupBtn = (Button) findViewById(R.id.signupbtn);
-      
+
+        String lang = LocaleHelper.getLocale(MainActivity.this);
+        LocaleHelper.setLocale(MainActivity.this, lang);
+        welcome.setText(R.string.welcome);
+        healthcare.setText(R.string.health_care);
+        loginBtn.setText(R.string.login);
+        signupBtn.setText(R.string.signup);
+
+
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -75,14 +91,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.rb_english) {
-                    changeLocale("en");
+                    LocaleHelper.setLocale(MainActivity.this,"en");
+                    LocaleHelper.saveLocale(MainActivity.this,"en");
                     rbEnglish.setChecked(true);
                     welcome.setText(R.string.welcome);
                     healthcare.setText(R.string.health_care);
                     loginBtn.setText(R.string.login);
                     signupBtn.setText(R.string.signup);
                 } else if (i == R.id.rb_swedish) {
-                    changeLocale("sv");
+                    LocaleHelper.setLocale(MainActivity.this,"sv");
+                    LocaleHelper.saveLocale(MainActivity.this,"sv");
                     rbSwedish.setChecked(true);
                     welcome.setText(R.string.welcome);
                     healthcare.setText(R.string.health_care);
@@ -92,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     public void openLoginPage() {
         Intent intent = new Intent(this, loginpage.class);
         startActivity(intent);
@@ -101,14 +120,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, signuppage.class);
         startActivity(intent);
         finish();
-    }
-    private void changeLocale(String lang) {
-        locale = new Locale(lang);
-        Locale.setDefault(locale);
-        Resources resources = getBaseContext().getResources();
-        Configuration config = resources.getConfiguration();
-        config.setLocale(locale);
-        DisplayMetrics metrics = resources.getDisplayMetrics();
-        resources.updateConfiguration(config, metrics);
     }
 }
