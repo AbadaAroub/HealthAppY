@@ -44,7 +44,6 @@ public class FragmentMealmanagment extends Fragment {
     AutoCompleteTextView actvMealDropdown, actvElderDropdown;
     ArrayAdapter<String> adapterItems, adapterUids;
     //Datebase
-    TextInputLayout mealEdt;
     DatabaseReference rootRef;
     FirebaseAuth mAuth;
     @Nullable
