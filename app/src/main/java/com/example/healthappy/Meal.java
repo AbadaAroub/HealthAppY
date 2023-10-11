@@ -1,6 +1,5 @@
 package com.example.healthappy;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -11,10 +10,10 @@ enum allergies {
 }
 
 enum meals {
-    breakfast,
-    lunch,
-    dinner,
-    snack
+    BREAKFAST,
+    LUNCH,
+    DINNER,
+    SNACK
 }
 
 public class Meal {

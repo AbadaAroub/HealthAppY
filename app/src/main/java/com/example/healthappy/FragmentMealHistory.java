@@ -1,6 +1,9 @@
 package com.example.healthappy;
 
-import android.graphics.drawable.Drawable;
+
+
+import static com.example.healthappy.meals.*;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -23,11 +27,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 import javax.annotation.Nullable;
+
+
 
 public class FragmentMealHistory extends Fragment {
 
@@ -62,7 +66,7 @@ public class FragmentMealHistory extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot elderUID_snapshot: snapshot.getChildren()) {
                     DatabaseReference elder_info = db.getReference(String.format("Elder/%s/", elderUID_snapshot.getValue(String.class)));
-                    elder_info.addValueEventListener(new ValueEventListener() {
+                    elder_info.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             adapter.add(snapshot.child("name").getValue(String.class));
@@ -81,12 +85,11 @@ public class FragmentMealHistory extends Fragment {
 
             }
         });
-        history_content.setDividerPadding(100);
         elderly_select.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                history_content.removeAllViews();
                 if (l!=0){
-                    history_content.removeAllViews();
                     TextView p = new TextView(FragmentMealHistory.this.getContext());
                     p.setText(String.format("Selected user: %d", l));
                     history_content.addView(p);
@@ -107,19 +110,43 @@ public class FragmentMealHistory extends Fragment {
         ArrayList<TextView> ret = new ArrayList<>();
         Log.d("FragmentMealHistory","In .get_meal_history");
         DatabaseReference ref = db.getReference(String.format("Elder/%s/meal_history/", elderUIDs.get(index)));
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot meal : snapshot.getChildren()) {
-                    TextView meal_info = new TextView(FragmentMealHistory.this.getContext());
-                    String data = String.format("Date: %s\nMeal: %d\nDescription:%s",
-                            meal.child("date").getValue(String.class),
-                            meal.child("type").getValue(int.class),
-                            meal.child("description").getValue(String.class));
-                    Log.d("FragmentMealHistory", String.format("In .get_meal_history .onDataChange data: %s", meal.getValue()));
-                    meal_info.setText(data);
+                for (DataSnapshot d_meal : snapshot.getChildren()) {
+                    View p = LayoutInflater.from(FragmentMealHistory.this.getContext()).inflate(R.layout.history_item, null);
 
-                    layout.addView(meal_info);
+                    // Setting date and time
+                    TextView datetime = (TextView) p.findViewById(R.id.history_item_root_when_datetime);
+                    datetime.setText(d_meal.child("date").getValue(String.class)+"."+d_meal.child("time_of_report").getValue(String.class));
+
+                    // Setting check mark or cross mark
+                    ImageView check = (ImageView) p.findViewById(R.id.history_item_root_when_ate);
+                    if (d_meal.child("ate").getValue(boolean.class))
+                        check.setImageResource(R.drawable.checkmark);
+                    else
+                        check.setImageResource(R.drawable.crossmark);
+
+                    // Setting type of meal
+                    TextView type = (TextView) p.findViewById(R.id.history_item_root_info_type);
+                    switch (d_meal.child("type").getValue(int.class)) {
+                        case 0: //BREAKFAST
+                            type.setText("Breakfast");
+                            break;
+                        case 1: //LUNCH
+                            type.setText("Lunch");
+                            break;
+                        case 2: //DINNER
+                            type.setText("Dinner");
+                            break;
+                        case 3: //SNACK
+                            type.setText("Snack");
+                            break;
+                    }
+
+                    ((TextView)p.findViewById(R.id.history_item_root_info_desc)).setText(d_meal.child("description").getValue(String.class));
+
+                    layout.addView(p);
                 }
 
             }
@@ -130,4 +157,5 @@ public class FragmentMealHistory extends Fragment {
             }
         });
     }
+
 }
