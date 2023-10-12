@@ -69,6 +69,7 @@
     <string name="languages">Språk</string>
     <string name="select_language">Välj Språk</string>
     <string name="set_language_to">Satte språket till:</string>
+    <string name="meal_history">Måltidshistorik</string>
     
     <!-- Notification Stuff-->
     <string name="permission_request">Appen kräver behörigheter</string>
@@ -93,7 +94,6 @@
     <string name="about_text_1">Elder Care är en matdagbok som skapats och utvecklats av studenter från Karlstads universitet för att stödja personer med ätstörningar..</string>
     <string name="about_text_2">Appen är avsedd att vara ett stöd för dig som genomgår behandling för en ätstörning och har kontakt med en behandlare..</string>
     <string name="elderly_signup">Gamlings registrering</string>
-
     <string-array name="meals">
         <item>Frukost</item>
         <item>Lunch</item>
@@ -104,4 +104,15 @@
         <item>English</item>
         <item>Svenska</item>
     </string-array>
+
+    <!-- Notification Stuff-->
+    <string name="permission_request">Appen kräver behörigheter</string>
+    <string name="notif_post_perm">För att kunna visa dig viktig information utanför appen.</string>
+    <string name="perm_accept">Tillåt!</string>
+    <string name="perm_deny">Neka!</string>
+
+    <!-- FragmentMealHistory -->
+    <string name="select_elderly">Välj Patient</string>
+
+
 </resources>

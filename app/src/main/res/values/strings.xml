@@ -75,6 +75,9 @@
     <string name="languages">Languages</string>
     <string name="select_language">Select Language</string>
     <string name="set_language_to">Set language to:</string>
+
+    <string name="meal_history">Meal History</string>
+
     <string name="_4_digit_pin">4 digit PIN</string>
     <string name="username">Username</string>
     <string name="to_apply_yourself_as_garegiver">to apply yourself as garegiver</string>
@@ -103,4 +106,14 @@
         <item>English</item>
         <item>Svenska</item>
     </string-array>
+
+    <!-- Notification Stuff-->
+    <string name="permission_request">Permission(s) requried</string>
+    <string name="notif_post_perm">To be able to show you important information outside of the app.</string>
+    <string name="perm_accept">Accept!</string>
+    <string name="perm_deny">Deny!</string>
+
+    <!-- FragmentMealHistory -->
+    <string name="select_elderly">Select Elderly</string>
+
 </resources>

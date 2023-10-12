@@ -1,5 +1,4 @@
 package com.example.healthappy;
-
 /*enum allergies {
     NUTS,
     GLUTEN,
