@@ -71,7 +71,7 @@
     <string name="select_language">Välj Språk</string>
     <string name="set_language_to">Satte språket till:</string>
 
-    <string name="meal_history">Meal History</string>
+    <string name="meal_history">Måltidshistorik</string>
 
     <string name="_4_digit_pin">4-siffrig PIN</string>
     <string name="username">Användarnamn</string>
@@ -118,6 +118,6 @@
     <string name="perm_deny">Neka!</string>
 
     <!-- FragmentMealHistory -->
-    <string name="select_elderly">Select Elderly</string>
+    <string name="select_elderly">Välj Patient</string>
 
 </resources>

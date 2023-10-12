@@ -5,20 +5,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
+
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.Manifest;
-import android.app.AlertDialog;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.content.DialogInterface;
+
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -32,23 +24,24 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.ktx.Firebase;
 
 import java.util.List;
 
 public class mealmanagment extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ExampleDialog.ExampleDialogListener{
     AppNotificationManager notif_mngr;
     private DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    ActionBarDrawerToggle drawerToggle;
 
     FirebaseAuth mAuth;
     DatabaseReference rootRef;
+    DatabaseReference linkElderRef;
 
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         mAuth = FirebaseAuth.getInstance();
+        linkElderRef = FirebaseDatabase.getInstance().getReference();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
             Intent intent = new Intent(getApplicationContext(), loginpage.class);
@@ -83,7 +76,7 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
-
+        linkElderRef = FirebaseDatabase.getInstance().getReference();
         rootRef = FirebaseDatabase.getInstance().getReference();
     }
 
@@ -116,6 +109,8 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
         } else if (item.getItemId() == R.id.elderlysignup) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentLinkElder()).commit();
             setTitle(getString(R.string.elderly_signup));
+        } else if (item.getItemId()==R.id.meal_history) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentMealHistory(mAuth)).commit();
         }
         else if (item.getItemId() == R.id.nav_abouttheapp){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentAbouttheapp()).commit();
@@ -145,6 +140,9 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
 
     private void linkElderToCaregiver(String username) {
         String UID = mAuth.getUid();
-        rootRef.child("Caregiver").child(UID).child("under_care").child(username).setValue(username);
+        Log.i("mAuth", UID);
+        linkElderRef.child("Caregiver").child(UID).child("under_care").child(username).setValue(username);
+        Toast.makeText(this, "Linked Elder to your account", Toast.LENGTH_SHORT).show();
+
     }
 }

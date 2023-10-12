@@ -92,6 +92,7 @@ public class FragmentLinkElder extends Fragment implements ExampleDialog.Example
     }
     @Override
     public void addElder(String username) {
+        //This function is run from mealmanagement.java instead =)
         Log.i("AddElder", "From FragmentLinkElder.java");
     }
 }

@@ -110,7 +110,7 @@
     </string-array>
 
     <!-- Notification Stuff-->
-    <string name="permission_request">Permission(s) required</string>
+    <string name="permission_request">Permission(s) requried</string>
     <string name="notif_post_perm">To be able to show you important information outside of the app.</string>
     <string name="perm_accept">Accept!</string>
     <string name="perm_deny">Deny!</string>
