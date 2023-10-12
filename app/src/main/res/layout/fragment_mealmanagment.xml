@@ -124,7 +124,6 @@
             android:layout_below="@+id/savebtn"
             android:text="Edit a meal"
             android:textColor="@color/gray"
-            android:background=""
             android:drawableRight="@drawable/edit_fill0_wght400"
             android:drawableTint="@color/gray"
             android:backgroundTint="@color/gray"

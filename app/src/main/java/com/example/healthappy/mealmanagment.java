@@ -62,7 +62,6 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         notif_mngr = new AppNotificationManager(this);
         setContentView(R.layout.activity_mealmanagment);
@@ -71,8 +70,6 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
         setSupportActionBar(toolbar);
         //View inflatedView = getLayoutInflater().inflate(R.layout.header, null);
         setTitle("Home");
-        //TextView yourName = (TextView) inflatedView.findViewById(R.id.yourname);
-        //yourName.setText("Abada Aroub");
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -95,12 +92,9 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
         if (item.getItemId() == R.id.nav_home) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
             setTitle("Home");
-
-
         } else if (item.getItemId() == R.id.nav_meal_managment) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentMealmanagment()).commit();
             setTitle("Meal Managment");
-
         } else if (item.getItemId() == R.id.nav_accountsettings) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentProfilesettings()).commit();
             setTitle("Profile Settings");
@@ -109,7 +103,6 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
             mAuth.signOut();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
-
         } else if (item.getItemId() == R.id.nav_callus) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentCallus()).commit();
             setTitle("Call Us");
@@ -147,10 +140,10 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
     }
 
     private void linkElderToCaregiver(String username) {
+        linkElderRef = FirebaseDatabase.getInstance().getReference();
         String UID = mAuth.getUid();
         Log.i("mAuth", UID);
         linkElderRef.child("Caregiver").child(UID).child("under_care").child(username).setValue(username);
         Toast.makeText(this, "Linked Elder to your account", Toast.LENGTH_SHORT).show();
-
     }
 }
