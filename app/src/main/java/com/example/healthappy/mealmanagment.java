@@ -66,10 +66,7 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //View inflatedView = getLayoutInflater().inflate(R.layout.header, null);
         setTitle("Home");
-        //TextView yourName = (TextView) inflatedView.findViewById(R.id.yourname);
-        //yourName.setText("Abada Aroub");
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -109,7 +106,7 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
 
         } else if (item.getItemId() == R.id.nav_callus) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentCallus()).commit();
-            setTitle("Call Us");
+            setTitle("Call us");
         } else if (item.getItemId() == R.id.nav_emailus) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentEmailus()).commit();
             setTitle("Email Us");

@@ -8,7 +8,7 @@
     <ImageView
         android:id="@+id/foodphoto"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="350dp"
         android:src="@drawable/elderlycarefood"/>
     <TextView
         android:id="@+id/help"
@@ -16,9 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/foodphoto"
         android:layout_marginTop="30dp"
-        android:text="Helping you to take
-
-         good care of your elderly "
+        android:text="@string/helping_you_to_take_good_care_of_your_elderly"
         android:gravity="center"
         android:textColor="@color/black"
         android:textSize="30sp"
@@ -29,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/help"
-        android:text="All the elderly deserves some care and love"
+        android:text="@string/all_the_elderly_deserves_some_care_and_love"
         android:textColor="@color/gray"
         android:gravity="center"
         android:layout_marginTop="10dp"
@@ -39,9 +37,9 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/undertext"
-        android:text="Get Started"
+        android:text="@string/get_started"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/bg_calen"/>
 
 </RelativeLayout>

@@ -15,12 +15,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imgabout"
-        android:text="Elder Care är en matdagbok som skapats och utvecklats av studenter från Karlstads universitet för att stödja personer med ätstörningar.."/>
+        android:text="@string/lol"/>
 
     <TextView
         android:layout_marginLeft="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textet"
-        android:text="Appen är avsedd att vara ett stöd för dig som genomgår behandling för en ätstörning och har kontakt med en behandlare.."/>
+        android:text="@string/lool"/>
 </RelativeLayout>

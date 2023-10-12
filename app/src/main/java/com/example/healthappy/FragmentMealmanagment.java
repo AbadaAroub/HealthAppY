@@ -1,7 +1,7 @@
 package com.example.healthappy;
 
 
-import static com.example.healthappy.R.layout.fragment_mealmanagment;
+
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -61,7 +62,7 @@ public class FragmentMealmanagment extends Fragment {
         //Fill under_care
         ArrayList<String> listUsernames = get_usernames();
 
-        View view =inflater.inflate(fragment_mealmanagment, container,false);
+        View view =inflater.inflate(R.layout.fragment_mealmanagment, container,false);
         //Fill Select A Meal-dropdown
         actvMealDropdown = view.findViewById(R.id.auto_complete_txt);
         adapterItems = new ArrayAdapter<String>(getActivity(), R.layout.list_item, mealItems);

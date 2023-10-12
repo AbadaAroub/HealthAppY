@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Select Elder">
+        android:hint="@string/select_elder">
 
         <AutoCompleteTextView
             android:id="@+id/elder_select_list"
@@ -30,7 +30,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
         android:background="@color/blue"
-        android:hint="Pick date"
+        android:hint="@string/pick_date"
         android:padding="8dp"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -47,7 +47,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:background="@color/blue"
-        android:hint="Pick Time"
+        android:hint="@string/pick_time"
 
         android:padding="8dp"
         android:textAlignment="center"
@@ -65,7 +65,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
 
-        android:hint="Add meal comment..."
+        android:hint="@string/add_meal_comment"
         android:padding="8dp"
         android:textColor="@color/black"
         android:textColorHint="@color/gray"
