@@ -114,12 +114,22 @@ public class FragmentMealmanagment extends Fragment {
     }
 
     private void addMealToElder(String username, String date, String time, String meal, String comment){
-        mealType type = convertStringToMeal(meal); //add support for swedish strings
+        mealType type;
+        if(meal.equalsIgnoreCase("Frukost") || meal.equalsIgnoreCase("Middag") || meal.equalsIgnoreCase("Mellanmål")){
+            type = convertSwedishStringToMeal(meal);
+        } else {
+            type = convertStringToMeal(meal);
+        }
+
+
+        //add support for swedish strings
         Meal mealNew = new Meal(type, time, date, comment);
         DatabaseReference elderMealRef = FirebaseDatabase.getInstance().getReference().child("Elder").child(username).child("Meals");
 
         elderMealRef.child(date).child(meal).setValue(mealNew);
     }
+
+
 
     private boolean isFormCorrect(String username, String date, String time, String meal){
         if (TextUtils.isEmpty(username)) {
@@ -204,6 +214,13 @@ public class FragmentMealmanagment extends Fragment {
         } catch (IllegalArgumentException e){
             throw new IllegalArgumentException("Invalid meal string: " + mealString);
         }
+    }
+
+    private mealType convertSwedishStringToMeal(String meal) {
+        if(meal.equalsIgnoreCase("Frukost")){ return mealType.breakfast; }
+        else if(meal.equalsIgnoreCase("Middag")){ return mealType.dinner; }
+        else if(meal.equalsIgnoreCase("Mellanmål")){ return mealType.snack; }
+        return mealType.lunch;
     }
 }
 
