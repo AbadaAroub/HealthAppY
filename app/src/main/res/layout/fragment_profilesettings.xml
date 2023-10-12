@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textsettings"
         android:layout_marginTop="40dp"
-        android:text="@string/your_username"
+        android:text="Your name:"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -61,17 +61,6 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/changepassword"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/changenumber"
-        android:layout_marginTop="30dp"
-        android:text="@string/your_password"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
     <EditText
         android:id="@+id/yourusername"
         android:layout_width="392dp"
@@ -81,7 +70,7 @@
         android:autofillHints="username"
         android:inputType="text" />
 
-    <EditText
+    <TextView
         android:id="@+id/youremail"
         android:layout_width="392dp"
         android:layout_height="wrap_content"
@@ -99,20 +88,11 @@
         android:autofillHints="phone"
         android:inputType="phone" />
 
-    <EditText
-        android:id="@+id/yourpass"
-        android:layout_width="392dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="375dp"
-        android:layout_toEndOf="@id/changepassword"
-        android:autofillHints="password"
-        android:inputType="textPassword" />
-
     <Button
         android:id="@+id/savechangesbtn"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/yourpass"
+        android:layout_below="@+id/yournumber"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:backgroundTint="@color/blue"

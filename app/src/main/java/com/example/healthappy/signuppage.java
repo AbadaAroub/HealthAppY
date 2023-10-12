@@ -31,7 +31,6 @@ public class signuppage extends AppCompatActivity {
     Button signUpBtn;
     FirebaseAuth mAuth;
     Caregiver caregiver;
-    Elderly elderly;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
@@ -43,7 +42,6 @@ public class signuppage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signuppage);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //User input fields
         editTextEmail = findViewById(R.id.email);
         editTextPassword = findViewById(R.id.signuppass);
@@ -52,11 +50,10 @@ public class signuppage extends AppCompatActivity {
         editTextPhone = findViewById(R.id.mobileNumber);
         //Firebase
         mAuth = FirebaseAuth.getInstance();
-        firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance().getReference().getDatabase();
         databaseReference = firebaseDatabase.getReference("Caregiver");
         //DB
         caregiver = new Caregiver();
-        elderly = new Elderly();
 
         signUpBtn = findViewById(R.id.signup);
 
@@ -88,7 +85,7 @@ public class signuppage extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             addDatatoFirebase(name, number, email, user.getUid());
 
-                            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            /*user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
@@ -96,7 +93,8 @@ public class signuppage extends AppCompatActivity {
                                     }
                                 }
                             });
-                            Toast.makeText(signuppage.this, R.string.toast_email_verification_sent, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(signuppage.this, R.string.toast_email_verification_sent, Toast.LENGTH_SHORT).show();*/
+
                             Intent intent = new Intent(getApplicationContext(), loginpage.class);
                             startActivity(intent);
                             finish();
@@ -143,7 +141,6 @@ public class signuppage extends AppCompatActivity {
                 caregiver.setName(name);
                 caregiver.setMobile_nr(number);
                 caregiver.setEmail(mail);
-                caregiver.setElderly(elderly);
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

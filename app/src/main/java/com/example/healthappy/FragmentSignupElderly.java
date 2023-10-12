@@ -83,7 +83,6 @@ public class FragmentSignupElderly extends Fragment {
                 String mail = elderlyMailEdt.getText().toString();
                 String address = elderlyAddressEdt.getText().toString();
                 Caregiver caregiver = new Caregiver();
-                caregiver.setUser_UID(cuid);
 
                 if(!isFormCorrect(name, number, email, address, PIN)) {
                     return;
@@ -128,7 +127,6 @@ public class FragmentSignupElderly extends Fragment {
     }
     //Database
     private void addDatatoFirebase(String name, String number, String mail, String address, Caregiver caregiver) {
-        String cuid = caregiver.getUser_UID();
         careRef = firebaseDatabase.getReference("Caregiver");
         elderly.setName(name);
         elderly.setMobile_nr(number);
@@ -142,8 +140,8 @@ public class FragmentSignupElderly extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Databas
                 databaseReference.child(uid).setValue(elderly);
-                databaseReference.child(uid).child("caregivers").child(cuid).setValue(cuid);
-                careRef.child(cuid).child("under_care").child(uid).setValue(uid);
+                databaseReference.child(uid).child("caregivers").child(uid).setValue(uid);
+                careRef.child(uid).child("under_care").child(uid).setValue(uid);
                 Toast.makeText(getActivity(), R.string.toast_data_added, Toast.LENGTH_SHORT).show();
             }
             @Override

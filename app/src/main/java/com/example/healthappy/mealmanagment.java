@@ -32,6 +32,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.ktx.Firebase;
 
 import java.util.List;
 
@@ -43,12 +44,14 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
 
     FirebaseAuth mAuth;
     DatabaseReference rootRef;
+    DatabaseReference linkElderRef;
 
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         mAuth = FirebaseAuth.getInstance();
+        linkElderRef = FirebaseDatabase.getInstance().getReference();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
             Intent intent = new Intent(getApplicationContext(), loginpage.class);
@@ -83,7 +86,7 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
-
+        linkElderRef = FirebaseDatabase.getInstance().getReference();
         rootRef = FirebaseDatabase.getInstance().getReference();
     }
 
@@ -145,6 +148,9 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
 
     private void linkElderToCaregiver(String username) {
         String UID = mAuth.getUid();
-        rootRef.child("Caregiver").child(UID).child("under_care").child(username).setValue(username);
+        Log.i("mAuth", UID);
+        linkElderRef.child("Caregiver").child(UID).child("under_care").child(username).setValue(username);
+        Toast.makeText(this, "Linked Elder to your account", Toast.LENGTH_SHORT).show();
+
     }
 }

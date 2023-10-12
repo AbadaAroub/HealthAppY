@@ -1,21 +1,19 @@
 package com.example.healthappy;
 
 public class Caregiver {
-    private String User_UID;
     private String Name;
     private String Mobile_nr;
     private String email;
-    private Elderly elderly;
+    //private Elderly elderly;
 
     public Caregiver() {
     }
+    public Caregiver(String name, String mobile_nr, String email){
+        this.Name = name;
+        this.Mobile_nr = mobile_nr;
+        this.email = email;
+    }
 
-    public String getUser_UID() {
-        return User_UID;
-    }
-    public void setUser_UID(String User_UID) {
-        this.User_UID = User_UID;
-    }
     public String getName() {
         return Name;
     }
@@ -34,10 +32,10 @@ public class Caregiver {
     public void setEmail(String email) {
         this.email = email;
     }
-    public Elderly getElderly() {
+    /*public Elderly getElderly() {
         return elderly;
     }
     public void setElderly(Elderly elderly) {
         this.elderly = elderly;
-    }
+    }*/
 }
