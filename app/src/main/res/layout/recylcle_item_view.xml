@@ -41,9 +41,23 @@
         />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawable="@drawable/edit_fill0_wght400"
+        android:id="@+id/btnEditItem"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:drawableLeft="@drawable/edit_fill0_wght400"
         android:drawableTint="@color/white"
+        android:backgroundTint="@color/gray"
+        android:layout_toStartOf="@+id/btnRemoveItem"
+        android:layout_marginEnd="20dp"
+        />
+    <Button
+        android:id="@+id/btnRemoveItem"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:drawableLeft="@drawable/delete_fill0_wght400opsz24"
+        android:drawableTint="@color/white"
+        android:backgroundTint="@color/red"
+        android:layout_marginEnd="20dp"
+        android:layout_alignParentRight="true"
         />
 </RelativeLayout>
