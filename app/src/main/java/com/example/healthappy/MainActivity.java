@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -31,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private Button loginBtn;
     private Button signupBtn;
     private TextView welcome, healthcare;
-    Locale locale;
     RadioGroup rgLanguage;
     RadioButton rbEnglish, rbSwedish;
 
@@ -63,7 +64,16 @@ public class MainActivity extends AppCompatActivity {
         rbSwedish = findViewById(R.id.rb_swedish);
         loginBtn = (Button) findViewById(R.id.loginbtn);
         signupBtn = (Button) findViewById(R.id.signupbtn);
-      
+
+        String lang = LocaleHelper.getLocale(MainActivity.this);
+        LocaleHelper.setLocale(MainActivity.this, lang);
+        welcome.setText(R.string.welcome);
+        healthcare.setText(R.string.health_care);
+        loginBtn.setText(R.string.login);
+        signupBtn.setText(R.string.signup);
+
+
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -82,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.rb_english) {
                     LocaleHelper.setLocale(MainActivity.this,"en");
+                    LocaleHelper.saveLocale(MainActivity.this,"en");
                     rbEnglish.setChecked(true);
                     welcome.setText(R.string.welcome);
                     healthcare.setText(R.string.health_care);
@@ -89,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                     signupBtn.setText(R.string.signup);
                 } else if (i == R.id.rb_swedish) {
                     LocaleHelper.setLocale(MainActivity.this,"sv");
+                    LocaleHelper.saveLocale(MainActivity.this,"sv");
                     rbSwedish.setChecked(true);
                     welcome.setText(R.string.welcome);
                     healthcare.setText(R.string.health_care);
@@ -98,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     public void openLoginPage() {
         Intent intent = new Intent(this, loginpage.class);
         startActivity(intent);

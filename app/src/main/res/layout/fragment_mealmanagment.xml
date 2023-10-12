@@ -1,75 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
 
-    <EditText
-        android:id="@+id/myDate"
-        android:layout_width="match_parent"
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/select_elder_dropdown"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Select Elder"
+        android:layout_centerHorizontal="true"
+        android:minWidth="480dp">
+
+        <AutoCompleteTextView
+            android:id="@+id/elder_select_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnDatePicker"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
         android:background="@color/blue"
-        android:hint="@string/enter_day"
+        android:hint="@string/pick_date"
         android:padding="8dp"
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textSize="23sp" />
-
-    <EditText
-        android:id="@+id/mytime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lol"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/blue"
-        android:hint="@string/enter_time"
-        android:padding="8dp"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textSize="23sp" />
-
-
-    <EditText
-        android:id="@+id/mycomment"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@id/mytime"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/blue"
-        android:hint="@string/the_food_is"
-        android:padding="8dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="23sp"
-        android:gravity="top"/>
+        android:layout_below="@+id/select_elder_dropdown"
+        android:layout_centerHorizontal="true"
+        android:minWidth="320dp"/>
+
+    <Button
+        android:id="@+id/btnTimePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnDatePicker"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/blue"
+        android:hint="Pick Time"
+        android:layout_centerHorizontal="true"
+        android:padding="8dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="23sp"
+        android:minWidth="320dp"/>
+
+
+    <EditText
+        android:id="@+id/mealComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/meal_picker"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_centerHorizontal="true"
+        android:hint="Add meal comment..."
+        android:padding="8dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:textSize="23sp"
+        android:gravity="top"
+        android:importantForAutofill="no"
+        android:minWidth="480dp"
+        android:inputType="textShortMessage" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/mycomment"
+        android:layout_below="@+id/mealComment"
         android:text="@string/save"
         android:id="@+id/savebtn"
+        android:background="@color/blue"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:backgroundTint="@color/gray"/>
+        android:backgroundTint="@color/gray"
+        android:textColor="@color/white"/>
 
 
     <com.google.android.material.textfield.TextInputLayout
 
-        android:id="@+id/lol"
+        android:id="@+id/meal_picker"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/myDate"
+        android:layout_below="@+id/btnTimePicker"
         android:layout_margin="10dp"
-        android:hint="@string/select">
+        android:hint="@string/select"
+        android:layout_centerHorizontal="true"
+        android:minWidth="480dp">
 
         <AutoCompleteTextView
             android:id="@+id/auto_complete_txt"
@@ -82,3 +118,4 @@
 
 
 </RelativeLayout>
+</ScrollView>

@@ -5,8 +5,8 @@ import java.util.Collection;
 public class MealHistoryItem extends Meal{
     private String time_of_report;
     private boolean ate;
-    public MealHistoryItem(meals type, String time_of_day, String date, Collection<allergies> allergy_list, String description, String time_of_report, boolean ate) {
-        super(type, time_of_day, date, allergy_list, description);
+    public MealHistoryItem(mealType type, String time_of_day, String date, String comment/*, Collection<allergies> allergy_list*/, String time_of_report, boolean ate) {
+        super(type, time_of_day, date, comment/*, allergy_list*/);
         this.time_of_report = time_of_report;
         this.ate = ate;
 
