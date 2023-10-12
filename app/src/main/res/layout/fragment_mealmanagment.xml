@@ -4,14 +4,26 @@
     android:layout_height="match_parent"
     android:gravity="center">
 
+
+    <TextView
+        android:id="@+id/tvPlanAMeal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/plan_a_meal"
+        android:textSize="30dp"
+        android:gravity="center"
+
+        />
+
     <com.google.android.material.textfield.TextInputLayout
 
         android:id="@+id/select_elder_dropdown"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
+        android:layout_below="@+id/tvPlanAMeal"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Select Elder">
+        android:hint="@string/select_elder">
 
         <AutoCompleteTextView
             android:id="@+id/elder_select_list"
@@ -30,7 +42,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
         android:background="@color/blue"
-        android:hint="Pick date"
+        android:hint="@string/pick_date"
         android:padding="8dp"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -47,7 +59,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:background="@color/blue"
-        android:hint="Pick Time"
+        android:hint="@string/pick_time"
 
         android:padding="8dp"
         android:textAlignment="center"
@@ -65,7 +77,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
 
-        android:hint="Add meal comment..."
+        android:hint="@string/add_meal_comment"
         android:padding="8dp"
         android:textColor="@color/black"
         android:textColorHint="@color/gray"
@@ -76,6 +88,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/mealComment"
         android:text="@string/save"
+        android:textSize="17dp"
+        android:drawableRight="@drawable/done_outline_fill0"
+        android:drawableTint="@color/white"
         android:id="@+id/savebtn"
         android:background="@color/blue"
         android:layout_centerHorizontal="true"
@@ -102,5 +117,20 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+        <Button
+            android:id="@+id/btnEditMeal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/savebtn"
+            android:text="Edit a meal"
+            android:textColor="@color/gray"
+            android:background=""
+            android:drawableRight="@drawable/edit_fill0_wght400"
+            android:drawableTint="@color/gray"
+            android:backgroundTint="@color/gray"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="40dp"
+            />
 
 </RelativeLayout>

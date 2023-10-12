@@ -19,12 +19,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
-import android.widget.Toolbar;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,13 +36,13 @@ import java.util.Calendar;
 
 
 public class FragmentMealmanagment extends Fragment {
-    private Button btnSave, btnPickDate, btnPickTime;
+    private Button btnSave, btnPickDate, btnPickTime, btnEditMeal;
     private EditText etComment;
 
     String[] mealItems = {"Breakfast", "Lunch", "Dinner", "Snack"};
     Resources resources;
     AutoCompleteTextView actvMealDropdown, actvElderDropdown;
-    ArrayAdapter<String> adapterItems, adapterUids;
+    ArrayAdapter<String> adapterItems, adapterUsernames;
     //Datebase
     DatabaseReference rootRef;
     FirebaseAuth mAuth;
@@ -67,8 +66,8 @@ public class FragmentMealmanagment extends Fragment {
 
         //Fill Select Elder-dropdown
         actvElderDropdown = view.findViewById(R.id.elder_select_list);
-        adapterUids = new ArrayAdapter<String>(getActivity(), R.layout.list_item, listUsernames);
-        actvElderDropdown.setAdapter(adapterUids);
+        adapterUsernames = new ArrayAdapter<String>(getActivity(), R.layout.list_item, listUsernames);
+        actvElderDropdown.setAdapter(adapterUsernames);
 
 
         //Clickables
@@ -76,6 +75,7 @@ public class FragmentMealmanagment extends Fragment {
         btnPickDate = (Button) view.findViewById(R.id.btnDatePicker);
         etComment = (EditText) view.findViewById(R.id.mealComment);
         btnSave = (Button) view.findViewById(R.id.savebtn);
+        btnEditMeal = (Button) view.findViewById(R.id.btnEditMeal);
 
         btnPickDate.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -110,6 +110,15 @@ public class FragmentMealmanagment extends Fragment {
                 addMealToElder(username, date, time, meal, comment);
             }
         });
+
+        btnEditMeal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentEditMeal()).commit();
+
+            }
+        });
+
         return view;
     }
 
@@ -126,10 +135,8 @@ public class FragmentMealmanagment extends Fragment {
         Meal mealNew = new Meal(type, time, date, comment);
         DatabaseReference elderMealRef = FirebaseDatabase.getInstance().getReference().child("Elder").child(username).child("Meals");
 
-        elderMealRef.child(date).child(meal).setValue(mealNew);
+        elderMealRef.child(date).child(type.toString()).setValue(mealNew);
     }
-
-
 
     private boolean isFormCorrect(String username, String date, String time, String meal){
         if (TextUtils.isEmpty(username)) {

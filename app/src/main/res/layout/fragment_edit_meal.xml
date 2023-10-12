@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentEditMeal"
+    android:padding="40dp"
+
+    >
+
+    <TextView
+        android:id="@+id/tvEditMeal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit Meal"
+        android:textSize="30dp"
+        android:gravity="center"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/select_elder_dropdown"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/tvEditMeal"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/select_elder">
+
+        <AutoCompleteTextView
+            android:id="@+id/elder_select_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnDatePicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/blue"
+        android:hint="Filter on date"
+        android:padding="8dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="23sp"
+        android:layout_below="@+id/select_elder_dropdown"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mealList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        />
+
+</RelativeLayout>
