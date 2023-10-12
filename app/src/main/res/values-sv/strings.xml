@@ -71,11 +71,7 @@
     <string name="set_language_to">Satte språket till:</string>
     <string name="meal_history">Måltidshistorik</string>
     
-    <!-- Notification Stuff-->
-    <string name="permission_request">Appen kräver behörigheter</string>
-    <string name="notif_post_perm">För att kunna visa dig viktig information utanför appen.</string>
-    <string name="perm_accept">Tillåt!</string>
-    <string name="perm_deny">Neka!</string>
+
     <string name="_4_digit_pin">4-siffrig PIN</string>
     <string name="username">Användarnamn</string>
     <string name="to_apply_yourself_as_garegiver">för att ange dig själv som vårdgivare</string>
