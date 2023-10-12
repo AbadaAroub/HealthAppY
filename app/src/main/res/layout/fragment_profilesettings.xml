@@ -2,141 +2,123 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/settingstext"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:gravity="center"
-        android:text="@string/settings"
-        android:textColor="@color/black"
-        android:textSize="40sp"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textsettings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/settingstext"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="@string/basic_account_settings"
-        android:textColor="@color/black"
-        android:textStyle="normal" />
+        <TextView
+            android:id="@+id/settingstext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:gravity="center"
+            android:text="@string/settings"
+            android:textColor="@color/black"
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/changename"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textsettings"
-        android:layout_marginTop="40dp"
-        android:text="@string/your_username"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/textsettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/settingstext"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/basic_account_settings"
+            android:textColor="@color/black"
+            android:textStyle="normal" />
 
-    <TextView
-        android:id="@+id/changeemail"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/changename"
-        android:layout_marginTop="30dp"
-        android:text="@string/your_email"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/changename"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textsettings"
+            android:layout_marginTop="40dp"
+            android:text="@string/your_name"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/changenumber"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/changeemail"
-        android:layout_marginTop="30dp"
-        android:text="@string/your_number"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/changeemail"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/changename"
+            android:layout_marginTop="30dp"
+            android:text="@string/your_email"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/changepassword"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/changenumber"
-        android:layout_marginTop="30dp"
-        android:text="@string/your_password"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/changenumber"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/changeemail"
+            android:layout_marginTop="30dp"
+            android:text="@string/your_number"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/yourusername"
-        android:layout_width="392dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="211dp"
-        android:layout_toEndOf="@id/changename"
-        android:autofillHints="username"
-        android:inputType="text" />
+        <EditText
+            android:id="@+id/yourusername"
+            android:layout_width="392dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="211dp"
+            android:layout_toEndOf="@id/changename"
+            android:autofillHints="username"
+            android:inputType="text"
+            android:minHeight="48dp"/>
 
-    <EditText
-        android:id="@+id/youremail"
-        android:layout_width="392dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
-        android:layout_toEndOf="@id/changeemail"
-        android:autofillHints="emailAddress"
-        android:inputType="textEmailAddress" />
+        <TextView
+            android:id="@+id/youremail"
+            android:layout_width="392dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="260dp"
+            android:layout_toEndOf="@id/changeemail"
+            android:autofillHints="emailAddress"
+            />
 
-    <EditText
-        android:id="@+id/yournumber"
-        android:layout_width="392dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="318dp"
-        android:layout_toEndOf="@id/changenumber"
-        android:autofillHints="phone"
-        android:inputType="phone" />
+        <EditText
+            android:id="@+id/yournumber"
+            android:layout_width="392dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="318dp"
+            android:layout_toEndOf="@id/changenumber"
+            android:autofillHints="phone"
+            android:inputType="phone"
+            android:minHeight="48dp"/>
 
-    <EditText
-        android:id="@+id/yourpass"
-        android:layout_width="392dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="375dp"
-        android:layout_toEndOf="@id/changepassword"
-        android:autofillHints="password"
-        android:inputType="textPassword" />
+        <Button
+            android:id="@+id/savechangesbtn"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/yournumber"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/blue"
+            android:text="@string/save_changes"
+            android:textColor="@color/white"/>
 
-    <Button
-        android:id="@+id/savechangesbtn"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/yourpass"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:backgroundTint="@color/blue"
-        android:text="@string/save_changes"
-        android:textColor="@color/white"/>
+        <com.google.android.material.textfield.TextInputLayout
 
-    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lang"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:hint="@string/select_language"
+            android:minWidth="480dp">
 
-        android:id="@+id/lang"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:hint="@string/select_language"
-        android:minWidth="480dp">
+        <AutoCompleteTextView
+            android:id="@+id/auto_complete_lang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
 
-    <AutoCompleteTextView
-        android:id="@+id/auto_complete_lang"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-</RelativeLayout>
+    </RelativeLayout>
 </ScrollView>

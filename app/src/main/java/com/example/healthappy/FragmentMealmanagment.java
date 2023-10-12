@@ -156,8 +156,8 @@ public class FragmentMealmanagment extends Fragment {
         }, year, month, day);
 
         // Add OK and Cancel buttons
-        datePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE, "OK", datePickerDialog);
-        datePickerDialog.setButton(DatePickerDialog.BUTTON_NEGATIVE, "Cancel", datePickerDialog);
+        datePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE, getString(R.string.ok), datePickerDialog);
+        datePickerDialog.setButton(DatePickerDialog.BUTTON_NEGATIVE, getString(R.string.cancel), datePickerDialog);
 
 
         datePickerDialog.show();
@@ -177,8 +177,8 @@ public class FragmentMealmanagment extends Fragment {
         }, hour, minute, true);
 
         // Add OK and Cancel buttons
-        timePickerDialog.setButton(TimePickerDialog.BUTTON_POSITIVE, "OK", timePickerDialog);
-        timePickerDialog.setButton(TimePickerDialog.BUTTON_NEGATIVE, "Cancel", timePickerDialog);
+        timePickerDialog.setButton(TimePickerDialog.BUTTON_POSITIVE, getString(R.string.ok), timePickerDialog);
+        timePickerDialog.setButton(TimePickerDialog.BUTTON_NEGATIVE, getString(R.string.cancel), timePickerDialog);
 
         timePickerDialog.show();
     }
