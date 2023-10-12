@@ -1,26 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/imgabout"
         android:layout_width="match_parent"
         android:layout_height="500dp"
+        android:importantForAccessibility="no"
         android:src="@drawable/about"
-        android:id="@+id/imgabout"/>
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
-        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
         android:id="@+id/textet"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:maxWidth="600dp"
         android:layout_below="@+id/imgabout"
-        android:text="Elder Care är en matdagbok som skapats och utvecklats av studenter från Karlstads universitet för att stödja personer med ätstörningar.."/>
+        android:text="@string/about_text_1"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
-        android:layout_marginLeft="15dp"
-        android:layout_width="match_parent"
+        android:layout_marginStart="15dp"
+        android:layout_width="wrap_content"
+        android:minHeight="48dp"
+        android:maxWidth="600dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/textet"
-        android:text="Appen är avsedd att vara ett stöd för dig som genomgår behandling för en ätstörning och har kontakt med en behandlare.."/>
+        android:text="@string/about_text_2"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>
+</ScrollView>

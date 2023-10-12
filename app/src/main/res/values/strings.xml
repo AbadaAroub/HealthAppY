@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">HealthAppY</string>
-    <string name="title_activity_mealmanagment">mealmanagment</string>
+    <string name="title_activity_mealmanagment">mealmanagement</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -48,7 +48,7 @@
     <string name="select">Select A Meal</string>
 
     <!-- Notification Stuff-->
-    <string name="permission_request">Permission(s) requried</string>
+    <string name="permission_request">Permission(s) required</string>
     <string name="notif_post_perm">To be able to show you important information outside of the app.</string>
     <string name="perm_accept">Accept!</string>
     <string name="perm_deny">Deny!</string>
@@ -81,6 +81,18 @@
     <string name="enter_elder_username">Enter Elder username</string>
     <string name="link_elder">Link Elder</string>
     <string name="get_account_info">Get account info</string>
+    <string name="pick_date">Pick date</string>
+    <string name="about">About the app</string>
+    <string name="save_changes">Save changes</string>
+    <string name="your_password">Your password:</string>
+    <string name="your_number">Your number:</string>
+    <string name="your_email">Your email address:</string>
+    <string name="your_username">Your username:</string>
+    <string name="basic_account_settings">Change your basic account settings here.</string>
+    <string name="settings">Settings</string>
+    <string name="about_text_1">Elder Care är en matdagbok som skapats och utvecklats av studenter från Karlstads universitet för att stödja personer med ätstörningar..</string>
+    <string name="about_text_2">Appen är avsedd att vara ett stöd för dig som genomgår behandling för en ätstörning och har kontakt med en behandlare..</string>
+    <string name="elderly_signup">Elderly SignUp</string>
     <string-array name="meals">
         <item>Breakfast</item>
         <item>Lunch</item>

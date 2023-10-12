@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,7 +20,7 @@
         android:gravity="center"
         android:text="@string/welcome"
         android:textColor="@color/blue"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
@@ -31,7 +34,7 @@
         android:gravity="center"
         android:text="@string/health_care"
         android:textColor="@color/blue"
-        android:textSize="32dp"
+        android:textSize="32sp"
         android:textStyle="bold" />
 
     <ImageView
@@ -40,41 +43,47 @@
         android:layout_height="390dp"
         android:layout_marginTop="120dp"
         android:src="@drawable/page1"
-
-        />
+        android:importantForAccessibility="no"
+        android:layout_centerHorizontal="true"/>
 
     <Button
         android:id="@+id/signupbtn"
-        android:layout_width="292dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/radiog"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/blue"
-        android:text="@string/signup" />
+        android:text="@string/signup"
+        android:textColor="@color/white"
+        android:minWidth="292dp"/>
 
     <Button
         android:id="@+id/loginbtn"
-        android:layout_width="292dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/signupbtn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/blue"
-        android:text="@string/login" />
+        android:text="@string/login"
+        android:textColor="@color/white"
+        android:minWidth="292dp"/>
 
     <RadioGroup
         android:id="@+id/radiog"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/page"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_centerInParent="true"
+        android:minWidth="411dp">
 
         <RadioButton
             android:id="@+id/rb_swedish"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp"
             android:layout_weight="1"
             android:padding="8dp"
             android:text="@string/swedish" />
@@ -91,3 +100,4 @@
     </RadioGroup>
 
 </RelativeLayout>
+</ScrollView>

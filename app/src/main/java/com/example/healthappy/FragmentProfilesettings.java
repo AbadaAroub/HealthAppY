@@ -51,9 +51,8 @@ public class FragmentProfilesettings extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profilesettings, container, false);
         langs = view.getResources().getStringArray(R.array.langs);
-        resources = getResources();
-        fUser = FirebaseAuth.getInstance().getCurrentUser();
 
+        fUser = FirebaseAuth.getInstance().getCurrentUser();
 
         saveChanges = view.findViewById(R.id.savechangesbtn);
         rootRef = FirebaseDatabase.getInstance().getReference();

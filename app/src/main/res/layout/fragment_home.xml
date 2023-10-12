@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +12,8 @@
         android:id="@+id/foodphoto"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:src="@drawable/elderlycarefood"/>
+        android:src="@drawable/elderlycarefood"
+        android:importantForAccessibility="no" />
     <TextView
         android:id="@+id/help"
         android:layout_width="match_parent"
@@ -36,12 +40,15 @@
         android:textStyle="bold"/>
     <Button
         android:id="@+id/getstardetbtn"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/undertext"
         android:text="Get Started"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:background="@drawable/bg_calen"/>
+        android:background="@drawable/bg_calen"
+        android:textColor="@color/white"
+        android:minWidth="150dp"/>
 
 </RelativeLayout>
+</ScrollView>

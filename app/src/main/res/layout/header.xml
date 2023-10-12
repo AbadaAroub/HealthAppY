@@ -14,9 +14,7 @@
         android:layout_height="130dp"
         android:src="@drawable/loginphoto"
 
-        />
-
-
+        android:importantForAccessibility="no" />
 
 
 </LinearLayout>

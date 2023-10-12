@@ -54,13 +54,13 @@
         </menu>
 
     </item>
-    <item android:title="About the app">
+    <item android:title="@string/about">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_abouttheapp"
                     android:icon="@drawable/baseline_info_24"
-                    android:title="About the app" />
+                    android:title="@string/about" />
 
             </group>
 
