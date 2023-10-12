@@ -90,6 +90,14 @@
     <string name="about_text_1">Elder Care är en matdagbok som skapats och utvecklats av studenter från Karlstads universitet för att stödja personer med ätstörningar..</string>
     <string name="about_text_2">Appen är avsedd att vara ett stöd för dig som genomgår behandling för en ätstörning och har kontakt med en behandlare..</string>
     <string name="elderly_signup">Elderly SignUp</string>
+    <string name="your_name">Your name:</string>
+    <string name="add_meal_comment">Add meal comment…</string>
+    <string name="pick_time">Pick Time</string>
+    <string name="select_elder">Select Elder</string>
+    <string name="all_the_elderly_deserves_some_care_and_love">All the elderly deserves some care and love</string>
+    <string name="get_started">Get Started</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
     <string-array name="meals">
         <item>Breakfast</item>
         <item>Lunch</item>
