@@ -2,7 +2,7 @@ package com.example.healthappy;
 
 
 
-import static com.example.healthappy.meals.*;
+
 
 import android.os.Bundle;
 import android.util.Log;
