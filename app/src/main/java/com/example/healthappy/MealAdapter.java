@@ -1,8 +1,10 @@
 package com.example.healthappy;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import java.util.List;
 import androidx.annotation.NonNull;
@@ -26,11 +28,29 @@ public class MealAdapter extends RecyclerView.Adapter<MealHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MealHolder holder, int position) {
-        holder.tvDate.setText(meals.get(position).getDate());
-        holder.tvTime.setText(meals.get(position).getTime_of_day());
-        holder.tvMeal.setText(meals.get(position).getType().toString());
-        holder.tvComment.setText(meals.get(position).getComment());
+        String date, time, meal, comment;
+        date = meals.get(position).getDate();
+        time = meals.get(position).getTime_of_day();
+        meal = meals.get(position).getType().toString();
+        comment = meals.get(position).getComment();
+        holder.tvDate.setText(date);
+        holder.tvTime.setText(time);
+        holder.tvMeal.setText(meal);
+        holder.tvComment.setText(comment);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Create and show a dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Meal Details");
+                builder.setMessage("Date: " + date + "\nTime: " + time + "\nMeal: " + meal + "\nComment: " + comment);
+                builder.setPositiveButton("OK", null); // No action needed for the OK button
+                builder.setNegativeButton("CANCEL", null);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
     }
 
     @Override

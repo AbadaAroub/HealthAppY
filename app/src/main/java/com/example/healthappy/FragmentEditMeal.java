@@ -109,33 +109,6 @@ public class FragmentEditMeal extends Fragment {
             }
         });
     }
-
-
-    /*private ArrayList<String> getDatesOfMeals(String selected){
-        ArrayList<String> dateKeys = new ArrayList<String>();
-        DatabaseReference userMealsRef = FirebaseDatabase.getInstance().getReference()
-                .child("Elder").child(selected).child("Meals");
-
-        userMealsRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    for(DataSnapshot datesSnapshot : snapshot.getChildren()){
-                        Log.d("datesSnapshotKey", datesSnapshot.getKey().toString());
-                        dateKeys.add(datesSnapshot.getKey().toString());
-
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        return dateKeys;
-    }*/
-
     private ArrayList<Meal> getMealsOfElder(String selected, ArrayList<String> dates) {
         ArrayList<Meal> list = new ArrayList<Meal>();
         DatabaseReference userMealsRef = FirebaseDatabase.getInstance().getReference()

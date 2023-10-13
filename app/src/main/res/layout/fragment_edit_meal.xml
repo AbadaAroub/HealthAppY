@@ -5,10 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FragmentEditMeal"
-    android:padding="40dp"
-
     >
-
+<RelativeLayout
+    android:id="@+id/head_items"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="40dp"
+    >
     <TextView
         android:id="@+id/tvEditMeal"
         android:layout_width="match_parent"
@@ -16,6 +19,7 @@
         android:text="Edit Meal"
         android:textSize="30dp"
         android:gravity="center"
+
         />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -51,14 +55,34 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="23sp"
-        android:layout_below="@+id/select_elder_dropdown"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mealList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnDatePicker"
-        android:layout_marginTop="20dp"
+        android:layout_below="@+id/select_elder_dropdown"
+        android:elevation="2dp"
+        android:translationZ="2dp"
         />
+
+
+</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/head_items"
+        android:background="@color/gray"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/head_items"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mealList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/head_items"
+
+            />
+
+    </ScrollView>
+
 
 </RelativeLayout>

@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 public class MealHolder extends RecyclerView.ViewHolder {
 
     TextView tvDate, tvTime, tvMeal,tvComment;
-    Button btnEdit;
     public MealHolder(@NonNull View itemView) {
         super(itemView);
 
@@ -18,7 +17,6 @@ public class MealHolder extends RecyclerView.ViewHolder {
         tvTime = itemView.findViewById(R.id.tvItemTime);
         tvMeal = itemView.findViewById(R.id.tvItemMeal);
         tvComment = itemView.findViewById(R.id.tvItemComment);
-        btnEdit = itemView.findViewById(R.id.btnEditItem);
 
     }
 }
