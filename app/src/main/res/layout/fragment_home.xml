@@ -20,9 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/foodphoto"
             android:layout_marginTop="30dp"
-            android:text="Helping you to take
-
-             good care of your elderly "
+            android:text="@string/helping_you_to_take_good_care_of_your_elderly"
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="30sp"

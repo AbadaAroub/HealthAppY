@@ -24,7 +24,7 @@
             android:layout_below="@id/settingstext"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="@string/basic_account_settings"
+            android:text="@string/change_your_basic_account_settings_here"
             android:textColor="@color/black"
             android:textStyle="normal" />
 
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/changename"
             android:layout_marginTop="30dp"
-            android:text="@string/your_email"
+            android:text="@string/your_email_adress"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />

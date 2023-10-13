@@ -59,10 +59,9 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //View inflatedView = getLayoutInflater().inflate(R.layout.header, null);
+
         setTitle(R.string.home);
-        //TextView yourName = (TextView) inflatedView.findViewById(R.id.yourname);
-        //yourName.setText("Abada Aroub");
+
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
