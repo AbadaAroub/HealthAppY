@@ -113,7 +113,7 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
         }
         else if (item.getItemId() == R.id.nav_abouttheapp){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentAbouttheapp()).commit();
-            setTitle(R.string.about);
+            setTitle(R.string.about_the_app);
         } else {
             return false;
         }

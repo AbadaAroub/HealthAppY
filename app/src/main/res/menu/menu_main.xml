@@ -58,7 +58,7 @@
         </menu>
 
     </item>
-    <item android:title="@string/about">
+    <item android:title="@string/about_the_app">
         <menu>
             <group android:checkableBehavior="single">
                 <item

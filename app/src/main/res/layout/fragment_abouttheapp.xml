@@ -23,7 +23,7 @@
             android:minHeight="48dp"
             android:maxWidth="600dp"
             android:layout_below="@+id/imgabout"
-            android:text=""@string/lol"
+            android:text="@string/lol"
             android:layout_centerHorizontal="true"/>
 
         <TextView
@@ -33,7 +33,7 @@
             android:maxWidth="600dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/textet"
-            android:text=""@string/lool"
+            android:text="@string/lool"
             android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 </ScrollView>
