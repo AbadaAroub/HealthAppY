@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+        <!-- TextView to label the dropdown -->
+        <TextView
+            android:id="@+id/t_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textColor="@color/black"/>
+
+        <!-- Spinner (Dropdown) -->
+        <Spinner
+            android:id="@+id/elderly_select"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/white"/>
+
+        <LinearLayout
+            android:id="@+id/history_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="fill_vertical">
+
+        </LinearLayout>
+
+</LinearLayout>

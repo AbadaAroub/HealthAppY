@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">HealthAppY</string>
-    <string name="title_activity_mealmanagment">mealmanagment</string>
+    <string name="title_activity_mealmanagment">mealmanagement</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -47,12 +47,6 @@
     <string name="mail_us">Mail us</string>
     <string name="select">Select A Meal</string>
 
-    <!-- Notification Stuff-->
-    <string name="permission_request">Permission(s) requried</string>
-    <string name="notif_post_perm">To be able to show you important information outside of the app.</string>
-    <string name="perm_accept">Accept!</string>
-    <string name="perm_deny">Deny!</string>
-
     <string name="enter_day">Enter day, eg: 2023/09/29</string>
     <string name="enter_time">Enter time, eg: 01:02</string>
     <string name="the_food_is">The food is…</string>
@@ -75,6 +69,9 @@
     <string name="languages">Languages</string>
     <string name="select_language">Select Language</string>
     <string name="set_language_to">Set language to:</string>
+
+    <string name="meal_history">Meal History</string>
+
     <string name="_4_digit_pin">4 digit PIN</string>
     <string name="username">Username</string>
     <string name="to_apply_yourself_as_garegiver">to apply yourself as garegiver</string>
@@ -82,10 +79,27 @@
     <string name="link_elder">Link Elder</string>
     <string name="get_account_info">Get account info</string>
     <string name="plan_a_meal">Plan a meal</string>
-    <string name="select_elder">Select Elder</string>
+    <string name="about_the_app">About the app</string>
     <string name="pick_date">Pick date</string>
     <string name="pick_time">Pick Time</string>
-    <string name="add_meal_comment">Add meal comment...</string>
+    <string name="select_elder">Select Elder</string>
+    <string name="add_meal_comment">Add meal comment…</string>
+    <string name="lol">Health Care is a cutting-edge mobile application developed to address the specific meal management needs of the elderly population. We recognize that as we age, maintaining a balanced diet is crucial to our overall well-being.</string>
+    <string name="lool">Health Care has been meticulously crafted to provide elderly population the help they need to eat their meals effectively, ensuring they can lead healthier.</string>
+    <string name="helping_you_to_take_good_care_of_your_elderly">Helping you to take good care of your elderly</string>
+    <string name="all_the_elderly_deserves_some_care_and_love">All the elderly deserves some care and love</string>
+    <string name="get_started">Get Started</string>
+    <string name="settings">Settings</string>
+    <string name="change_your_basic_account_settings_here">Change your basic account settings here.</string>
+    <string name="your_username">Your username:</string>
+    <string name="your_email_adress">Your email adress:</string>
+    <string name="your_number">Your number:</string>
+    <string name="your_password">Your password:</string>
+    <string name="save_changes">Save changes</string> 
+    <string name="elderly_signup">Elderly SignUp</string>
+    <string name="your_name">Your name:</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
     <string-array name="meals">
         <item>Breakfast</item>
         <item>Lunch</item>
@@ -98,4 +112,14 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Notification Stuff-->
+    <string name="permission_request">Permission(s) requried</string>
+    <string name="notif_post_perm">To be able to show you important information outside of the app.</string>
+    <string name="perm_accept">Accept!</string>
+    <string name="perm_deny">Deny!</string>
+
+    <!-- FragmentMealHistory -->
+    <string name="select_elderly">Select Elderly</string>
+
 </resources>

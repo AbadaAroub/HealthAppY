@@ -10,7 +10,7 @@ public class Elderly {
     private enum Allergies {
         NUTS,
         GLUTEN,
-        LACTOS;
+        LACTOS
     }
 
     public Elderly() {

@@ -25,6 +25,7 @@ public class FragmentHome extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentMealmanagment()).commit();
+                getActivity().setTitle("Meal Managment");
             }
         });
         return view;

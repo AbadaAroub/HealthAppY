@@ -1,7 +1,7 @@
 package com.example.healthappy;
 
 
-import static com.example.healthappy.R.layout.fragment_mealmanagment;
+
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -58,7 +59,7 @@ public class FragmentMealmanagment extends Fragment {
         //Fill under_care
         ArrayList<String> listUsernames = get_usernames();
 
-        View view =inflater.inflate(fragment_mealmanagment, container,false);
+        View view =inflater.inflate(R.layout.fragment_mealmanagment, container,false);
         //Fill Select A Meal-dropdown
         actvMealDropdown = view.findViewById(R.id.auto_complete_txt);
         adapterItems = new ArrayAdapter<String>(getActivity(), R.layout.list_item, mealItems);
@@ -173,8 +174,8 @@ public class FragmentMealmanagment extends Fragment {
         }, year, month, day);
 
         // Add OK and Cancel buttons
-        datePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE, "OK", datePickerDialog);
-        datePickerDialog.setButton(DatePickerDialog.BUTTON_NEGATIVE, "Cancel", datePickerDialog);
+        datePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE, getString(R.string.ok), datePickerDialog);
+        datePickerDialog.setButton(DatePickerDialog.BUTTON_NEGATIVE, getString(R.string.cancel), datePickerDialog);
 
         datePickerDialog.show();
     }
@@ -193,8 +194,8 @@ public class FragmentMealmanagment extends Fragment {
         }, hour, minute, true);
 
         // Add OK and Cancel buttons
-        timePickerDialog.setButton(TimePickerDialog.BUTTON_POSITIVE, "OK", timePickerDialog);
-        timePickerDialog.setButton(TimePickerDialog.BUTTON_NEGATIVE, "Cancel", timePickerDialog);
+        timePickerDialog.setButton(TimePickerDialog.BUTTON_POSITIVE, getString(R.string.ok), timePickerDialog);
+        timePickerDialog.setButton(TimePickerDialog.BUTTON_NEGATIVE, getString(R.string.cancel), timePickerDialog);
 
         timePickerDialog.show();
     }

@@ -5,20 +5,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
+
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.Manifest;
-import android.app.AlertDialog;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.content.DialogInterface;
+
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -39,8 +31,6 @@ import java.util.List;
 public class mealmanagment extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ExampleDialog.ExampleDialogListener{
     AppNotificationManager notif_mngr;
     private DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    ActionBarDrawerToggle drawerToggle;
 
     FirebaseAuth mAuth;
     DatabaseReference rootRef;
@@ -68,8 +58,10 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //View inflatedView = getLayoutInflater().inflate(R.layout.header, null);
-        setTitle("Home");
+
+        setTitle(R.string.home);
+
+
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -91,13 +83,14 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.nav_home) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
-            setTitle("Home");
+            setTitle(R.string.home);
         } else if (item.getItemId() == R.id.nav_meal_managment) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentMealmanagment()).commit();
-            setTitle("Meal Managment");
+            setTitle(R.string.meal_managment);
+
         } else if (item.getItemId() == R.id.nav_accountsettings) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentProfilesettings()).commit();
-            setTitle("Profile Settings");
+            setTitle(R.string.profile_settings);
         } else if (item.getItemId() == R.id.nav_logout) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentLogout()).commit();
             mAuth.signOut();
@@ -105,17 +98,19 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
             finish();
         } else if (item.getItemId() == R.id.nav_callus) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentCallus()).commit();
-            setTitle("Call Us");
+            setTitle(R.string.call_us);
         } else if (item.getItemId() == R.id.nav_emailus) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentEmailus()).commit();
-            setTitle("Email Us");
+            setTitle(R.string.mail_us);
         } else if (item.getItemId() == R.id.elderlysignup) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentLinkElder()).commit();
-            setTitle("Elderly SignUp");
+            setTitle(getString(R.string.elderly_signup));
+        } else if (item.getItemId()==R.id.meal_history) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentMealHistory(mAuth)).commit();
         }
         else if (item.getItemId() == R.id.nav_abouttheapp){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentAbouttheapp()).commit();
-            setTitle("About The App");
+            setTitle(R.string.about_the_app);
         } else {
             return false;
         }
