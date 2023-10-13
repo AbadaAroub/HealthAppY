@@ -136,6 +136,8 @@ public class FragmentMealmanagment extends Fragment {
         DatabaseReference elderMealRef = FirebaseDatabase.getInstance().getReference().child("Elder").child(username).child("Meals");
 
         elderMealRef.child(date).child(time).setValue(mealNew);
+        Toast.makeText(getActivity(), "added " + meal, Toast.LENGTH_SHORT).show();
+
     }
 
     private boolean isFormCorrect(String username, String date, String time, String meal){
