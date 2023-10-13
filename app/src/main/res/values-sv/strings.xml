@@ -83,7 +83,7 @@
     <string name="pick_date">Välj datum</string>
     <string name="pick_time">Välj tid</string>
     <string name="select_elder">Välj Elder</string>
-    <string name="add_meal_comment">Lägg till måltidskommentar...</string>
+    <string name="add_meal_comment">Lägg till måltidskommentar…</string>
     <string name="lol">Health Care är en banbrytande mobilapplikation utvecklad för att möta de specifika behoven för måltidshantering hos den äldre befolkningen. Vi inser att när vi åldras är det avgörande för vårt allmänna välbefinnande att upprätthålla en balanserad kost.</string>
     <string name="lool">Health Care har utformats noggrant för att ge äldre befolkning den hjälp de behöver för att äta sina måltider effektivt, vilket säkerställer att de kan leda hälsosammare.</string>
     <string name="helping_you_to_take_good_care_of_your_elderly">Hjälper dig att ta väl hand om dina äldre</string>
@@ -95,9 +95,9 @@
     <string name="your_number">Ditt nummer:</string>
     <string name="your_password">Ditt lösenord:</string>
     <string name="save_changes">Spara ändringar</string>
-    <string name="settings">inställningar</string>
+    <string name="settings">Inställningar</string>
     <string name="elderly_signup">Gamlings registrering</string>
-    <string name="your_name">Your name:</string>
+    <string name="your_name">Ditt namn:</string>
     <string name="ok">OK</string>
     <string name="cancel">Avbryt</string>
 
