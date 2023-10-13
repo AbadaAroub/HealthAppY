@@ -78,6 +78,7 @@
     <string name="enter_elder_username">Enter Elder username</string>
     <string name="link_elder">Link Elder</string>
     <string name="get_account_info">Get account info</string>
+    <string name="plan_a_meal">Plan a meal</string>
     <string name="about_the_app">About the app</string>
     <string name="pick_date">Pick date</string>
     <string name="pick_time">Pick Time</string>
@@ -109,6 +110,8 @@
         <item>English</item>
         <item>Svenska</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Notification Stuff-->
     <string name="permission_request">Permission(s) requried</string>

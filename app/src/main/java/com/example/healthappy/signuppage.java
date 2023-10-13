@@ -142,7 +142,7 @@ public class signuppage extends AppCompatActivity {
                 caregiver.setName(name);
                 caregiver.setMobile_nr(number);
                 caregiver.setEmail(mail);
-                databaseReference.addValueEventListener(new ValueEventListener() {
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         databaseReference.child(uid).setValue(caregiver);

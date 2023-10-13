@@ -52,7 +52,6 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         notif_mngr = new AppNotificationManager(this);
         setContentView(R.layout.activity_mealmanagment);
@@ -61,6 +60,7 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
         setSupportActionBar(toolbar);
 
         setTitle(R.string.home);
+
 
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -84,8 +84,6 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
         if (item.getItemId() == R.id.nav_home) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
             setTitle(R.string.home);
-
-
         } else if (item.getItemId() == R.id.nav_meal_managment) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentMealmanagment()).commit();
             setTitle(R.string.meal_managment);
@@ -98,7 +96,6 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
             mAuth.signOut();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
-
         } else if (item.getItemId() == R.id.nav_callus) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentCallus()).commit();
             setTitle(R.string.call_us);
@@ -138,10 +135,10 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
     }
 
     private void linkElderToCaregiver(String username) {
+        linkElderRef = FirebaseDatabase.getInstance().getReference();
         String UID = mAuth.getUid();
         Log.i("mAuth", UID);
         linkElderRef.child("Caregiver").child(UID).child("under_care").child(username).setValue(username);
         Toast.makeText(this, "Linked Elder to your account", Toast.LENGTH_SHORT).show();
-
     }
 }
