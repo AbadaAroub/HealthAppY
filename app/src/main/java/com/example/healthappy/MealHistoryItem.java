@@ -1,5 +1,7 @@
 package com.example.healthappy;
 
+import java.util.Collection;
+
 public class MealHistoryItem extends Meal{
     private String time_of_report;
     private boolean ate;

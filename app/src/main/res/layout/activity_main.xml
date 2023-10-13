@@ -1,93 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/welcome"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
-        android:gravity="center"
-        android:text="@string/welcome"
-        android:textColor="@color/blue"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/healthcare"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="60dp"
-        android:gravity="center"
-        android:text="@string/health_care"
-        android:textColor="@color/blue"
-        android:textSize="32dp"
-        android:textStyle="bold" />
-
-    <ImageView
-        android:id="@+id/page"
-        android:layout_width="wrap_content"
-        android:layout_height="390dp"
-        android:layout_marginTop="120dp"
-        android:src="@drawable/page1"
-
-        />
-
-    <Button
-        android:id="@+id/signupbtn"
-        android:layout_width="292dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/radiog"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/blue"
-        android:text="@string/signup" />
-
-    <Button
-        android:id="@+id/loginbtn"
-        android:layout_width="292dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/signupbtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/blue"
-        android:text="@string/login" />
-
-    <RadioGroup
-        android:id="@+id/radiog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/page"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/rb_swedish"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_weight="1"
-            android:padding="8dp"
-            android:text="@string/swedish" />
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
+            android:text="@string/welcome"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-        <RadioButton
-            android:id="@+id/rb_english"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/healthcare"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="60dp"
+            android:gravity="center"
+            android:text="@string/health_care"
+            android:textColor="@color/blue"
+            android:textSize="32sp"
+            android:textStyle="bold" />
 
-            android:padding="8dp"
-            android:text="@string/english" />
+        <ImageView
+            android:id="@+id/page"
+            android:layout_width="wrap_content"
+            android:layout_height="390dp"
+            android:layout_marginTop="120dp"
+            android:src="@drawable/page1"
+            android:importantForAccessibility="no"
+            android:layout_centerHorizontal="true"/>
 
-    </RadioGroup>
+        <Button
+            android:id="@+id/signupbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radiog"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/blue"
+            android:text="@string/signup"
+            android:textColor="@color/white"
+            android:minWidth="292dp"/>
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/loginbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/signupbtn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/blue"
+            android:text="@string/login"
+            android:textColor="@color/white"
+            android:minWidth="292dp"/>
+
+        <RadioGroup
+            android:id="@+id/radiog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/page"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:minWidth="411dp">
+
+            <RadioButton
+                android:id="@+id/rb_swedish"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="@string/swedish" />
+
+            <RadioButton
+                android:id="@+id/rb_english"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:padding="8dp"
+                android:text="@string/english" />
+
+        </RadioGroup>
+
+    </RelativeLayout>
+</ScrollView>

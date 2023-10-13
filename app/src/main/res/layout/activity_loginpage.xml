@@ -1,80 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".loginpage">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="400dp"
-        android:src="@drawable/loginphoto"
-        android:id="@+id/logphoto"
-        />
-
-    <EditText
-        android:id="@+id/email1"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/logphoto"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/blue"
-        android:drawableLeft="@drawable/baseline_email_24"
-        android:drawablePadding="20dp"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
-        android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        tools:context=".loginpage">
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/email1"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/blue"
-        android:drawableLeft="@drawable/baseline_lock_24"
-        android:drawablePadding="20dp"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            android:src="@drawable/loginphoto"
+            android:id="@+id/logphoto"
+            android:importantForAccessibility="no"
+            android:layout_centerHorizontal="true"/>
 
-    <CheckBox
-        android:id="@+id/rememberme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/password"
-        android:text="@string/remember"
-        android:textColor="@color/blue" />
+        <EditText
+            android:id="@+id/email1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logphoto"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/blue"
+            android:drawableStart="@drawable/baseline_email_24"
+            android:drawablePadding="20dp"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:padding="20dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:autofillHints="emailAddress"
+            android:layout_centerHorizontal="true"
+            android:minWidth="480dp"/>
 
-    <Button
-        android:id="@+id/loginbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rememberme"
-        android:layout_centerHorizontal="true"
-        android:text="@string/login" />
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/email1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:autofillHints="password"
+            android:background="@color/blue"
+            android:drawableStart="@drawable/baseline_lock_24"
+            android:drawablePadding="20dp"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:padding="20dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:minWidth="480dp"/>
 
-    <TextView
-        android:id="@+id/forgotpass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/loginbutton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/password_forgot"
-        android:textColor="@color/blue" />
-</RelativeLayout>
+        <CheckBox
+            android:id="@+id/rememberme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/password"
+            android:text="@string/remember"
+            android:textColor="@color/blue" />
+
+        <Button
+            android:id="@+id/loginbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rememberme"
+            android:layout_centerHorizontal="true"
+            android:text="@string/login"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/forgotpass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loginbutton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/password_forgot"
+            android:textColor="@color/blue" />
+    </RelativeLayout>
+</ScrollView>

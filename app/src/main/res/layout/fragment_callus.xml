@@ -1,67 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
-
-    <ImageView
-        android:id="@+id/Abada_info"
-        android:layout_width="wrap_content"
-        android:layout_height="262dp"
-        android:src="@drawable/phone" />
-
-    <TextView
-        android:id="@+id/phonenum"
-        android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Abada_info"
-        android:layout_centerHorizontal="true"
-        android:text="@string/phone_number"
-        android:textColor="@color/black"
-        android:textSize="30dp"
-        android:textStyle="bold" />
+        android:background="@color/white">
 
-    <TextView
-        android:id="@+id/phonenumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/phonenum"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:text="+46721267591"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
+        <ImageView
+            android:id="@+id/Abada_info"
+            android:layout_width="wrap_content"
+            android:layout_height="262dp"
+            android:layout_centerHorizontal="true"
+            android:importantForAccessibility="no"
+            android:src="@drawable/phone"
+            tools:ignore="ImageContrastCheck" />
 
-    <TextView
-        android:id="@+id/line"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/phonenumber"
-        android:layout_centerHorizontal="true"
-        android:text="----------------------------------------------"
-        android:textColor="@color/black"
-        android:textSize="30dp" />
+        <TextView
+            android:id="@+id/phonenum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Abada_info"
+            android:layout_centerHorizontal="true"
+            android:text="@string/phone_number"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/emenum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/line"
-        android:layout_centerHorizontal="true"
-        android:text="@string/emergency_number"
-        android:textColor="@color/red"
-        android:textSize="30dp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/phonenumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phonenum"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="+46721267591"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/emenum"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:text="+46721267565"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
+        <TextView
+            android:id="@+id/line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phonenumber"
+            android:layout_centerHorizontal="true"
+            android:text="----------------------------------------------"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/emenum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line"
+            android:layout_centerHorizontal="true"
+            android:text="@string/emergency_number"
+            android:textColor="@color/red"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/emenum"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="+46721267565"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

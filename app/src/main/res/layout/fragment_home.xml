@@ -1,45 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
-
-
-    <ImageView
-        android:id="@+id/foodphoto"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:src="@drawable/elderlycarefood"/>
-    <TextView
-        android:id="@+id/help"
+    android:layout_height="match_parent">
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/foodphoto"
-        android:layout_marginTop="30dp"
-        android:text="@string/helping_you_to_take_good_care_of_your_elderly"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        />
-    <TextView
-        android:id="@+id/undertext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/help"
-        android:text="@string/all_the_elderly_deserves_some_care_and_love"
-        android:textColor="@color/gray"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold"/>
-    <Button
-        android:id="@+id/getstardetbtn"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/undertext"
-        android:text="@string/get_started"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
-        android:background="@drawable/bg_calen"/>
+        android:background="@color/white">
 
-</RelativeLayout>
+
+        <ImageView
+            android:id="@+id/foodphoto"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:src="@drawable/elderlycarefood"
+            android:importantForAccessibility="no" />
+        <TextView
+            android:id="@+id/help"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/foodphoto"
+            android:layout_marginTop="30dp"
+            android:text="@string/helping_you_to_take_good_care_of_your_elderly"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/undertext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/help"
+            android:text="@string/all_the_elderly_deserves_some_care_and_love"
+            android:textColor="@color/gray"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"/>
+        <Button
+            android:id="@+id/getstardetbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/undertext"
+            android:text="@string/get_started"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/bg_calen"
+            android:textColor="@color/white"
+            android:minWidth="150dp"/>
+
+    </RelativeLayout>
+</ScrollView>

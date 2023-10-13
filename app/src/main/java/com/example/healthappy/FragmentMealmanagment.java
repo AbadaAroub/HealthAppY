@@ -44,8 +44,6 @@ public class FragmentMealmanagment extends Fragment {
     String[] mealItems = {"Breakfast", "Lunch", "Dinner", "Snack"};
     Resources resources;
     AutoCompleteTextView actvMealDropdown, actvElderDropdown;
-    TextView date;
-    Toolbar toolbar;
     ArrayAdapter<String> adapterItems, adapterUids;
     //Datebase
     DatabaseReference rootRef;
@@ -117,7 +115,7 @@ public class FragmentMealmanagment extends Fragment {
     }
 
     private void addMealToElder(String username, String date, String time, String meal, String comment){
-        mealType type = convertStringToMeal(meal);
+        mealType type = convertStringToMeal(meal); //add support for swedish strings
         Meal mealNew = new Meal(type, time, date, comment);
         DatabaseReference elderMealRef = FirebaseDatabase.getInstance().getReference().child("Elder").child(username).child("Meals");
 
@@ -157,9 +155,8 @@ public class FragmentMealmanagment extends Fragment {
         }, year, month, day);
 
         // Add OK and Cancel buttons
-        datePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE, "OK", datePickerDialog);
-        datePickerDialog.setButton(DatePickerDialog.BUTTON_NEGATIVE, "Cancel", datePickerDialog);
-
+        datePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE, getString(R.string.ok), datePickerDialog);
+        datePickerDialog.setButton(DatePickerDialog.BUTTON_NEGATIVE, getString(R.string.cancel), datePickerDialog);
 
         datePickerDialog.show();
     }
@@ -178,8 +175,8 @@ public class FragmentMealmanagment extends Fragment {
         }, hour, minute, true);
 
         // Add OK and Cancel buttons
-        timePickerDialog.setButton(TimePickerDialog.BUTTON_POSITIVE, "OK", timePickerDialog);
-        timePickerDialog.setButton(TimePickerDialog.BUTTON_NEGATIVE, "Cancel", timePickerDialog);
+        timePickerDialog.setButton(TimePickerDialog.BUTTON_POSITIVE, getString(R.string.ok), timePickerDialog);
+        timePickerDialog.setButton(TimePickerDialog.BUTTON_NEGATIVE, getString(R.string.cancel), timePickerDialog);
 
         timePickerDialog.show();
     }

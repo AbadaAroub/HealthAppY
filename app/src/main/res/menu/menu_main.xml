@@ -13,6 +13,10 @@
             android:id="@+id/nav_meal_managment"
             android:icon="@drawable/baseline_fastfood_24"
             android:title="@string/meal_managment" />
+        <item
+            android:title="@string/meal_history"
+            android:icon="@drawable/baseline_person_outline_24"
+            android:id="@+id/meal_history"/>
 
     </group>
     <item android:title="@string/profile">
@@ -54,7 +58,7 @@
         </menu>
 
     </item>
-    <item android:title="About the app">
+    <item android:title="@string/about">
         <menu>
             <group android:checkableBehavior="single">
                 <item
