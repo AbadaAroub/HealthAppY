@@ -78,6 +78,10 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
         }
         linkElderRef = FirebaseDatabase.getInstance().getReference();
         rootRef = FirebaseDatabase.getInstance().getReference();
+
+        // FOREGROUND_SERVICE
+        Intent serviceIntent = new Intent(this, ForegroundService.class);
+        startService(serviceIntent);
     }
 
     @Override
