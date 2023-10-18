@@ -81,6 +81,7 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
 
         // FOREGROUND_SERVICE
         Intent serviceIntent = new Intent(this, ForegroundService.class);
+        Bundle b = new Bundle();
         startService(serviceIntent);
     }
 
