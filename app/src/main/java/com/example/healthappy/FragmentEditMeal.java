@@ -88,7 +88,7 @@ public class FragmentEditMeal extends Fragment {
         DatabaseReference userMealsRef = FirebaseDatabase.getInstance().getReference()
                 .child("Elder").child(selected).child("Meals");
 
-        userMealsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        userMealsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<String> dateKeys = new ArrayList<String>();

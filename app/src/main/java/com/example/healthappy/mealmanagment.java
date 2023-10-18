@@ -154,7 +154,7 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
     private void removeMealFromDB(String username, String date, String time){
         DatabaseReference elderRef = FirebaseDatabase.getInstance().getReference().child("Elder");
         Log.i("mm.removemeal", "Trying to remove " + username + " " + date + " " + time);
-        elderRef.child(username).child(date).child(time).removeValue();
+        elderRef.child(username).child("Meals").child(date).child(time).removeValue();
     }
     private void addMealToElder(String username, String date, String time, String meal, String comment){
         mealType type;
