@@ -1,23 +1,38 @@
 package com.example.healthappy;
 
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TimePicker;
+
+import java.util.Calendar;
 import java.util.List;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MealAdapter extends RecyclerView.Adapter<MealHolder> {
+public class MealAdapter extends RecyclerView.Adapter<MealHolder> implements MealEditDialog.MealEditDialogListener{
 
     Context context;
     List<Meal> meals;
+    private FragmentManager fragmentManager;
+    private String user;
 
-    public MealAdapter(Context context, List<Meal> meals) {
+    public MealAdapter(Context context, List<Meal> meals, FragmentManager fragmentManager, String user) {
         this.meals = meals;
         this.context = context;
+        this.fragmentManager = fragmentManager;
+        this.user = user;
     }
 
     @NonNull
@@ -42,13 +57,9 @@ public class MealAdapter extends RecyclerView.Adapter<MealHolder> {
             @Override
             public void onClick(View view) {
                 // Create and show a dialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Meal Details");
-                builder.setMessage("Date: " + date + "\nTime: " + time + "\nMeal: " + meal + "\nComment: " + comment);
-                builder.setPositiveButton("OK", null); // No action needed for the OK button
-                builder.setNegativeButton("CANCEL", null);
-                AlertDialog dialog = builder.create();
-                dialog.show();
+
+                MealEditDialog editDialog = new MealEditDialog(user, date, time, meal, comment);
+                editDialog.show(fragmentManager, "Meal Edit Dialog");
             }
         });
     }
@@ -56,5 +67,15 @@ public class MealAdapter extends RecyclerView.Adapter<MealHolder> {
     @Override
     public int getItemCount() {
         return meals.size();
+    }
+
+    @Override
+    public void editMeal(String user, String date, String time, String meal, String comment) {
+        Log.d("MealAdapter", "ran editMeal");
+    }
+
+    @Override
+    public void removeMeal(String user, String date, String time) {
+        Log.d("MealAdapter", "ran removeMeal");
     }
 }

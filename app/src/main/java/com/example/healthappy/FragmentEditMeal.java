@@ -36,7 +36,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public class FragmentEditMeal extends Fragment {
-    private Button btnSave, btnPickDate;
+    private Button btnSave /*, btnPickDate*/;
     AutoCompleteTextView actvElderDropdown;
     ArrayAdapter<String> adapterUsernames;
     ArrayList<Meal> listMeals;
@@ -55,28 +55,28 @@ public class FragmentEditMeal extends Fragment {
         adapterUsernames = new ArrayAdapter<String>(getActivity(), R.layout.list_item, listUsernames);
         actvElderDropdown.setAdapter(adapterUsernames);
 
-        btnPickDate = (Button) view.findViewById(R.id.btnDatePicker);
+        /* btnPickDate = (Button) view.findViewById(R.id.btnDatePicker); */
 
         rwMeals = view.findViewById(R.id.mealList);
         rwMeals.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        btnPickDate.setOnClickListener(new View.OnClickListener(){
+        /* btnPickDate.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 openDatePicker();
             }
-        });
+        }); */
 
         actvElderDropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String selected = actvElderDropdown.getAdapter().getItem(i).toString();
-                Log.d("selected:", selected);
-                getDatesOfMeals(selected, new DateKeysCallback() {
+                String selected_user = actvElderDropdown.getAdapter().getItem(i).toString();
+                Log.d("selected:", selected_user);
+                getDatesOfMeals(selected_user, new DateKeysCallback() {
                     @Override
                     public void onDateKeysCallback(ArrayList<String> list) {
-                        listMeals = getMealsOfElder(selected, list);
-                        rwMeals.setAdapter(new MealAdapter(getActivity(), listMeals));
+                        listMeals = getMealsOfElder(selected_user, list);
+                        rwMeals.setAdapter(new MealAdapter(getActivity(), listMeals, getActivity().getSupportFragmentManager(), selected_user));
                     }
                 });
             }
@@ -144,7 +144,7 @@ public class FragmentEditMeal extends Fragment {
         return list;
     }
 
-    private void openDatePicker() {
+    /*private void openDatePicker() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
@@ -164,7 +164,7 @@ public class FragmentEditMeal extends Fragment {
         datePickerDialog.setButton(DatePickerDialog.BUTTON_NEGATIVE, "Cancel", datePickerDialog);
 
         datePickerDialog.show();
-    }
+    }*/
 
     private ArrayList<String> get_usernames() {
         ArrayList<String> lists = new ArrayList<>();
