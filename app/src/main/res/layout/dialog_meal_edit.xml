@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:padding="50dp">
+
+    <Button
+        android:id="@+id/btnDialogDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="2023-01-01"
+        />
+    <Button
+        android:id="@+id/btnDialogTime"
+        android:layout_below="@+id/btnDialogDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="10:29"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/selectDialogMeal"
+        android:layout_below="@id/btnDialogTime"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="Select Meal">
+
+        <AutoCompleteTextView
+            android:id="@+id/meal_select_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <EditText
+            android:id="@+id/etDialogComment"
+            android:layout_below="@+id/selectDialogMeal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue"
+            android:textColor="@color/white"
+            android:padding="10dp"
+            android:hint="@string/add_meal_comment"
+            android:textColorHint="@color/lightgray"
+            />
+
+</RelativeLayout>

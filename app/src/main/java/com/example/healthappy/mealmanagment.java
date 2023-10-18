@@ -28,7 +28,7 @@ import com.google.firebase.ktx.Firebase;
 
 import java.util.List;
 
-public class mealmanagment extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ExampleDialog.ExampleDialogListener{
+public class mealmanagment extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ExampleDialog.ExampleDialogListener, MealEditDialog.MealEditDialogListener {
     AppNotificationManager notif_mngr;
     private DrawerLayout drawerLayout;
 
@@ -140,5 +140,50 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
         Log.i("mAuth", UID);
         linkElderRef.child("Caregiver").child(UID).child("under_care").child(username).setValue(username);
         Toast.makeText(this, "Linked Elder to your account", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void editMeal(String username, String date, String time, String meal, String comment) {
+        addMealToElder(username, date, time, meal, comment);
+    }
+
+    @Override
+    public void removeMeal(String username, String date, String time) {
+        removeMealFromDB(username, date, time);
+    }
+    private void removeMealFromDB(String username, String date, String time){
+        DatabaseReference elderRef = FirebaseDatabase.getInstance().getReference().child("Elder");
+        Log.i("mm.removemeal", "Trying to remove " + username + " " + date + " " + time);
+        elderRef.child(username).child("Meals").child(date).child(time).removeValue();
+    }
+    private void addMealToElder(String username, String date, String time, String meal, String comment){
+        mealType type;
+        if(meal.equalsIgnoreCase("Frukost") || meal.equalsIgnoreCase("Middag") || meal.equalsIgnoreCase("Mellanmål")){
+            type = convertSwedishStringToMeal(meal);
+        } else {
+            type = convertStringToMeal(meal);
+        }
+
+
+        //add support for swedish strings
+        Meal mealNew = new Meal(type, time, date, comment);
+        DatabaseReference elderMealRef = FirebaseDatabase.getInstance().getReference().child("Elder").child(username).child("Meals");
+
+        elderMealRef.child(date).child(time).setValue(mealNew);
+
+    }
+    public static mealType convertStringToMeal(String mealString){
+        try {
+            return mealType.valueOf(mealString.toLowerCase());
+        } catch (IllegalArgumentException e){
+            throw new IllegalArgumentException("Invalid meal string: " + mealString);
+        }
+    }
+
+    private mealType convertSwedishStringToMeal(String meal) {
+        if(meal.equalsIgnoreCase("Frukost")){ return mealType.breakfast; }
+        else if(meal.equalsIgnoreCase("Middag")){ return mealType.dinner; }
+        else if(meal.equalsIgnoreCase("Mellanmål")){ return mealType.snack; }
+        return mealType.lunch;
     }
 }
