@@ -96,10 +96,16 @@ public class MealEditDialog extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (changesNeedsRemoval()) { //Remove old data node
                             listener.removeMeal(user, date, time);
-                        }//Edit or add node with updated info
-                        listener.editMeal(user, date, time,
-                                String.valueOf(actvMealDropdown.getText()),
-                                String.valueOf(etDialogComment.getText()));
+                            listener.editMeal(user,
+                                    String.valueOf(btnDialogDate.getText()),
+                                    String.valueOf(btnDialogTime.getText()),
+                                    String.valueOf(actvMealDropdown.getText()),
+                                    String.valueOf(etDialogComment.getText()));
+                        } else {//Edit or add node with updated info
+                            listener.editMeal(user, date, time,
+                                    String.valueOf(actvMealDropdown.getText()),
+                                    String.valueOf(etDialogComment.getText()));
+                        }
                     }
                 });
 
@@ -107,7 +113,7 @@ public class MealEditDialog extends AppCompatDialogFragment {
     }
 
     private boolean changesNeedsRemoval() {
-        if (date.equalsIgnoreCase(btnDialogDate.getText().toString()) || time.equalsIgnoreCase(btnDialogTime.getText().toString())) {
+        if (!date.equalsIgnoreCase(String.valueOf(btnDialogDate.getText())) || !time.equalsIgnoreCase(String.valueOf(btnDialogTime.getText()))) {
             return true;
         }
         return false;
