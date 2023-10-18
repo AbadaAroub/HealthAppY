@@ -10,6 +10,8 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -92,10 +94,21 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentProfilesettings()).commit();
             setTitle(R.string.profile_settings);
         } else if (item.getItemId() == R.id.nav_logout) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentLogout()).commit();
-            mAuth.signOut();
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            finish();
+            AlertDialog.Builder builder = new AlertDialog.Builder(mealmanagment.this);
+            builder.setMessage(R.string.do_you_want_to_log_out);
+            builder.setTitle(R.string.log_out);
+            builder.setCancelable(true);
+            builder.setPositiveButton(R.string.ok, (DialogInterface.OnClickListener) (dialog, which) -> {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentLogout()).commit();
+                mAuth.signOut();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
+            });
+            builder.setNegativeButton(R.string.cancel, (DialogInterface.OnClickListener) (dialog, which) -> {
+                dialog.cancel();
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
         } else if (item.getItemId() == R.id.nav_callus) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentCallus()).commit();
             setTitle(R.string.call_us);
