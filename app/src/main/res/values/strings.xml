@@ -100,6 +100,8 @@
     <string name="your_name">Your name:</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+    <string name="do_you_want_to_log_out">Do you want to log out?</string>
+    <string name="edit_a_meal">Edit a meal</string>
     <string-array name="meals">
         <item>Breakfast</item>
         <item>Lunch</item>

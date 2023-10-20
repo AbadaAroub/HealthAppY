@@ -96,11 +96,13 @@
     <string name="your_number">Ditt nummer:</string>
     <string name="your_password">Ditt lösenord:</string>
     <string name="save_changes">Spara ändringar</string>
-    <string name="settings">inställningar</string>
+    <string name="settings">Inställningar</string>
     <string name="elderly_signup">Gamlings registrering</string>
     <string name="your_name">Your name:</string>
     <string name="ok">OK</string>
     <string name="cancel">Avbryt</string>
+    <string name="do_you_want_to_log_out">Vill du logga ut?</string>
+    <string name="edit_a_meal">Redigera måltid</string>
     <string-array name="meals">
         <item>Frukost</item>
         <item>Lunch</item>
