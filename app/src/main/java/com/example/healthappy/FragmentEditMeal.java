@@ -144,28 +144,6 @@ public class FragmentEditMeal extends Fragment {
         return list;
     }
 
-    /*private void openDatePicker() {
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-        DatePickerDialog datePickerDialog = new DatePickerDialog(requireContext(), R.style.DialogTheme, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                // Showing the picked date value in the Button
-                String date = String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(day);
-                btnPickDate.setText(date);
-            }
-        }, year, month, day);
-
-        // Add OK and Cancel buttons
-        datePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE, "OK", datePickerDialog);
-        datePickerDialog.setButton(DatePickerDialog.BUTTON_NEGATIVE, "Cancel", datePickerDialog);
-
-        datePickerDialog.show();
-    }*/
-
     private ArrayList<String> get_usernames() {
         ArrayList<String> lists = new ArrayList<>();
         rootRef = FirebaseDatabase.getInstance().getReference().child("Caregiver").child(mAuth.getUid()).child("under_care");

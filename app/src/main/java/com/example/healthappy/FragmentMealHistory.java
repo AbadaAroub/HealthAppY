@@ -129,7 +129,8 @@ public class FragmentMealHistory extends Fragment {
 
                     // Setting type of meal
                     TextView type = (TextView) p.findViewById(R.id.history_item_root_info_type);
-                    switch (d_meal.child("type").getValue(int.class)) {
+                    type.setText(String.valueOf(d_meal.child("type").getValue()));
+                    /*switch (d_meal.child("type").getValue(int.class)) {
                         case 0: //BREAKFAST
                             type.setText("Breakfast");
                             break;
@@ -142,7 +143,7 @@ public class FragmentMealHistory extends Fragment {
                         case 3: //SNACK
                             type.setText("Snack");
                             break;
-                    }
+                    }*/
 
                     ((TextView)p.findViewById(R.id.history_item_root_info_desc)).setText(d_meal.child("description").getValue(String.class));
 
