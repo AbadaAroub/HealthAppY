@@ -6,11 +6,16 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -149,5 +154,33 @@ public class mealmanagment extends AppCompatActivity implements NavigationView.O
         linkElderRef.child("Caregiver").child(UID).child("under_care").child(username).setValue(username);
         Toast.makeText(this, "Linked Elder to your account", Toast.LENGTH_SHORT).show();
 
+    }
+
+    //NOTIFICATIONPART
+    private void requestNotificationPermissions() {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_DENIED)
+        {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.POST_NOTIFICATIONS)) {
+                new AlertDialog.Builder(this)
+                        .setIcon(R.drawable.elderly)
+                        .setTitle(R.string.permission_request)
+                        .setMessage(R.string.notif_post_perm)
+                        .setPositiveButton(R.string.perm_accept, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ActivityCompat.requestPermissions(mealmanagment.this, new String[] {android.Manifest.permission.POST_NOTIFICATIONS}, AppNotificationManager.NOTIFICATION_POST_CODE);
+                            }
+                        })
+                        .setNegativeButton(R.string.perm_deny, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .create().show();
+            } else {
+                ActivityCompat.requestPermissions(this, new String[] {android.Manifest.permission.POST_NOTIFICATIONS}, AppNotificationManager.NOTIFICATION_POST_CODE);
+            }
+        }
     }
 }

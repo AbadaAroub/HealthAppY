@@ -1,9 +1,11 @@
 package com.example.healthappy;
 
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.icu.util.Calendar;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -17,22 +19,22 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 
 public class ForegroundService extends Service {
     private static final String TAG = "FOREGROUND_SERVICE";
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private static final SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     public static final int work_delay = 30000;
     private FirebaseAuth mAuth;
     private FirebaseDatabase db;
     private Thread the_service_thread;
     private boolean thread_may_run = true;
+    private AppNotificationManager notif_manager;
     private long time_stamp = System.currentTimeMillis();
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -43,6 +45,7 @@ public class ForegroundService extends Service {
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance();
+        notif_manager = new AppNotificationManager(this);
 
         Notification notification = new NotificationCompat.Builder(this, App.channel_medium_id)
                 .setContentTitle("FOREGROUND_SERVICE")
@@ -97,10 +100,8 @@ public class ForegroundService extends Service {
             @Override
             public void onDataChange(@NonNull DataSnapshot under_care) {
                 for (DataSnapshot elder : under_care.getChildren()) {
-                    Log.d(TAG, String.format("check_45_minute: Checking for meals missed... %s", elder.getKey()));
                     String e_username = elder.getKey();
-                    if (has_uneaten_meal_45(e_username)) {
-                    }
+                    manage_uneaten(e_username);
                 }
             }
 
@@ -111,13 +112,47 @@ public class ForegroundService extends Service {
         });
     }
 
-    private boolean has_uneaten_meal_45(String username) {
+    public void print_meal(DataSnapshot meal) {
+        String date = meal.child("date").getValue(String.class);
+        String type = meal.child("type").getValue(String.class);
+        String time = meal.child("time_of_day").getValue(String.class);
+        String comment = meal.child("comment").getValue(String.class);
 
-        DatabaseReference ref = db.getReference(String.format("Elder/%s/Meals/%s", username, dateFormat.format(Date.from(Instant.now()))));
+        Log.d(TAG, String.format("Meal______%s_______\nTime:\t%20s\nType:\t%20s\nComment:\t%s\nMintues since meal: %d", date, time, type,comment, minutes_since_meal(meal)));
+    }
+
+
+    private long minutes_since_meal(DataSnapshot meal) {
+        try {
+            long diff = System.currentTimeMillis() - dateTimeFormat
+                    .parse(meal.child("date").getValue(String.class)+" "+meal.child("time_of_day").getValue(String.class))
+                    .getTime();
+            return diff/60000L;
+        } catch (ParseException e) {
+            Log.e(TAG, "minutes_since_meal: ", e);
+            return -1L;
+        }
+    }
+
+
+
+
+    private void manage_uneaten(String username) {
+        String date = dateFormat.format(Calendar.getInstance().getTimeInMillis());
+        Log.d(TAG, String.format("has_uneaten_meal_45: Elder/%s/Meals/%s", username, date));
+        DatabaseReference ref = db.getReference(String.format("Elder/%s/Meals/%s", username, date));
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                
+            public void onDataChange(@NonNull DataSnapshot meals_today) {
+                for (DataSnapshot meal : meals_today.getChildren()) {
+                    print_meal(meal);
+
+                    long time_minutes = minutes_since_meal(meal);
+                    if (time_minutes >= 60L) {
+                        notif_manager.high_notif(0, "Missed Meal!", String.format("%s has missed a meal!", username));
+
+                    }
+                }
             }
 
             @Override
@@ -125,6 +160,5 @@ public class ForegroundService extends Service {
                 Log.e(TAG, "has_uneaten_meal_45: ", error.toException());
             }
         });
-        return false;
     }
 }
