@@ -98,7 +98,7 @@
     <string name="save_changes">Spara ändringar</string>
     <string name="settings">inställningar</string>
     <string name="elderly_signup">Gamlings registrering</string>
-    <string name="your_name">Your name:</string>
+    <string name="your_name">Ditt namn:</string>
     <string name="ok">OK</string>
     <string name="cancel">Avbryt</string>
     <string-array name="meals">
@@ -120,5 +120,9 @@
 
     <!-- FragmentMealHistory -->
     <string name="select_elderly">Välj Patient</string>
+    <string name="edit_dialog_title">Ändra måltid\n</string>
+    <string name="remove_meal_button">TA BORT</string>
+    <string name="dialog_cancel">AVBRYT</string>
+    <string name="dialog_ok">OK</string>
 
 </resources>

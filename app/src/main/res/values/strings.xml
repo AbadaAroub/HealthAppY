@@ -121,5 +121,9 @@
 
     <!-- FragmentMealHistory -->
     <string name="select_elderly">Select Elderly</string>
+    <string name="edit_dialog_title">Edit Meal\n</string>
+    <string name="remove_meal_button">REMOVE</string>
+    <string name="dialog_cancel">CANCEL</string>
+    <string name="dialog_ok">OK</string>
 
 </resources>

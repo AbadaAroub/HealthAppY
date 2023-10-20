@@ -80,8 +80,8 @@ public class MealEditDialog extends AppCompatDialogFragment {
         });
 
         builder.setView(view)
-                .setTitle("Edit Meal")
-                .setNeutralButton("REMOVE MEAL", new DialogInterface.OnClickListener() {
+                .setTitle(R.string.edit_dialog_title)
+                .setNeutralButton(R.string.remove_meal_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("MealEditDialog ", "Remove Meal!");
@@ -90,8 +90,8 @@ public class MealEditDialog extends AppCompatDialogFragment {
                     }
                 })
 
-                .setNegativeButton("CANCEL", null)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.dialog_cancel, null)
+                .setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (changesNeedsRemoval()) { //Remove old data node
