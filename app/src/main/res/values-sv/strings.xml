@@ -123,4 +123,15 @@
     <!-- FragmentMealHistory -->
     <string name="select_elderly">Välj Patient</string>
 
+
+    <!-- Service Notification stuff -->
+    <string name="missed_meal">Utebliven Måltid</string>
+    <string name="missed_meal_info">har inte ätit!</string>
+    <string name="crit_meal_alert">Kritisk Måltidpåminnelse!</string>
+    <string name="crit_meal_alert_info">är påväg att missa sin måltid!</string>
+    <string name="medium_meal_alert">Måltidspåminnelse</string>
+    <string name="medium_meal_alert_info">är sen till maten.</string>
+    <string name="early_meal_alert">Måltidspåminnelse</string>
+    <string name="early_meal_alert_info"></string>
+
 </resources>

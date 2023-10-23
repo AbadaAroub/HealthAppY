@@ -122,30 +122,19 @@ public class FragmentMealHistory extends Fragment {
 
                     // Setting check mark or cross mark
                     ImageView check = (ImageView) p.findViewById(R.id.history_item_root_when_ate);
-                    if (d_meal.child("ate").getValue(boolean.class))
-                        check.setImageResource(R.drawable.checkmark);
-                    else
-                        check.setImageResource(R.drawable.crossmark);
-
+                    if (d_meal.hasChild("ate")) {
+                        if (d_meal.child("ate").getValue(boolean.class))
+                            check.setImageResource(R.drawable.checkmark);
+                        else
+                            check.setImageResource(R.drawable.crossmark);
+                    }
                     // Setting type of meal
                     TextView type = (TextView) p.findViewById(R.id.history_item_root_info_type);
-                    type.setText(String.valueOf(d_meal.child("type").getValue()));
-                    /*switch (d_meal.child("type").getValue(int.class)) {
-                        case 0: //BREAKFAST
-                            type.setText("Breakfast");
-                            break;
-                        case 1: //LUNCH
-                            type.setText("Lunch");
-                            break;
-                        case 2: //DINNER
-                            type.setText("Dinner");
-                            break;
-                        case 3: //SNACK
-                            type.setText("Snack");
-                            break;
-                    }*/
+                  
+                    type.setText(d_meal.child("type").getValue(String.class));
 
-                    ((TextView)p.findViewById(R.id.history_item_root_info_desc)).setText(d_meal.child("description").getValue(String.class));
+
+                    ((TextView)p.findViewById(R.id.history_item_root_info_desc)).setText(d_meal.child("comment").getValue(String.class));
 
                     layout.addView(p);
                 }
