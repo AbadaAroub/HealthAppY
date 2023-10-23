@@ -1,7 +1,6 @@
 package com.example.healthappy;
 
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
@@ -19,11 +18,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Locale;
+import java.time.format.DateTimeFormatter;
 
+enum warnings {
+    MISSED,
+    CRITICAL,
+    MEDIUM,
+    EARLY
+}
 
 public class ForegroundService extends Service {
     private static final String TAG = "FOREGROUND_SERVICE";
@@ -76,11 +80,13 @@ public class ForegroundService extends Service {
             @Override
             public void run() {
                 while (thread_may_run){
-                    do_work();
-                    try {
-                        Thread.sleep(work_delay);
-                    } catch (InterruptedException e) {
-                        Log.e(TAG, "ForegroundService.start_service: ", e);
+                    if (mAuth.getCurrentUser() != null) {
+                        do_work();
+                        try {
+                            Thread.sleep(work_delay);
+                        } catch (InterruptedException e) {
+                            Log.e(TAG, "ForegroundService.start_service: ", e);
+                        }
                     }
                 }
             }
@@ -99,9 +105,9 @@ public class ForegroundService extends Service {
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot under_care) {
+                int eld = 0;
                 for (DataSnapshot elder : under_care.getChildren()) {
-                    String e_username = elder.getKey();
-                    manage_uneaten(e_username);
+                    manage_uneaten(elder, eld++);
                 }
             }
 
@@ -137,21 +143,36 @@ public class ForegroundService extends Service {
 
 
 
-    private void manage_uneaten(String username) {
+    private void manage_uneaten(DataSnapshot elder, int eld) {
         String date = dateFormat.format(Calendar.getInstance().getTimeInMillis());
-        Log.d(TAG, String.format("has_uneaten_meal_45: Elder/%s/Meals/%s", username, date));
-        DatabaseReference ref = db.getReference(String.format("Elder/%s/Meals/%s", username, date));
+        Log.d(TAG, String.format("has_uneaten_meal_45: Elder/%s/Meals/%s", elder.getKey(), date));
+        DatabaseReference ref = db.getReference(String.format("Elder/%s/Meals/%s", elder.getKey(), date));
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot meals_today) {
                 for (DataSnapshot meal : meals_today.getChildren()) {
-                    print_meal(meal);
-
+                    warnings w = meal.child("c_warn_stat").getValue(warnings.class);
                     long time_minutes = minutes_since_meal(meal);
-                    if (time_minutes >= 60L) {
-                        notif_manager.high_notif(0, "Missed Meal!", String.format("%s has missed a meal!", username));
+                    if (time_minutes >= 60) {
+                        if (w != warnings.MISSED) {
+                            Log.d(TAG, "manage_uneaten: " + getString(R.string.missed_meal) + elder.child("name").getValue(String.class) + getString(R.string.missed_meal_info));
+                            notif_manager.high_notif(eld, getString(R.string.missed_meal), elder.child("name").getValue(String.class) + getString(R.string.missed_meal_info));
 
+                            meal.getRef().child("c_warn_stat").setValue(warnings.MISSED);
+                            DatabaseReference history_ref = db.getReference(String.format("Elder/%s/meal_history", elder.getKey())).push();
+                            history_ref.setValue(meal.getValue(Meal.class));
+                            history_ref.child("time_of_report").setValue(
+                                    new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTimeInMillis())
+                            );
+                            history_ref.child("ate").setValue(false);
+
+                        }
+                    } else if (time_minutes >= 45) {
+                        if (w != warnings.CRITICAL){
+                            notif_manager.high_notif(eld, getString(R.string.crit_meal_alert), elder.child("name").getValue(String.class)+getString(R.string.crit_meal_alert_info));
+                        }
                     }
+
                 }
             }
 

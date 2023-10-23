@@ -110,4 +110,16 @@
     <!-- FragmentMealHistory -->
     <string name="select_elderly">Select Elderly</string>
 
+    <!-- Service Notification stuff -->
+    <string name="missed_meal">Missed Meal!</string>
+    <string name="missed_meal_info">missed their meal!</string>
+    <string name="crit_meal_alert">Critical Meal Alert!</string>
+    <string name="crit_meal_alert_info">is about to miss their meal!</string>
+    <string name="medium_meal_alert">Meal Alert</string>
+    <string name="medium_meal_alert_info">is late to their meal.</string>
+    <string name="early_meal_alert">Meal Reminder</string>
+    <string name="early_meal_alert_info">is due for their meal.</string>
+
+
+
 </resources>
