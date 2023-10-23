@@ -140,7 +140,7 @@
                 android:textColor="@color/white"
                 android:drawableEnd="@drawable/edit_fill0_wght400"
                 android:drawableTint="@color/white"
-                android:backgroundTint="@color/gray2"
+                android:backgroundTint="@color/gray"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="60dp"
                 android:layout_marginEnd="40dp"

@@ -22,7 +22,7 @@
 
     <style name="DialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog">
         <item name="colorAccent">@color/blue</item>
-        <item name="android:backgroundTint">@color/gray</item>
+        <item name="android:backgroundTint">@color/lightgray</item>
         <item name="android:buttonBarStyle">@color/red</item>
         <item name="android:textColor">@color/white</item>
     </style>

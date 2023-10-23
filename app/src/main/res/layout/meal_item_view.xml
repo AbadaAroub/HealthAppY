@@ -18,6 +18,7 @@
         android:text="2023-10-11"
         android:textSize="20dp"
         android:textStyle="bold"
+        android:textColor="@color/darkgray"
         />
     <TextView
         android:id="@+id/tvItemTime"
@@ -29,6 +30,7 @@
         android:layout_toRightOf="@+id/tvItemDate"
         android:layout_alignBaseline="@+id/tvItemDate"
         android:textSize="20dp"
+        android:textColor="@color/darkgray"
         />
     <TextView
         android:id="@+id/tvItemMeal"
@@ -40,6 +42,7 @@
         android:layout_toRightOf="@+id/tvItemTime"
         android:layout_centerInParent="true"
         android:textSize="20dp"
+        android:textColor="@color/darkgray"
         />
     <TextView
         android:id="@+id/tvItemComment"
@@ -48,6 +51,7 @@
         android:text="Comment"
         android:textStyle="italic"
         android:layout_below="@+id/tvItemDate"
+        android:textColor="@color/darkgray"
         />
 
 
