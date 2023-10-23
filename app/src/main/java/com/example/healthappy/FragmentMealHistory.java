@@ -130,7 +130,9 @@ public class FragmentMealHistory extends Fragment {
                     }
                     // Setting type of meal
                     TextView type = (TextView) p.findViewById(R.id.history_item_root_info_type);
+                  
                     type.setText(d_meal.child("type").getValue(String.class));
+
 
                     ((TextView)p.findViewById(R.id.history_item_root_info_desc)).setText(d_meal.child("comment").getValue(String.class));
 

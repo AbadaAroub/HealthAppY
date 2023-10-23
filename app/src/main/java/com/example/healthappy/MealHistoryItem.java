@@ -11,6 +11,19 @@ public class MealHistoryItem extends Meal{
         this.ate = ate;
 
     }
+    public void setTime_of_report(String time_of_report) {
+        this.time_of_report = time_of_report;
+    }
 
+    public String getTime_of_report() {
+        return time_of_report;
+    }
 
+    public void setAte(boolean ate) {
+        this.ate = ate;
+    }
+
+    public boolean isAte() {
+        return ate;
+    }
 }

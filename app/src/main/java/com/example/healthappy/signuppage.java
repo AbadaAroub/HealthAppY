@@ -42,6 +42,7 @@ public class signuppage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signuppage);
+
         //User input fields
         editTextEmail = findViewById(R.id.email);
         editTextPassword = findViewById(R.id.signuppass);
@@ -141,7 +142,7 @@ public class signuppage extends AppCompatActivity {
                 caregiver.setName(name);
                 caregiver.setMobile_nr(number);
                 caregiver.setEmail(mail);
-                databaseReference.addValueEventListener(new ValueEventListener() {
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         databaseReference.child(uid).setValue(caregiver);

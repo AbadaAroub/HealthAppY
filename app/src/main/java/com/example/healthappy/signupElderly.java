@@ -125,7 +125,7 @@ public class signupElderly extends AppCompatActivity {
         elderly.setAddress(address);
         String uid = mAuth.getCurrentUser().getUid();
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 databaseReference.child(uid).setValue(elderly);

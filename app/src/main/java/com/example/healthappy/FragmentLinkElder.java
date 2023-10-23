@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,6 +39,8 @@ public class FragmentLinkElder extends Fragment implements ExampleDialog.Example
 
         btnGetInfo = (Button) view.findViewById(R.id.linkbtn);
         etUsername = (EditText) view.findViewById(R.id.username);
+
+
         btnGetInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

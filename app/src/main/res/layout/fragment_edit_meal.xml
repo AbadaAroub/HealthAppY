@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentEditMeal"
+    >
+<RelativeLayout
+    android:id="@+id/head_items"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="40dp"
+    >
+    <TextView
+        android:id="@+id/tvEditMeal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit Meal"
+        android:textSize="30dp"
+        android:gravity="center"
+
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/select_elder_dropdown"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/tvEditMeal"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/select_elder">
+
+        <AutoCompleteTextView
+            android:id="@+id/elder_select_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/head_items"
+        android:background="@color/gray"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/head_items"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mealList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/head_items"
+
+            />
+
+    </ScrollView>
+
+
+</RelativeLayout>

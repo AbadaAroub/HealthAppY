@@ -47,6 +47,7 @@
     <string name="call_us">Ring oss</string>
     <string name="mail_us">Maila oss</string>
     <string name="select">Välj en måltid</string>
+
     <string name="enter_day">Skriv dag, t.ex: 2023/09/29</string>
     <string name="enter_time">Skriv tid, t.ex: 01:02</string>
     <string name="the_food_is">Maträtten är…</string>
@@ -69,8 +70,8 @@
     <string name="languages">Språk</string>
     <string name="select_language">Välj Språk</string>
     <string name="set_language_to">Satte språket till:</string>
+
     <string name="meal_history">Måltidshistorik</string>
-    
 
     <string name="_4_digit_pin">4-siffrig PIN</string>
     <string name="username">Användarnamn</string>
@@ -78,18 +79,30 @@
     <string name="enter_elder_username">Ange vårdtagares användarnamn</string>
     <string name="link_elder">Länka äldre</string>
     <string name="get_account_info">Hämta användarinformation</string>
+    <string name="plan_a_meal">Planera en måltid</string>
+    <string name="select_elder">Välj åldring</string>
+    <string name="about_the_app">Om appen</string>
     <string name="pick_date">Välj datum</string>
-    <string name="about">Om appen</string>
-    <string name="save_changes">Spara Ändringar</string>
-    <string name="your_password">Ditt Lösenord:</string>
+    <string name="pick_time">Välj tid</string>
+    <string name="add_meal_comment">Lägg till måltidskommentar...</string>
+    <string name="lol">Health Care är en banbrytande mobilapplikation utvecklad för att möta de specifika behoven för måltidshantering hos den äldre befolkningen. Vi inser att när vi åldras är det avgörande för vårt allmänna välbefinnande att upprätthålla en balanserad kost.</string>
+    <string name="lool">Health Care har utformats noggrant för att ge äldre befolkning den hjälp de behöver för att äta sina måltider effektivt, vilket säkerställer att de kan leda hälsosammare.</string>
+    <string name="helping_you_to_take_good_care_of_your_elderly">Hjälper dig att ta väl hand om dina äldre</string>
+    <string name="all_the_elderly_deserves_some_care_and_love">Alla äldre förtjänar lite omsorg och kärlek</string>
+    <string name="get_started">Komma igång</string>
+    <string name="change_your_basic_account_settings_here">Ändra dina grundläggande kontoinställningar här.</string>
+    <string name="your_username">Ditt användarnamn:</string>
+    <string name="your_email_adress">Din e-postadress:</string>
     <string name="your_number">Ditt nummer:</string>
-    <string name="your_email">Din emailadress:</string>
-    <string name="your_username">Ditt Användarnamn:</string>
-    <string name="basic_account_settings">Ändra grundläggande kontoinställningar här.</string>
+    <string name="your_password">Ditt lösenord:</string>
+    <string name="save_changes">Spara ändringar</string>
     <string name="settings">Inställningar</string>
-    <string name="about_text_1">Elder Care är en matdagbok som skapats och utvecklats av studenter från Karlstads universitet för att stödja personer med ätstörningar..</string>
-    <string name="about_text_2">Appen är avsedd att vara ett stöd för dig som genomgår behandling för en ätstörning och har kontakt med en behandlare..</string>
     <string name="elderly_signup">Gamlings registrering</string>
+    <string name="your_name">Your name:</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Avbryt</string>
+    <string name="do_you_want_to_log_out">Vill du logga ut?</string>
+    <string name="edit_a_meal">Redigera måltid</string>
     <string-array name="meals">
         <item>Frukost</item>
         <item>Lunch</item>
@@ -110,6 +123,7 @@
     <!-- FragmentMealHistory -->
     <string name="select_elderly">Välj Patient</string>
 
+
     <!-- Service Notification stuff -->
     <string name="missed_meal">Utebliven Måltid</string>
     <string name="missed_meal_info">har inte ätit!</string>
@@ -119,6 +133,5 @@
     <string name="medium_meal_alert_info">är sen till maten.</string>
     <string name="early_meal_alert">Måltidspåminnelse</string>
     <string name="early_meal_alert_info"></string>
-
 
 </resources>

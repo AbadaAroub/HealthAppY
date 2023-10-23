@@ -1,7 +1,7 @@
 package com.example.healthappy;
 
 
-import static com.example.healthappy.R.layout.fragment_mealmanagment;
+
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -17,14 +17,14 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-import android.widget.Toolbar;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,14 +37,13 @@ import java.util.Calendar;
 
 
 public class FragmentMealmanagment extends Fragment {
-    private Button btnSave, btnPickDate, btnPickTime;
+    private Button btnSave, btnPickDate, btnPickTime, btnEditMeal;
     private EditText etComment;
 
     String[] mealItems = {"Breakfast", "Lunch", "Dinner", "Snack"};
     Resources resources;
     AutoCompleteTextView actvMealDropdown, actvElderDropdown;
-    ArrayAdapter<String> adapterItems, adapterUids;
-    //Datebase
+    ArrayAdapter<String> adapterItems, adapterUsernames;
     DatabaseReference rootRef;
     FirebaseAuth mAuth;
   
@@ -59,7 +58,7 @@ public class FragmentMealmanagment extends Fragment {
         //Fill under_care
         ArrayList<String> listUsernames = get_usernames();
 
-        View view =inflater.inflate(fragment_mealmanagment, container,false);
+        View view =inflater.inflate(R.layout.fragment_mealmanagment, container,false);
         //Fill Select A Meal-dropdown
         actvMealDropdown = view.findViewById(R.id.auto_complete_txt);
         adapterItems = new ArrayAdapter<String>(getActivity(), R.layout.list_item, mealItems);
@@ -67,8 +66,8 @@ public class FragmentMealmanagment extends Fragment {
 
         //Fill Select Elder-dropdown
         actvElderDropdown = view.findViewById(R.id.elder_select_list);
-        adapterUids = new ArrayAdapter<String>(getActivity(), R.layout.list_item, listUsernames);
-        actvElderDropdown.setAdapter(adapterUids);
+        adapterUsernames = new ArrayAdapter<String>(getActivity(), R.layout.list_item, listUsernames);
+        actvElderDropdown.setAdapter(adapterUsernames);
 
 
         //Clickables
@@ -76,6 +75,7 @@ public class FragmentMealmanagment extends Fragment {
         btnPickDate = (Button) view.findViewById(R.id.btnDatePicker);
         etComment = (EditText) view.findViewById(R.id.mealComment);
         btnSave = (Button) view.findViewById(R.id.savebtn);
+        btnEditMeal = (Button) view.findViewById(R.id.btnEditMeal);
 
         btnPickDate.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -110,15 +110,34 @@ public class FragmentMealmanagment extends Fragment {
                 addMealToElder(username, date, time, meal, comment);
             }
         });
+
+        btnEditMeal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentEditMeal()).commit();
+
+            }
+        });
+
         return view;
     }
 
     private void addMealToElder(String username, String date, String time, String meal, String comment){
-        mealType type = convertStringToMeal(meal); //add support for swedish strings
+        mealType type;
+        if(meal.equalsIgnoreCase("Frukost") || meal.equalsIgnoreCase("Middag") || meal.equalsIgnoreCase("Mellanmål")){
+            type = convertSwedishStringToMeal(meal);
+        } else {
+            type = convertStringToMeal(meal);
+        }
+
+
+        //add support for swedish strings
         Meal mealNew = new Meal(type, time, date, comment);
         DatabaseReference elderMealRef = FirebaseDatabase.getInstance().getReference().child("Elder").child(username).child("Meals");
 
-        elderMealRef.child(date).child(meal).setValue(mealNew);
+        elderMealRef.child(date).child(time).setValue(mealNew);
+        Toast.makeText(getActivity(), "added " + meal, Toast.LENGTH_SHORT).show();
+
     }
 
     private boolean isFormCorrect(String username, String date, String time, String meal){
@@ -154,8 +173,8 @@ public class FragmentMealmanagment extends Fragment {
         }, year, month, day);
 
         // Add OK and Cancel buttons
-        datePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE, "OK", datePickerDialog);
-        datePickerDialog.setButton(DatePickerDialog.BUTTON_NEGATIVE, "Cancel", datePickerDialog);
+        datePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE, getString(R.string.ok), datePickerDialog);
+        datePickerDialog.setButton(DatePickerDialog.BUTTON_NEGATIVE, getString(R.string.cancel), datePickerDialog);
 
         datePickerDialog.show();
     }
@@ -174,8 +193,8 @@ public class FragmentMealmanagment extends Fragment {
         }, hour, minute, true);
 
         // Add OK and Cancel buttons
-        timePickerDialog.setButton(TimePickerDialog.BUTTON_POSITIVE, "OK", timePickerDialog);
-        timePickerDialog.setButton(TimePickerDialog.BUTTON_NEGATIVE, "Cancel", timePickerDialog);
+        timePickerDialog.setButton(TimePickerDialog.BUTTON_POSITIVE, getString(R.string.ok), timePickerDialog);
+        timePickerDialog.setButton(TimePickerDialog.BUTTON_NEGATIVE, getString(R.string.cancel), timePickerDialog);
 
         timePickerDialog.show();
     }
@@ -204,6 +223,13 @@ public class FragmentMealmanagment extends Fragment {
         } catch (IllegalArgumentException e){
             throw new IllegalArgumentException("Invalid meal string: " + mealString);
         }
+    }
+
+    private mealType convertSwedishStringToMeal(String meal) {
+        if(meal.equalsIgnoreCase("Frukost")){ return mealType.breakfast; }
+        else if(meal.equalsIgnoreCase("Middag")){ return mealType.dinner; }
+        else if(meal.equalsIgnoreCase("Mellanmål")){ return mealType.snack; }
+        return mealType.lunch;
     }
 }
 
