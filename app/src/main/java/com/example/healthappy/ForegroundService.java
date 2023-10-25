@@ -155,16 +155,17 @@ public class ForegroundService extends Service {
                     long time_minutes = minutes_since_meal(meal);
                     if (time_minutes >= 60) {
                         if (w != warnings.MISSED) {
-                            Log.d(TAG, "manage_uneaten: " + getString(R.string.missed_meal) + elder.child("name").getValue(String.class) + getString(R.string.missed_meal_info));
-                            notif_manager.high_notif(eld, getString(R.string.missed_meal), elder.child("name").getValue(String.class) + getString(R.string.missed_meal_info));
+                            Log.d(TAG, "manage_uneaten: " + getString(R.string.missed_meal) + elder.getKey() + getString(R.string.missed_meal_info));
+                            notif_manager.high_notif(eld, getString(R.string.missed_meal), elder.getKey() + getString(R.string.missed_meal_info));
 
-                            meal.getRef().child("c_warn_stat").setValue(warnings.MISSED);
+
                             DatabaseReference history_ref = db.getReference(String.format("Elder/%s/meal_history", elder.getKey())).push();
                             history_ref.setValue(meal.getValue(Meal.class));
                             history_ref.child("time_of_report").setValue(
                                     new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTimeInMillis())
                             );
                             history_ref.child("ate").setValue(false);
+                            meal.getRef().setValue(null);
 
                         }
                     } else if (time_minutes >= 45) {
