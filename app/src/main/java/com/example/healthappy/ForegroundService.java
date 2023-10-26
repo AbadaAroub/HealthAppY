@@ -170,7 +170,7 @@ public class ForegroundService extends Service {
                         }
                     } else if (time_minutes >= 45) {
                         if (w != warnings.CRITICAL){
-                            notif_manager.high_notif(eld, getString(R.string.crit_meal_alert), elder.child("name").getValue(String.class)+getString(R.string.crit_meal_alert_info));
+                            notif_manager.high_notif(eld, getString(R.string.crit_meal_alert), elder.getKey()+" "+getString(R.string.crit_meal_alert_info));
                             meal.child("c_warn_stat").getRef().setValue(warnings.CRITICAL);
                         }
                     }
