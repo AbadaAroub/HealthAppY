@@ -156,7 +156,7 @@ public class ForegroundService extends Service {
                     if (time_minutes >= 60) {
                         if (w != warnings.MISSED) {
                             Log.d(TAG, "manage_uneaten: " + getString(R.string.missed_meal) + elder.getKey() + getString(R.string.missed_meal_info));
-                            notif_manager.high_notif(eld, getString(R.string.missed_meal), elder.getKey() + getString(R.string.missed_meal_info));
+                            notif_manager.high_notif(eld, getString(R.string.missed_meal), elder.getKey()+ " " + getString(R.string.missed_meal_info));
 
 
                             DatabaseReference history_ref = db.getReference(String.format("Elder/%s/meal_history", elder.getKey())).push();
